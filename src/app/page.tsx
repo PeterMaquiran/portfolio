@@ -148,7 +148,9 @@ const Header = () => (
 );
 
 const Section = ({ id, title, children }: any) => (
-  <section id={id} className="max-w-6xl mx-auto px-4 py-16">
+  <section id={id} className="max-w-6xl mx-auto px-4 py-16"
+
+  >
     <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">
       {title}
     </h2>
@@ -217,7 +219,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-100">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-100"
+      style={{
+        background: "linear-gradient(145deg, #0f172a 0%, #1e293b 40%, #1c2235ff 100%)",
+      }}
+    >
       <Header />
 
       {/* About */}
@@ -241,12 +247,15 @@ export default function Home() {
         <div className="grid gap-8">
           {projects.map((p) => (
             <motion.div
+              style={{
+                background: "lab(21 0.05 -12.34)",
+              }}
               key={p.title}
               whileHover={{ scale: 1.02 }}
               className="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm"
             >
               <h3 className="font-semibold text-lg mb-1">{p.title}</h3>
-              <p className="text-sm mb-3 text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm mb-3 text-neutral-600 dark:text-neutral-300">
                 {p.blurb}
               </p>
               <div className="flex flex-wrap gap-2 mb-3">
@@ -254,12 +263,16 @@ export default function Home() {
                   <span
                     key={tech}
                     className="text-xs px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-300 rounded"
+                    style={{
+                      background: 'color-mix(in oklab, lab(37 0.92 -29.93) 40%, transparent)',
+                      color: 'lab(83 -18.9 -28.38)'
+                    }}
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-              <ul className="text-sm space-y-1 text-neutral-700 dark:text-neutral-300 list-disc pl-4">
+              <ul className="text-sm space-y-1 text-neutral-700 dark:text-neutral-100 list-disc pl-4">
                 {p.highlights.map((h) => (
                   <li key={h}>{h}</li>
                 ))}
@@ -275,8 +288,8 @@ export default function Home() {
           {experiences.map((exp) => (
             <div key={exp.role}>
               <h3 className="font-semibold">{exp.role}</h3>
-              <div className="text-sm text-neutral-500 mb-2">{exp.period}</div>
-              <ul className="text-sm list-disc pl-5 space-y-1 text-neutral-600 dark:text-neutral-400">
+              <div className="text-sm text-neutral-300 mb-2">{exp.period}</div>
+              <ul className="text-sm list-disc pl-5 space-y-1 text-neutral-600 dark:text-neutral-200">
                 {exp.bullets.map((b) => (
                   <li key={b}>{b}</li>
                 ))}
@@ -291,6 +304,9 @@ export default function Home() {
         <div className="grid sm:grid-cols-2 gap-6">
           {testimonials.map((t, i) => (
             <motion.div
+              style={{
+                background: "lab(21 0.05 -12.34)",
+              }}
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

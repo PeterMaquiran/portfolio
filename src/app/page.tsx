@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Rocket } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import EarthBackground from "./components/EarthBackground";
 
 // —————————————————————————————————————————————
 // Portfolio data
@@ -236,6 +237,7 @@ export default function Home() {
       }}
     >
       <Header />
+      <EarthBackground />
 
       {/* About */}
       <Section id="about" title="About">

@@ -4,51 +4,51 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Rocket } from "lucide-react";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // —————————————————————————————————————————————
 // Portfolio data
 // —————————————————————————————————————————————
 const skills = {
   frontend: [
-    "Angular",
-    "Ionic (Angular)",
-    "TypeScript",
-    "RxJS",
-    "Zod",
-    "Webpack",
-    "Sentry",
-    "OpenTelemetry (web)",
+    { name: "Angular", level: 95 },
+    { name: "Ionic (Angular)", level: 90 },
+    { name: "TypeScript", level: 95 },
+    { name: "RxJS", level: 90 },
+    { name: "Zod", level: 85 },
+    { name: "Webpack", level: 80 },
+    { name: "Sentry", level: 80 },
+    { name: "OpenTelemetry (web)", level: 75 },
   ],
   backend: [
-    "Node.js",
-    "Express",
-    "RabbitMQ",
-    "Redis",
-    "SQLite/Postgres",
-    "Nginx",
-    "REST",
-    "WebSockets",
+    { name: "Node.js", level: 90 },
+    { name: "Express", level: 90 },
+    { name: "RabbitMQ", level: 80 },
+    { name: "Redis", level: 85 },
+    { name: "SQLite/Postgres", level: 80 },
+    { name: "Nginx", level: 85 },
+    { name: "REST", level: 95 },
+    { name: "WebSockets", level: 80 },
   ],
   devops: [
-    "Docker",
-    "Docker Swarm",
-    "Compose",
-    "Nginx Reverse Proxy",
-    "Certbot/SSL",
-    "OpenTelemetry Collector",
-    "Zipkin",
-    "Prometheus",
-    "Loki",
-    "Drone CI",
+    { name: "Docker", level: 90 },
+    { name: "Docker Swarm", level: 85 },
+    { name: "Compose", level: 90 },
+    { name: "Nginx Reverse Proxy", level: 85 },
+    { name: "Certbot/SSL", level: 80 },
+    { name: "OpenTelemetry Collector", level: 75 },
+    { name: "Zipkin", level: 80 },
+    { name: "Prometheus", level: 80 },
+    { name: "Loki", level: 75 },
+    { name: "Drone CI", level: 70 },
   ],
   mobile: [
-    "Ionic",
-    "Capacitor",
-    "Offline-first",
-    "Chunked Uploads (>5GB)",
-    "AES Encryption",
-    "Android/iOS",
+    { name: "Ionic", level: 90 },
+    { name: "Capacitor", level: 85 },
+    { name: "Offline-first", level: 95 },
+    { name: "Chunked Uploads (>5GB)", level: 90 },
+    { name: "AES Encryption", level: 80 },
+    { name: "Android/iOS", level: 90 },
   ],
 };
 
@@ -157,6 +157,60 @@ const Section = ({ id, title, children }: any) => (
 );
 
 
+const SkillsSection = ({ skills }: { skills: Record<string, { name: string; level: number }[]> }) => {
+  const categories = Object.keys(skills);
+  const [activeTab, setActiveTab] = useState(categories[0]);
+
+  return (
+    <section id="skills" className="max-w-6xl mx-auto px-4 py-16">
+      <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">Skills</h2>
+
+      {/* Tabs header */}
+      <div className="flex flex-wrap gap-3 mb-8 border-b border-neutral-200 dark:border-neutral-800 pb-2">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveTab(cat)}
+            className={`px-4 py-1.5 text-sm rounded-md transition-colors ${
+              activeTab === cat
+                ? "bg-indigo-500 text-white"
+                : "text-neutral-600 dark:text-neutral-400 hover:text-indigo-500"
+            }`}
+          >
+            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+          </button>
+        ))}
+      </div>
+
+      {/* Active tab content */}
+      <motion.div
+        key={activeTab}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
+      >
+        {skills[activeTab].map((s) => (
+          <div key={s.name}>
+            <div className="flex justify-between text-sm text-neutral-700 dark:text-neutral-300">
+              <span>{s.name}</span>
+              <span className="text-neutral-500">{s.level}%</span>
+            </div>
+            <div className="h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: `${s.level}%` }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="h-full rounded-full bg-indigo-500 dark:bg-indigo-400"
+              />
+            </div>
+          </div>
+        ))}
+      </motion.div>
+    </section>
+  );
+};
+
 export default function Home() {
   useEffect(() => {
     document.title = "Peter Maquiran | Portfolio";
@@ -179,22 +233,8 @@ export default function Home() {
       </Section>
 
       {/* Skills */}
-      <Section id="skills" title="Skills">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {Object.entries(skills).map(([key, list]) => (
-            <div key={key}>
-              <h3 className="font-semibold mb-2 capitalize text-indigo-500">
-                {key}
-              </h3>
-              <ul className="space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
-                {list.map((s) => (
-                  <li key={s}>• {s}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Section>
+      <SkillsSection skills={skills}/>
+
 
       {/* Projects */}
       <Section id="projects" title="Projects">

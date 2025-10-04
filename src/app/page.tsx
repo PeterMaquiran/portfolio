@@ -116,7 +116,12 @@ const testimonials = [
 
 
 const Header = () => (
-  <header className="sticky top-0 z-50 w-full backdrop-blur bg-white/80 dark:bg-neutral-900/80 border-b">
+  <header className="sticky top-0 z-50 w-full backdrop-blur  border-b"
+    style={{
+      background: 'linear-gradient(145deg, #0f172a 0%, #1e293b 40%, #1c2235ff 100%)',
+      borderBottom: '1px solid lab(83 -18.93 -28.32 / 0.3)'
+    }}
+  >
     <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
       <div className="flex items-center gap-3">
         <motion.div
@@ -201,6 +206,7 @@ const SkillsSection = ({ skills }: { skills: Record<string, { name: string; leve
             <div className="h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
+                style={{ background:"lab(83 -18.93 -28.32 / 0.7)"}}
                 whileInView={{ width: `${s.level}%` }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="h-full rounded-full bg-indigo-500 dark:bg-indigo-400"
@@ -248,7 +254,7 @@ export default function Home() {
           {projects.map((p) => (
             <motion.div
               style={{
-                background: "lab(21 0.05 -12.34)",
+                background: "lab(83 -18.93 -28.32 / 0.1)",
               }}
               key={p.title}
               whileHover={{ scale: 1.02 }}
@@ -264,7 +270,7 @@ export default function Home() {
                     key={tech}
                     className="text-xs px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-300 rounded"
                     style={{
-                      background: 'color-mix(in oklab, lab(37 0.92 -29.93) 40%, transparent)',
+                      background: 'lab(83 -18.93 -28.32 / 0.1)',
                       color: 'lab(83 -18.9 -28.38)'
                     }}
                   >
@@ -305,7 +311,7 @@ export default function Home() {
           {testimonials.map((t, i) => (
             <motion.div
               style={{
-                background: "lab(21 0.05 -12.34)",
+                background: "lab(83 -18.93 -28.32 / 0.1)",
               }}
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -316,14 +322,14 @@ export default function Home() {
               <p className="italic text-neutral-700 dark:text-neutral-300 mb-3">
                 “{t.quote}”
               </p>
-              <div className="text-sm text-neutral-500">— {t.author}</div>
+              <div className="text-sm text-neutral-500" style={{ color:"lab(83 -18.93 -28.32 / 0.8)"}}>— {t.author}</div>
             </motion.div>
           ))}
         </div>
       </Section>
 
       {/* Footer */}
-      <footer className="py-10 border-t border-neutral-200 dark:border-neutral-800 text-center text-sm text-neutral-500">
+      <footer className="py-10 border-t border-neutral-200 dark:border-neutral-800 text-center text-sm text-neutral-500" style={{ color:"lab(83 -18.93 -28.32 / 0.6)"}}>
         <div className="flex justify-center gap-4 mb-2">
           <a href="#" className="hover:text-indigo-500">
             <Github className="w-5 h-5" />

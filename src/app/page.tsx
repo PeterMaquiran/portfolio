@@ -124,19 +124,19 @@ const Header = () => (
   >
     <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
       <div className="flex items-center gap-3">
-        <motion.div
+        {/* <motion.div
           initial={{ scale: 0.8, rotate: -10 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ type: "spring", stiffness: 200 }}
           className="h-9 w-9 rounded-2xl grid place-items-center bg-gradient-to-br from-indigo-500 to-violet-600 text-white shadow"
         >
           <Rocket className="h-5 w-5" />
-        </motion.div>
+        </motion.div> */}
         <div>
           <div className="font-semibold text-neutral-900 dark:text-neutral-100">
             Peter Maquiran
           </div>
-          <div className="text-xs text-neutral-500">Web & Mobile Engineer</div>
+          <div className="text-xs" style={{ color:"lab(83 -18.93 -28.32 / 0.7)"}}>Software Developer</div>
         </div>
       </div>
       <nav className="hidden md:flex gap-5 text-sm text-neutral-700 dark:text-neutral-300">
@@ -178,11 +178,16 @@ const SkillsSection = ({ skills }: { skills: Record<string, { name: string; leve
           <button
             key={cat}
             onClick={() => setActiveTab(cat)}
-            className={`px-4 py-1.5 text-sm rounded-md transition-colors ${
-              activeTab === cat
-                ? "bg-indigo-500 text-white"
-                : "text-neutral-600 dark:text-neutral-400 hover:text-indigo-500"
-            }`}
+            className={`px-4 py-1.5 text-sm rounded-md transition-colors`}
+            style={{
+              background: activeTab === cat
+                ? "lab(83 -18.93 -28.32 / 0.7)"
+                : "lab(83 -18.93 -28.32 / 0.1)",
+              color: activeTab === cat
+                ? "white"
+                : "lab(83 -18.93 -28.32 / 0.7)",
+              cursor:'pointer'
+            }}
           >
             {cat.charAt(0).toUpperCase() + cat.slice(1)}
           </button>
@@ -201,7 +206,7 @@ const SkillsSection = ({ skills }: { skills: Record<string, { name: string; leve
           <div key={s.name}>
             <div className="flex justify-between text-sm text-neutral-700 dark:text-neutral-300">
               <span>{s.name}</span>
-              <span className="text-neutral-500">{s.level}%</span>
+              <span className="text-neutral-300">{s.level}%</span>
             </div>
             <div className="h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
               <motion.div

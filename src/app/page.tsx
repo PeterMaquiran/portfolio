@@ -1,5 +1,5 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Rocket } from "lucide-react";
@@ -141,7 +141,7 @@ const Header = () => (
         </div>
       </div>
       <nav className="hidden md:flex gap-5 text-sm text-neutral-700 dark:text-neutral-300">
-        {["About", "Skills", "Projects", "Experience", "Testimonials"].map(
+        {["Skills", "Projects", "Experience", "Testimonials"].map(
           (item) => (
             <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-indigo-500">
               {item}
@@ -237,19 +237,27 @@ export default function Home() {
       }}
     >
       <Header />
-      <EarthBackground />
+      
 
-      {/* About */}
-      <Section id="about" title="About">
-        <p className="max-w-3xl leading-relaxed">
-          I'm a full-stack web and mobile engineer specializing in{" "}
-          <strong>Angular, Ionic, and Node.js</strong>. I design offline-first
-          systems with robust observability pipelines powered by{" "}
-          <strong>OpenTelemetry, Prometheus, and Zipkin</strong>. My work spans
-          the full stack — from frontend UX to backend reliability and
-          DevOps automation.
-        </p>
-      </Section>
+      <div className="max-w-6xl mx-auto px-4 pt-16 flex flex-col md:flex-row items-center justify-between gap-12">
+
+        {/* About */}
+        <div id="about" title="About" className="flex-1">
+          <p className="max-w-3xl leading-relaxed">
+            I'm a full-stack web and mobile engineer specializing in{" "}
+            <strong>Angular, Ionic, and Node.js</strong>. I design offline-first
+            systems with robust observability pipelines powered by{" "}
+            <strong>OpenTelemetry, Prometheus, and Zipkin</strong>. My work spans
+            the full stack — from frontend UX to backend reliability and
+            DevOps automation.
+          </p>
+        </div>
+
+        {/* Earth */}
+        <div className="flex-1 flex justify-end">
+          <EarthBackground />
+        </div>
+      </div>
 
       {/* Skills */}
       <SkillsSection skills={skills}/>

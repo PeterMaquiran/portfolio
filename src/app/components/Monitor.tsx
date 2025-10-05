@@ -52,7 +52,7 @@ export default function Monitor() {
     monitorMesh.receiveShadow = true;
     scene.add(monitorMesh);
     monitorMesh.rotation.set(0, 0, 0); // no rotation
-    monitorMesh.position.y = 0.2; // 1 unit above ground
+    monitorMesh.position.y = 0.3; // 1 unit above ground
     
     // 🖼️ Screen
     const loader = new THREE.TextureLoader();

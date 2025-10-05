@@ -7,11 +7,13 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 export default function Monitor({
   canvasHeight ='230px',
   canvasWidth = '300px',
-  screenSource = '/screen.png'
+  screenSource = '/screen.png',
+	cameraStepBack = 5,
 }: {
   canvasHeight?: string,
   canvasWidth?: string,
   screenSource?: string,
+	cameraStepBack?: number,
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +28,7 @@ export default function Monitor({
       0.1,
       100
     );
-    camera.position.set(0, 0, 5); // 5 units in front of the monitor
+    camera.position.set(0, 0, cameraStepBack); // 5 units in front of the monitor
     camera.lookAt(0, 0, 0);      // look straight at the center
 
     // 🖥️ Renderer

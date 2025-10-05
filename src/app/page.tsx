@@ -248,6 +248,27 @@ const SkillsSection = ({
   );
 };
 
+export const projectPreviews = [
+  <Monitor
+    key="monitor"
+    canvasHeight="800px"
+    canvasWidth="800px"
+    screenSource="/front-end.png"
+    //enableZoom
+    //enablePan
+    cameraStepBack={8}
+  />,
+  <Phone
+    key="phone"
+    canvasHeight="800px"
+    canvasWidth="880px"
+    screenSource="/mobile-porfoio.png"
+    enableZoom
+    enablePan
+    cameraStepBack={8}
+  />
+];
+
 
 export default function Home() {
   useEffect(() => {
@@ -307,27 +328,16 @@ export default function Home() {
 
       {/* Projects */}
       <Section id="projects" title="Projects">
-        <div className="grid gap-8" style={{cursor:'pointer'}} 
-           onClick={() => 
-            openModal(
-              <Phone
-                canvasHeight="800px"
-                canvasWidth="880px"
-                screenSource="/mobile-porfoio.png"
-                enableZoom={true}
-                enablePan={true}
-                cameraStepBack={8}
-              />
-          )}
-        >
-          {projects.map((p) => (
+        <div className="grid gap-8">
+          {projects.map((p, index) => (
             <motion.div
               style={{
                 background: "lab(83 -18.93 -28.32 / 0.1)",
               }}
               key={p.title}
               whileHover={{ scale: 1.02 }}
-              className="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm"
+              className="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm cursor-pointer"
+              onClick={() => openModal(projectPreviews[index])}
             >
               <h3 className="font-semibold text-lg mb-1">{p.title}</h3>
               <p className="text-sm mb-3 text-neutral-600 dark:text-neutral-300">

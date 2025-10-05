@@ -4,8 +4,10 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Rocket } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import EarthBackground from "./components/EarthBackground";
+import Phone from "./components/Phone";
+import Monitor from "./components/Monitor";
 
 // —————————————————————————————————————————————
 // Portfolio data
@@ -230,6 +232,9 @@ export default function Home() {
     document.title = "Peter Maquiran | Portfolio";
   }, []);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [showPhone, setShowPhone] = useState(false);
+
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-100"
       style={{
@@ -256,8 +261,11 @@ export default function Home() {
         {/* Earth */}
         <div className="flex-1 flex justify-end">
           <EarthBackground />
+          <Phone />
         </div>
       </div>
+
+      <Monitor/>
 
       {/* Skills */}
       <SkillsSection skills={skills}/>
@@ -304,10 +312,10 @@ export default function Home() {
       </Section>
 
       {/* Experience */}
-      <Section id="experience" title="Experience">
-        <div className="space-y-6">
+      <Section id="experience" title="Experience" onClick={() => setShowPhone(true)}>
+        <div className="space-y-6" onClick={() => setShowPhone(true)}>
           {experiences.map((exp) => (
-            <div key={exp.role}>
+            <div key={exp.role} onClick={() => setShowPhone(true)}>
               <h3 className="font-semibold">{exp.role}</h3>
               <div className="text-sm text-neutral-300 mb-2">{exp.period}</div>
               <ul className="text-sm list-disc pl-5 space-y-1 text-neutral-600 dark:text-neutral-200">
@@ -343,6 +351,22 @@ export default function Home() {
         </div>
       </Section>
 
+
+      {/* Centered overlay modal */}
+      {showPhone && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+          {/* Phone canvas container */}
+          <Phone />
+          {/* Close button */}
+          <button
+            onClick={() => setShowPhone(false)}
+            className="absolute top-4 right-4 text-white text-xl font-bold"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
       {/* Footer */}
       <footer className="py-10 border-t border-neutral-200 dark:border-neutral-800 text-center text-sm text-neutral-500" style={{ color:"lab(83 -18.93 -28.32 / 0.6)"}}>
         <div className="flex justify-center gap-4 mb-2">
@@ -356,7 +380,7 @@ export default function Home() {
             <Mail className="w-5 h-5" />
           </a>
         </div>
-        © {new Date().getFullYear()} Peter Maquiran
+        © {new Date().getFullYear()} Peter Maquiran 
       </footer>
     </div>
   );

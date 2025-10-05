@@ -115,6 +115,33 @@ const experiences = [
       "Managed Docker Swarm stacks with Nginx reverse proxy and TLS",
     ],
   },
+    {
+    role: "Full-Stack Web & Mobile Engineer",
+    period: "2019 — Present",
+    bullets: [
+      "Architected offline-first mobile flows with background sync",
+      "Implemented distributed tracing across web, API, and services",
+      "Managed Docker Swarm stacks with Nginx reverse proxy and TLS",
+    ],
+  },
+    {
+    role: "Full-Stack Web & Mobile Engineer",
+    period: "2019 — Present",
+    bullets: [
+      "Architected offline-first mobile flows with background sync",
+      "Implemented distributed tracing across web, API, and services",
+      "Managed Docker Swarm stacks with Nginx reverse proxy and TLS",
+    ],
+  },
+    {
+    role: "Full-Stack Web & Mobile Engineer",
+    period: "2019 — Present",
+    bullets: [
+      "Architected offline-first mobile flows with background sync",
+      "Implemented distributed tracing across web, API, and services",
+      "Managed Docker Swarm stacks with Nginx reverse proxy and TLS",
+    ],
+  },
 ];
 
 const testimonials = [

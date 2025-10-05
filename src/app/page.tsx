@@ -264,7 +264,7 @@ export default function Home() {
 
         {/* Earth */}
         <div className="flex-1 flex justify-end">
-          {activeTab === "frontend" && <Monitor />}
+          {activeTab === "frontend" && <Monitor screenSource="/front-end.png" />}
           {activeTab === "mobile" && <Phone />}
           {activeTab === "backend" && <Monitor />}
           {activeTab === "observability" && <EarthBackground />}

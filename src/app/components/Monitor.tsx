@@ -7,9 +7,11 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 export default function Monitor({
   canvasHeight ='400px',
   canvasWidth = '300px',
+  screenSource = '/screen.png'
 }: {
-  canvasHeight: string,
-  canvasWidth: string,
+  canvasHeight?: string,
+  canvasWidth?: string,
+  screenSource?: string,
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -62,7 +64,7 @@ export default function Monitor({
     
     // 🖼️ Screen
     const loader = new THREE.TextureLoader();
-    const screenTexture = loader.load("/screen.png"); // Replace with your screen content
+    const screenTexture = loader.load(screenSource); // Replace with your screen content
     screenTexture.colorSpace = THREE.SRGBColorSpace;
 
     const screenGeometry = new THREE.PlaneGeometry(2.3, 1.3);

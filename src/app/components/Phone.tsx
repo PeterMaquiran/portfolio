@@ -8,8 +8,8 @@ export default function Phone({
   canvasHeight ='300px',
   canvasWidth = '280px',
 }: {
-  canvasHeight: string,
-  canvasWidth: string,
+  canvasHeight?: string,
+  canvasWidth?: string,
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 

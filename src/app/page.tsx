@@ -239,6 +239,29 @@ export default function Home() {
   const [showPhone, setShowPhone] = useState(false);
   const [activeTab, setActiveTab] = useState("frontend"); // default tab
 
+  function showPhoneFunction(data: boolean) {
+    setShowPhone(data);
+    if (showPhone) {
+      document.body.style.overflow = "auto";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  // useEffect(() => {
+  //   // Lock or unlock scroll when showPhone changes
+  //   if (showPhone) {
+  //     document.body.style.overflow = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "";
+  //   }
+
+  //   // Clean up (ensures body scroll is restored if component unmounts)
+  //   return () => {
+  //     document.body.style.overflow = "";
+  //   };
+  // }, [showPhone]);
+
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-100"
       style={{
@@ -251,14 +274,19 @@ export default function Home() {
       <div className="max-w-6xl mx-auto px-4 pt-16 flex flex-col md:flex-row items-center justify-between gap-12">
 
         {/* About */}
-        <div id="about" title="About" className="flex-1">
-          <p className="max-w-3xl leading-relaxed">
-            I'm a full-stack web and mobile engineer specializing in{" "}
-            <strong>Angular, Ionic, and Node.js</strong>. I design offline-first
-            systems with robust observability pipelines powered by{" "}
-            <strong>OpenTelemetry, Prometheus, and Zipkin</strong>. My work spans
-            the full stack — from frontend UX to backend reliability and
-            DevOps automation.
+        <div id="about" title="About" className="flex-1" >
+          <p className="max-w-3xl leading-relaxed text-neutral-200">
+            I'm a <strong>Full-Stack Web & Mobile Developer</strong> focused on building reliable, observable, and offline-ready applications.
+            I work mainly with <strong>Angular</strong>, <strong>Ionic</strong>, and <strong>Node.js</strong>, crafting smooth experiences that stay fast — even with poor connectivity.
+          </p>
+
+          <p className="max-w-3xl leading-relaxed text-neutral-200 mt-4">
+            I care deeply about <strong>observability</strong> and <strong>performance</strong>, using <strong>OpenTelemetry</strong>, <strong>Zipkin</strong>, <strong>Prometheus</strong>, and <strong>Grafana</strong> to trace and monitor systems end-to-end.
+            I also manage <strong>Docker-based infrastructure</strong> with <strong>Nginx</strong>, <strong>Certbot</strong>, and automated <strong>CI/CD pipelines</strong> for secure, zero-downtime deployments.
+          </p>
+
+          <p className="max-w-3xl leading-relaxed text-neutral-200 mt-4">
+            I love turning complex systems into simple, dependable apps — where every request, metric, and trace tells a story.
           </p>
         </div>
 
@@ -277,7 +305,7 @@ export default function Home() {
 
       {/* Projects */}
       <Section id="projects" title="Projects">
-        <div className="grid gap-8">
+        <div className="grid gap-8" style={{cursor:'pointer'}} onClick={() => showPhoneFunction(true)}>
           {projects.map((p) => (
             <motion.div
               style={{
@@ -316,10 +344,10 @@ export default function Home() {
       </Section>
 
       {/* Experience */}
-      <Section id="experience" title="Experience" onClick={() => setShowPhone(true)}>
-        <div className="space-y-6" onClick={() => setShowPhone(true)}>
+      <Section id="experience" title="Experience">
+        <div className="space-y-6">
           {experiences.map((exp) => (
-            <div key={exp.role} onClick={() => setShowPhone(true)}>
+            <div key={exp.role}>
               <h3 className="font-semibold">{exp.role}</h3>
               <div className="text-sm text-neutral-300 mb-2">{exp.period}</div>
               <ul className="text-sm list-disc pl-5 space-y-1 text-neutral-600 dark:text-neutral-200">
@@ -360,11 +388,12 @@ export default function Home() {
       {showPhone && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
           {/* Phone canvas container */}
-          <Phone />
+          <Phone canvasHeight="400px" canvasWidth="280px" />
           {/* Close button */}
           <button
-            onClick={() => setShowPhone(false)}
-            className="absolute top-4 right-4 text-white text-xl font-bold"
+            onClick={() => showPhoneFunction(false)}
+            style={{ color:"lab(83 -18.93 -28.32 / 0.8)"}}
+            className="absolute top-4 right-4 text-white text-xl font-bold cursor-pointer"
           >
             ×
           </button>

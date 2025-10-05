@@ -140,7 +140,11 @@ export default function Phone({
   return (
     <div
       ref={containerRef}
-      className={`w-[${canvasHeight}] h-[${canvasWidth}] overflow-hidden`}
+      style={{
+        height: canvasHeight,
+        width: canvasWidth
+      }}
+      className={`overflow-hidden`}
     />
   );
 }

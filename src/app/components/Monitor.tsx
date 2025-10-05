@@ -5,7 +5,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
 export default function Monitor({
-  canvasHeight ='400px',
+  canvasHeight ='230px',
   canvasWidth = '300px',
   screenSource = '/screen.png'
 }: {
@@ -134,7 +134,11 @@ export default function Monitor({
   return (
     <div
       ref={containerRef}
-      className={`w-[${canvasHeight}] h-[${canvasWidth}] overflow-hidden`}
+        style={{
+        height: canvasHeight,
+        width: canvasWidth
+      }}
+      className={`overflow-hidden`}
     />
   );
 }

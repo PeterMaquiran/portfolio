@@ -33,17 +33,12 @@ const skills = {
     { name: "REST", level: 95 },
     { name: "WebSockets", level: 80 },
   ],
-  devops: [
-    { name: "Docker", level: 90 },
-    { name: "Docker Swarm", level: 85 },
-    { name: "Compose", level: 90 },
-    { name: "Nginx Reverse Proxy", level: 85 },
-    { name: "Certbot/SSL", level: 80 },
+  observability: [
     { name: "OpenTelemetry Collector", level: 75 },
     { name: "Zipkin", level: 80 },
     { name: "Prometheus", level: 80 },
     { name: "Loki", level: 75 },
-    { name: "Drone CI", level: 70 },
+    { name: "Grafana", level: 80 },
   ],
   mobile: [
     { name: "Ionic", level: 90 },
@@ -54,6 +49,7 @@ const skills = {
     { name: "Android/iOS", level: 90 },
   ],
 };
+
 
 const projects = [
   {
@@ -167,9 +163,16 @@ const Section = ({ id, title, children }: any) => (
 );
 
 
-const SkillsSection = ({ skills }: { skills: Record<string, { name: string; level: number }[]> }) => {
+const SkillsSection = ({
+  skills,
+  activeTab,
+  setActiveTab,
+}: {
+  skills: Record<string, { name: string; level: number }[]>,
+  activeTab: string,
+  setActiveTab: (tab: string) => void
+}) => {
   const categories = Object.keys(skills);
-  const [activeTab, setActiveTab] = useState(categories[0]);
 
   return (
     <section id="skills" className="max-w-6xl mx-auto px-4 py-16">
@@ -227,13 +230,14 @@ const SkillsSection = ({ skills }: { skills: Record<string, { name: string; leve
   );
 };
 
+
 export default function Home() {
   useEffect(() => {
     document.title = "Peter Maquiran | Portfolio";
   }, []);
 
-  const containerRef = useRef<HTMLDivElement>(null);
   const [showPhone, setShowPhone] = useState(false);
+  const [activeTab, setActiveTab] = useState("frontend"); // default tab
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-100"
@@ -260,15 +264,15 @@ export default function Home() {
 
         {/* Earth */}
         <div className="flex-1 flex justify-end">
-          <EarthBackground />
-          <Phone />
+          {activeTab === "frontend" && <Monitor />}
+          {activeTab === "mobile" && <Phone />}
+          {activeTab === "backend" && <Monitor />}
+          {activeTab === "observability" && <EarthBackground />}
         </div>
       </div>
 
-      <Monitor/>
-
       {/* Skills */}
-      <SkillsSection skills={skills}/>
+      <SkillsSection skills={skills} activeTab={activeTab} setActiveTab={setActiveTab} />
 
 
       {/* Projects */}

@@ -4,7 +4,13 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
-export default function Phone() {
+export default function Phone({
+  canvasHeight ='300px',
+  canvasWidth = '280px',
+}: {
+  canvasHeight: string,
+  canvasWidth: string,
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -131,5 +137,10 @@ export default function Phone() {
     };
   }, []);
 
-  return <div ref={containerRef} className="w-[280px] h-[300px] overflow-hidden" />;
+  return (
+    <div
+      ref={containerRef}
+      className={`w-[${canvasHeight}] h-[${canvasWidth}] overflow-hidden`}
+    />
+  );
 }

@@ -254,21 +254,9 @@ export default function Home() {
     document.title = "Peter Maquiran | Portfolio";
   }, []);
 
-  const [showPhone, setShowPhone] = useState(false);
   const [activeTab, setActiveTab] = useState("web"); // default tab
-  const [phoneConfig, setPhoneConfig] = useState<PhoneConfig | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
-
-  function showPhoneFunction(data: boolean) {
-    setShowPhone(data);
-    if (showPhone) {
-      document.body.style.overflow = "auto";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
-  }
-
 
   function openModal(content: ReactNode) {
     setModalContent(content);

@@ -7,9 +7,17 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 export default function Phone({
   canvasHeight ='300px',
   canvasWidth = '280px',
+  screenSource = '/phone.png',
+  enableZoom = false,
+  enablePan = false,
+  cameraStepBack = 5,
 }: {
   canvasHeight?: string,
   canvasWidth?: string,
+  screenSource?: string,
+  enableZoom?: boolean,
+  enablePan?: boolean,
+  cameraStepBack?: number,
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +34,7 @@ export default function Phone({
     );
 
     // Move camera slightly to the side and above
-    camera.position.set(0, 0, 5); // 5 units in front of the monitor
+    camera.position.set(0, 0, cameraStepBack); // 5 units in front of the monitor
     camera.lookAt(0, 0, 0);      // look straight at the center
 
     // 🖥️ Renderer
@@ -45,8 +53,8 @@ export default function Phone({
     // 🎮 Controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.enableZoom = false;
-    controls.enablePan = false;
+    controls.enableZoom = enableZoom;
+    controls.enablePan = enablePan;
 
     // 📱 Rounded phone body
     const phoneGeometry = new RoundedBoxGeometry(1, 2, 0.1, 16, 0.1);
@@ -64,7 +72,7 @@ export default function Phone({
 
     // 🖼️ Screen texture
     const loader = new THREE.TextureLoader();
-    const screenTexture = loader.load("/phone.png");
+    const screenTexture = loader.load(screenSource);
     screenTexture.colorSpace = THREE.SRGBColorSpace;
 
     const screenGeometry = new THREE.PlaneGeometry(0.88, 1.76);
@@ -130,12 +138,35 @@ export default function Phone({
     });
     resizeObserver.observe(container);
 
+
+    // 🧹 Cleanup
     return () => {
+      //cancelAnimationFrame(animationFrameId);
       resizeObserver.disconnect();
-      container.removeChild(renderer.domElement);
+      controls.dispose();
+      screenTexture.dispose();
+
+      [
+        phoneGeometry,
+        screenGeometry,
+        glassGeometry,
+        camGeometry,
+        camHighlightGeometry,
+      ].forEach((geo) => geo.dispose());
+
+      [
+        phoneMaterial,
+        screenMaterial,
+        glassMaterial,
+        camMaterial,
+        camHighlightMaterial,
+      ].forEach((mat) => mat.dispose());
+
       renderer.dispose();
+      container.removeChild(renderer.domElement);
+      scene.clear();
     };
-  }, []);
+  }, [screenSource, enableZoom, enablePan, cameraStepBack]);
 
   return (
     <div

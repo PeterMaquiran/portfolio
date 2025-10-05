@@ -4,65 +4,83 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Rocket } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import EarthBackground from "./components/EarthBackground";
 import Phone from "./components/Phone";
 import Monitor from "./components/Monitor";
+import Modal from "./components/Modal";
+interface PhoneConfig {
+  canvasHeight: string;
+  canvasWidth: string;
+  screenSource: string;
+  enableZoom: boolean;
+  enablePan: boolean;
+  cameraStepBack: number;
+}
 
 // —————————————————————————————————————————————
 // Portfolio data
 // —————————————————————————————————————————————
 const skills = {
-  frontend: [
-    { name: "Angular", level: 95 },
-    { name: "Ionic (Angular)", level: 90 },
-    { name: "TypeScript", level: 95 },
-    { name: "RxJS", level: 90 },
-    { name: "Zod", level: 85 },
+  web: [
+    { name: "Vue", level: 100 },
+    { name: "Angular", level: 100 },
+    { name: "Ionic (Angular)", level: 95 },
+    { name: "TypeScript", level: 100 },
+    { name: "Chat app", level: 100 },
+    { name: "HTML", level: 100 },
+    { name: "CSS", level: 100 },
+    { name: "Taiwind", level: 100 },
+    { name: "RxJS", level: 100 },
+    { name: "Zod", level: 100 },
     { name: "Webpack", level: 80 },
     { name: "Sentry", level: 80 },
-    { name: "OpenTelemetry (web)", level: 75 },
+    { name: "OpenTelemetry (web)", level: 100 },
+    { name: "Firebase", level: 80 },
   ],
   backend: [
-    { name: "Node.js", level: 90 },
-    { name: "Express", level: 90 },
+    { name: "Node.js", level: 100 },
+    { name: "Nest.js", level: 100 },
     { name: "RabbitMQ", level: 80 },
-    { name: "Redis", level: 85 },
-    { name: "SQLite/Postgres", level: 80 },
-    { name: "Nginx", level: 85 },
-    { name: "REST", level: 95 },
+    { name: "Redis", level: 80 },
+    { name: "Postgres", level: 80 },
+    { name: "Nginx", level: 95 },
+    { name: "REST", level: 100 },
     { name: "WebSockets", level: 80 },
+    { name: "WebSockets", level: 80 },
+    { name: "Docker", level: 100 },
+    { name: "Swarm", level: 80 },
+    { name: "Self hosted Gitea", level: 80 },
+    { name: "Self hosted Drone Ci", level: 80 },
+    { name: "Self hosted Grafana", level: 80 },
+    { name: "Self hosted Prometheus", level: 80 },
+    { name: "Self hosted Prometheus", level: 80 },
   ],
   observability: [
-    { name: "OpenTelemetry Collector", level: 75 },
-    { name: "Zipkin", level: 80 },
-    { name: "Prometheus", level: 80 },
-    { name: "Loki", level: 75 },
-    { name: "Grafana", level: 80 },
+    { name: "OpenTelemetry Collector", level: 100 },
+    { name: "Zipkin", level: 100 },
+    { name: "Prometheus", level: 100 },
+    { name: "Loki", level: 100 },
+    { name: "Grafana", level: 100 },
+    { name: "Server monitoring", level: 100 },
+    { name: "User monitoring", level: 100 },
+    { name: "Metrics", level: 100 },
+    { name: "Logs", level: 100 },
+    { name: "Tracing", level: 100 },
   ],
   mobile: [
+    { name: "Flutter", level: 80 },
     { name: "Ionic", level: 90 },
     { name: "Capacitor", level: 85 },
     { name: "Offline-first", level: 95 },
-    { name: "Chunked Uploads (>5GB)", level: 90 },
-    { name: "AES Encryption", level: 80 },
+    { name: "Offline-first chat app", level: 95 },
     { name: "Android/iOS", level: 90 },
+    { name: "Firebase Push Notification", level: 100 },
   ],
 };
 
 
 const projects = [
-  {
-    title: "Observability-First Chat/Feed App",
-    blurb:
-      "Offline-first Ionic/Angular app with chunked media uploads, scroll-position history loading, and end-to-end tracing.",
-    stack: ["Ionic", "Angular", "OpenTelemetry", "Zipkin", "Prometheus", "Sentry"],
-    highlights: [
-      "Maintains scroll position when prepending history",
-      "Uploads 5GB+ files via chunked strategy with resume",
-      "Traces flows front-to-back with OTel + Zipkin",
-    ],
-  },
   {
     title: "Self-Hosted DevOps Stack",
     blurb:
@@ -75,14 +93,14 @@ const projects = [
     ],
   },
   {
-    title: "Secure Media Validator",
+    title: "Reactive Portfolio Website",
     blurb:
-      "Reusable FileValidatorService to validate images, video, audio, and filenames with strict schema (Zod) and Sentry reporting.",
-    stack: ["TypeScript", "Angular", "Zod", "Sentry"],
+      "Responsive Next.js portfolio optimized for web and mobile with smooth animations, 3D elements, and language templates (EN/PT).",
+    stack: ["Next.js", "React", "Tailwind", "Three.js"],
     highlights: [
-      "Schema-driven validation",
-      "Fast diff checks for large objects",
-      "Actionable error telemetry",
+      "Fully responsive and mobile-first design",
+      "Interactive 3D scenes using Three.js",
+      "Multilingual templates (English & Portuguese)",
     ],
   },
 ];
@@ -237,7 +255,10 @@ export default function Home() {
   }, []);
 
   const [showPhone, setShowPhone] = useState(false);
-  const [activeTab, setActiveTab] = useState("frontend"); // default tab
+  const [activeTab, setActiveTab] = useState("web"); // default tab
+  const [phoneConfig, setPhoneConfig] = useState<PhoneConfig | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState<ReactNode>(null);
 
   function showPhoneFunction(data: boolean) {
     setShowPhone(data);
@@ -248,19 +269,12 @@ export default function Home() {
     }
   }
 
-  // useEffect(() => {
-  //   // Lock or unlock scroll when showPhone changes
-  //   if (showPhone) {
-  //     document.body.style.overflow = "hidden";
-  //   } else {
-  //     document.body.style.overflow = "";
-  //   }
 
-  //   // Clean up (ensures body scroll is restored if component unmounts)
-  //   return () => {
-  //     document.body.style.overflow = "";
-  //   };
-  // }, [showPhone]);
+  function openModal(content: ReactNode) {
+    setModalContent(content);
+    setShowModal(true);
+    document.body.style.overflow = "hidden";
+  }
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-100"
@@ -276,7 +290,7 @@ export default function Home() {
         {/* About */}
         <div id="about" title="About" className="flex-1" >
           <p className="max-w-3xl leading-relaxed text-neutral-200">
-            I'm a <strong>Full-Stack Web & Mobile Developer</strong> focused on building reliable, observable, and offline-ready applications.
+            I'm a <strong>Web & Mobile Developer</strong> focused on building reliable, observable, and offline-ready applications.
             I work mainly with <strong>Angular</strong>, <strong>Ionic</strong>, and <strong>Node.js</strong>, crafting smooth experiences that stay fast — even with poor connectivity.
           </p>
 
@@ -292,7 +306,7 @@ export default function Home() {
 
         {/* Earth */}
         <div className="flex-1 flex justify-end">
-          {activeTab === "frontend" && <Monitor screenSource="/front-end.png" />}
+          {activeTab === "web" && <Monitor screenSource="/front-end.png" />}
           {activeTab === "mobile" && <Phone />}
           {activeTab === "backend" && <Monitor />}
           {activeTab === "observability" && <EarthBackground />}
@@ -305,7 +319,19 @@ export default function Home() {
 
       {/* Projects */}
       <Section id="projects" title="Projects">
-        <div className="grid gap-8" style={{cursor:'pointer'}} onClick={() => showPhoneFunction(true)}>
+        <div className="grid gap-8" style={{cursor:'pointer'}} 
+           onClick={() => 
+            openModal(
+              <Phone
+                canvasHeight="800px"
+                canvasWidth="880px"
+                screenSource="/mobile-porfoio.png"
+                enableZoom={true}
+                enablePan={true}
+                cameraStepBack={8}
+              />
+          )}
+        >
           {projects.map((p) => (
             <motion.div
               style={{
@@ -384,21 +410,9 @@ export default function Home() {
       </Section>
 
 
-      {/* Centered overlay modal */}
-      {showPhone && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-          {/* Phone canvas container */}
-          <Phone canvasHeight="400px" canvasWidth="280px" />
-          {/* Close button */}
-          <button
-            onClick={() => showPhoneFunction(false)}
-            style={{ color:"lab(83 -18.93 -28.32 / 0.8)"}}
-            className="absolute top-4 right-4 text-white text-xl font-bold cursor-pointer"
-          >
-            ×
-          </button>
-        </div>
-      )}
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+        {modalContent}
+      </Modal>
 
       {/* Footer */}
       <footer className="py-10 border-t border-neutral-200 dark:border-neutral-800 text-center text-sm text-neutral-500" style={{ color:"lab(83 -18.93 -28.32 / 0.6)"}}>

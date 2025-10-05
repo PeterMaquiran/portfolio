@@ -124,12 +124,33 @@ export default function Monitor({
     });
     resizeObserver.observe(container);
 
+    // 🧹 Cleanup
     return () => {
+      //cancelAnimationFrame(animationFrameId);
       resizeObserver.disconnect();
-      container.removeChild(renderer.domElement);
+      controls.dispose();
+
+      // Dispose objects
+      screenTexture.dispose();
+      [
+        monitorGeometry,
+        screenGeometry,
+        glassGeometry,
+        standGeometry,
+        baseGeometry,
+      ].forEach((geo) => geo.dispose());
+      [
+        monitorMaterial,
+        screenMaterial,
+        glassMaterial,
+        standMaterial,
+      ].forEach((mat) => mat.dispose());
+
       renderer.dispose();
+      container.removeChild(renderer.domElement);
+      scene.clear();
     };
-  }, []);
+  }, [screenSource]);
 
   return (
     <div

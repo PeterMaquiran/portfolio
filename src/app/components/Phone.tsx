@@ -13,7 +13,7 @@ export default function Phone() {
 
     // 🎥 Camera
     const camera = new THREE.PerspectiveCamera(
-      30,
+      25,
       container.clientWidth / container.clientHeight,
       0.1,
       100

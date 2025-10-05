@@ -13,7 +13,7 @@ export default function Monitor() {
 
     // 🎥 Camera
     const camera = new THREE.PerspectiveCamera(
-      35,
+      25,
       container.clientWidth / container.clientHeight,
       0.1,
       100
@@ -52,6 +52,7 @@ export default function Monitor() {
     monitorMesh.receiveShadow = true;
     scene.add(monitorMesh);
     monitorMesh.rotation.set(0, 0, 0); // no rotation
+    monitorMesh.position.y = 0.2; // 1 unit above ground
     
     // 🖼️ Screen
     const loader = new THREE.TextureLoader();

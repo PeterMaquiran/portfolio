@@ -3,71 +3,71 @@
     "web": {
       "title": "Web",
       "items": [
-        "Vue",
-        "Angular",
-        "Ionic (Angular)",
-        "TypeScript",
-        "Chat app",
-        "HTML",
-        "CSS",
-        "Tailwind",
-        "Three.js",
-        "RxJS",
-        "Zod",
-        "Webpack",
-        "Sentry",
-        "OpenTelemetry (web)",
-        "Firebase"
+        { "name": "Vue", "level": 95 },
+        { "name": "Angular", "level": 100 },
+        { "name": "Ionic (Angular)", "level": 95 },
+        { "name": "TypeScript", "level": 100 },
+        { "name": "Chat app", "level": 90 },
+        { "name": "HTML", "level": 100 },
+        { "name": "CSS", "level": 95 },
+        { "name": "Tailwind", "level": 95 },
+        { "name": "Three.js", "level": 85 },
+        { "name": "RxJS", "level": 95 },
+        { "name": "Zod", "level": 90 },
+        { "name": "Webpack", "level": 90 },
+        { "name": "Sentry", "level": 85 },
+        { "name": "OpenTelemetry (web)", "level": 85 },
+        { "name": "Firebase", "level": 90 }
       ]
     },
     "backend": {
       "title": "Backend",
       "items": [
-        "Node.js",
-        "Nest.js",
-        "RabbitMQ",
-        "Redis",
-        "Postgres",
-        "Nginx",
-        "REST",
-        "WebSockets",
-        "Docker",
-        "Swarm",
-        "Self hosted Gitea",
-        "Self hosted Drone CI",
-        "Self hosted Grafana",
-        "Self hosted Prometheus"
+        { "name": "Node.js", "level": 100 },
+        { "name": "Nest.js", "level": 95 },
+        { "name": "RabbitMQ", "level": 90 },
+        { "name": "Redis", "level": 90 },
+        { "name": "Postgres", "level": 95 },
+        { "name": "Nginx", "level": 90 },
+        { "name": "REST", "level": 100 },
+        { "name": "WebSockets", "level": 90 },
+        { "name": "Docker", "level": 95 },
+        { "name": "Swarm", "level": 90 },
+        { "name": "Self hosted Gitea", "level": 85 },
+        { "name": "Self hosted Drone CI", "level": 85 },
+        { "name": "Self hosted Grafana", "level": 90 },
+        { "name": "Self hosted Prometheus", "level": 90 }
       ]
     },
     "observability": {
       "title": "Observability",
       "items": [
-        "OpenTelemetry Collector",
-        "Zipkin",
-        "Prometheus",
-        "Loki",
-        "Grafana",
-        "Server monitoring",
-        "User monitoring",
-        "Metrics",
-        "Logs",
-        "Tracing"
+        { "name": "OpenTelemetry Collector", "level": 90 },
+        { "name": "Zipkin", "level": 90 },
+        { "name": "Prometheus", "level": 95 },
+        { "name": "Loki", "level": 85 },
+        { "name": "Grafana", "level": 95 },
+        { "name": "Server monitoring", "level": 90 },
+        { "name": "User monitoring", "level": 90 },
+        { "name": "Metrics", "level": 95 },
+        { "name": "Logs", "level": 95 },
+        { "name": "Tracing", "level": 95 }
       ]
     },
     "mobile": {
       "title": "Mobile",
       "items": [
-        "Flutter",
-        "Ionic",
-        "Capacitor",
-        "Offline-first",
-        "Offline-first chat app",
-        "Android/iOS",
-        "Firebase Push Notification"
+        { "name": "Flutter", "level": 80 },
+        { "name": "Ionic", "level": 95 },
+        { "name": "Capacitor", "level": 90 },
+        { "name": "Offline-first", "level": 95 },
+        { "name": "Offline-first chat app", "level": 95 },
+        { "name": "Android/iOS", "level": 90 },
+        { "name": "Firebase Push Notification", "level": 85 }
       ]
     }
   },
-
+  
   "projects": [
     {
       "title": "Self-Hosted DevOps Stack",

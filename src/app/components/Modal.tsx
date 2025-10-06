@@ -12,7 +12,7 @@ export default function Modal({
   isOpen,
   onClose,
   children,
-  background = "bg-black/70",
+  background = "bg-black/40 backdrop-blur-md", // 🔹 added blur effect
 }: ModalProps) {
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -24,7 +24,9 @@ export default function Modal({
   if (!isOpen) return null;
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center ${background}`}>
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center ${background} transition-all duration-300`}
+    >
       {children}
       <button
         onClick={onClose}

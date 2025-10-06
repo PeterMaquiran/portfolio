@@ -31,6 +31,7 @@ const skills = {
     { name: "HTML", level: 100 },
     { name: "CSS", level: 100 },
     { name: "Taiwind", level: 100 },
+    { name: "Three.js", level: 80 },
     { name: "RxJS", level: 100 },
     { name: "Zod", level: 100 },
     { name: "Webpack", level: 80 },
@@ -398,7 +399,15 @@ export default function Home() {
       <Section id="experience" title="Experience">
         <div className="space-y-6">
           {experiences.map((exp) => (
-            <div key={exp.role}>
+            <div 
+              className="p-3 rounded-2xl cursor-pointer transition-colors"
+              key={exp.role}
+              style={{
+                transition: "background 0.3s ease",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "lab(83 -18.93 -28.32 / 0.1)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "")}
+            >
               <h3 className="font-semibold">{exp.role}</h3>
               <div className="text-sm text-neutral-300 mb-2">{exp.period}</div>
               <ul className="text-sm list-disc pl-5 space-y-1 text-neutral-600 dark:text-neutral-200">

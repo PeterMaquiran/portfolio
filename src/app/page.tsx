@@ -9,14 +9,6 @@ import EarthBackground from "./components/EarthBackground";
 import Phone from "./components/Phone";
 import Monitor from "./components/Monitor";
 import Modal from "./components/Modal";
-interface PhoneConfig {
-  canvasHeight: string;
-  canvasWidth: string;
-  screenSource: string;
-  enableZoom: boolean;
-  enablePan: boolean;
-  cameraStepBack: number;
-}
 
 // —————————————————————————————————————————————
 // Portfolio data
@@ -85,7 +77,7 @@ const projects = [
   {
     title: "Self-Hosted DevOps Stack",
     blurb:
-      "Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, Drone CI, and metrics/logs/traces pipeline.",
+      "Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, Drone CI, and metrics/logs/traces pipeline. All self hosted",
     stack: ["Docker", "Swarm", "Nginx", "Certbot", "Drone", "Prometheus", "Loki"],
     highlights: [
       "Blue/green style updates for zero-downtime",
@@ -281,7 +273,7 @@ export const projectPreviews = [
     key="monitor"
     canvasHeight="800px"
     canvasWidth="800px"
-    screenSource="/front-end.png"
+    screenSource="/grafana-monitoring.png"
     //enableZoom
     //enablePan
     cameraStepBack={8}

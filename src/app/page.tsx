@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
-import { ReactNode, useEffect, useState } from "react";
+import { JSX, ReactNode, useEffect, useState } from "react";
 import EarthBackground from "./components/EarthBackground";
 import Phone from "./components/Phone";
 import Monitor from "./components/Monitor";
@@ -35,7 +35,7 @@ const Section = ({ id, title, children }: any) => (
 );
 
 
-function projectPreviews() {
+function projectPreviews() : JSX.Element[] {
   return [
     <Monitor
       key="monitor"
@@ -57,6 +57,22 @@ function projectPreviews() {
     />
   ];
 }
+
+
+function experiencePreviews() : JSX.Element[] {
+  return [
+    <Phone
+      key="phone"
+      canvasHeight="800px"
+      canvasWidth="880px"
+      screenSource="/digipay.png"
+      enableZoom
+      enablePan
+      cameraStepBack={8}
+    />
+  ];
+}
+
 
 
 export default function Home() {
@@ -149,7 +165,7 @@ export default function Home() {
       {/* Experience */}
       <Section id="experience" title="Experience">
         <div className="space-y-6">
-          {experiences.map((exp) => (
+          {experiences.map((exp, index) => (
             <div 
               className="p-3 rounded-2xl cursor-pointer transition-colors"
               key={exp.role}
@@ -158,6 +174,7 @@ export default function Home() {
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "lab(83 -18.93 -28.32 / 0.1)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "")}
+              onClick={() => openModal(experiencePreviews()[index])}
             >
               <h3 className="font-semibold">{exp.role}</h3>
               <div className="text-sm text-neutral-300 mb-2">{exp.period}</div>

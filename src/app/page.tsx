@@ -3,7 +3,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Link, Linkedin, Mail } from "lucide-react";
 import { JSX, ReactNode, useEffect, useState } from "react";
 import EarthBackground from "./components/EarthBackground";
 import Phone from "./components/Phone";
@@ -192,7 +192,8 @@ export default function Home() {
       <Section id="testimonials" title="Testimonials">
         <div className="grid sm:grid-cols-2 gap-6">
           {testimonials.map((t, i) => (
-            <motion.div
+            <motion.a
+              href={t.link}
               style={{
                 background: "lab(83 -18.93 -28.32 / 0.1)",
               }}
@@ -205,8 +206,10 @@ export default function Home() {
               <p className="italic text-neutral-700 dark:text-neutral-300 mb-3">
                 “{t.quote}”
               </p>
-              <div className="text-sm text-neutral-500" style={{ color:"lab(83 -18.93 -28.32 / 0.8)"}}>— {t.author}</div>
-            </motion.div>
+              <div className="text-sm text-neutral-500 flex flex-col justify-between" style={{ color:"lab(83 -18.93 -28.32 / 0.8)"}}>
+                {t.author}
+              </div>
+            </motion.a>
           ))}
         </div>
       </Section>
@@ -219,13 +222,13 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-10 border-t border-neutral-200 dark:border-neutral-800 text-center text-sm text-neutral-500" style={{ color:"lab(83 -18.93 -28.32 / 0.6)"}}>
         <div className="flex justify-center gap-4 mb-2">
-          <a href="#" className="hover:text-indigo-500">
+          <a href="https://github.com/PeterMaquiran" className="hover:text-neutral-300">
             <Github className="w-5 h-5" />
           </a>
-          <a href="#" className="hover:text-indigo-500">
+          <a href="https://www.linkedin.com/in/petermaquiran/" className="hover:text-neutral-300">
             <Linkedin className="w-5 h-5" />
           </a>
-          <a href="mailto:contact@peter.dev" className="hover:text-indigo-500">
+          <a href="mailto:petermaquiran29@gmail.com" className="hover:text-neutral-300">
             <Mail className="w-5 h-5" />
           </a>
         </div>

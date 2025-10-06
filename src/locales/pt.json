@@ -105,14 +105,14 @@
 
   "testimonials": [
     {
-      "quote":
-        "Peter brought production-grade observability to our stack. We caught issues before users did and shipped faster.",
-      "author": "Engineering Manager, SaaS Company"
+      "quote": "O Peter trouxe observabilidade a nível de produção para a nossa infraestrutura. Detetámos problemas antes dos utilizadores e lançámos novas versões mais rapidamente.",
+      "author": "Gestor de Engenharia, Empresa SaaS",
+      "link": "https://www.linkedin.com/in/natanael-de-sousa-neto-133a65143/"
     },
     {
-      "quote":
-        "Our media uploads went from fragile to rock-solid, even on spotty networks. Huge win for our mobile users.",
-      "author": "Product Lead, Mobile Startup"
+      "quote": "Os nossos envios de ficheiros multimédia passaram de instáveis a extremamente fiáveis, mesmo em redes com pouca ligação. Uma grande vitória para os nossos utilizadores móveis.",
+      "author": "Natanael de Sousa Neto, Equilibrium",
+      "link": "https://www.linkedin.com/in/natanael-de-sousa-neto-133a65143/"
     }
   ],
   "about": {

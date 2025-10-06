@@ -102,16 +102,18 @@
       ]
     }
   ],
-    "testimonials": [
+  "testimonials": [
     {
       "quote":
         "Peter brought production-grade observability to our stack. We caught issues before users did and shipped faster.",
-      "author": "Engineering Manager, SaaS Company"
+      "author": "Engineering Manager, SaaS Company",
+      "link": "https://www.linkedin.com/in/natanael-de-sousa-neto-133a65143/"
     },
     {
       "quote":
         "Our media uploads went from fragile to rock-solid, even on spotty networks. Huge win for our mobile users.",
-      "author": "Product Lead, Mobile Startup"
+      "author": "Product Lead, Mobile Startup",
+      "link": "https://www.linkedin.com/in/natanael-de-sousa-neto-133a65143/"
     }
   ],
   "about": {

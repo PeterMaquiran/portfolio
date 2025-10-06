@@ -18,7 +18,7 @@ const skills =  getDictionaryByBrowser().skills;
 const projects = getDictionaryByBrowser().projects;
 const experiences = getDictionaryByBrowser().experiences;
 const testimonials = getDictionaryByBrowser().testimonials;
-
+const about = getDictionaryByBrowser().about;
 
 
 const Header = () => (
@@ -192,19 +192,9 @@ export default function Home() {
 
         {/* About */}
         <div id="about" title="About" className="flex-1" >
-          <p className="max-w-3xl leading-relaxed text-neutral-200">
-            I'm a <strong>Web & Mobile Developer</strong> focused on building reliable, observable, and offline-ready applications.
-            I work mainly with <strong>Angular</strong>, <strong>Ionic</strong>, and <strong>Node.js</strong>, crafting smooth experiences that stay fast — even with poor connectivity.
-          </p>
-
-          <p className="max-w-3xl leading-relaxed text-neutral-200 mt-4">
-            I care deeply about <strong>observability</strong> and <strong>performance</strong>, using <strong>OpenTelemetry</strong>, <strong>Zipkin</strong>, <strong>Prometheus</strong>, and <strong>Grafana</strong> to trace and monitor systems end-to-end.
-            I also manage <strong>Docker-based infrastructure</strong> with <strong>Nginx</strong>, <strong>Certbot</strong>, and automated <strong>CI/CD pipelines</strong> for secure, zero-downtime deployments.
-          </p>
-
-          <p className="max-w-3xl leading-relaxed text-neutral-200 mt-4">
-            I love turning complex systems into simple, dependable apps — where every request, metric, and trace tells a story.
-          </p>
+          <p className="max-w-3xl leading-relaxed text-neutral-200" dangerouslySetInnerHTML={{ __html: about.intro }} />
+          <p className="max-w-3xl leading-relaxed text-neutral-200 mt-4" dangerouslySetInnerHTML={{ __html: about.observability }} />
+          <p className="max-w-3xl leading-relaxed text-neutral-200 mt-4" dangerouslySetInnerHTML={{ __html: about.philosophy }} />
         </div>
 
         {/* Earth */}

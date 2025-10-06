@@ -114,5 +114,10 @@
         "Our media uploads went from fragile to rock-solid, even on spotty networks. Huge win for our mobile users.",
       "author": "Product Lead, Mobile Startup"
     }
-  ]
+  ],
+  "about": {
+    "intro": "Sou <strong>Desenvolvedor Web & Mobile</strong> focado em criar aplicações confiáveis, observáveis e preparadas para funcionar offline. Trabalho principalmente com <strong>Angular</strong>, <strong>Vue</strong>,  <strong>Fluter</strong>, <strong>Ionic</strong> e <strong>Nest.JS</strong>, criando experiências suaves que permanecem rápidas — mesmo com conexão instável.",
+    "observability": "Tenho grande interesse em <strong>observabilidade</strong> e <strong>performance</strong>, usando <strong>OpenTelemetry</strong>, <strong>Zipkin</strong>, <strong>Prometheus</strong> e <strong>Grafana</strong> para rastrear e monitorar sistemas de ponta a ponta. Também gerencio <strong>infraestrutura baseada em Docker</strong> com <strong>Nginx</strong>, <strong>Certbot</strong> e pipelines de <strong>CI/CD</strong> automatizados para implantações seguras e sem downtime.",
+    "philosophy": "Adoro transformar sistemas complexos em apps simples e confiáveis — onde cada requisição, métrica e trace conta uma história."
+  }
 }

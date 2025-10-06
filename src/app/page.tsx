@@ -9,146 +9,15 @@ import EarthBackground from "./components/EarthBackground";
 import Phone from "./components/Phone";
 import Monitor from "./components/Monitor";
 import Modal from "./components/Modal";
+import { getDictionaryByBrowser } from "@/lib/getDictionary";
 
 // —————————————————————————————————————————————
 // Portfolio data
 // —————————————————————————————————————————————
-const skills = {
-  web: [
-    { name: "Vue", level: 100 },
-    { name: "Angular", level: 100 },
-    { name: "Ionic (Angular)", level: 95 },
-    { name: "TypeScript", level: 100 },
-    { name: "Chat app", level: 100 },
-    { name: "HTML", level: 100 },
-    { name: "CSS", level: 100 },
-    { name: "Taiwind", level: 100 },
-    { name: "Three.js", level: 80 },
-    { name: "RxJS", level: 100 },
-    { name: "Zod", level: 100 },
-    { name: "Webpack", level: 80 },
-    { name: "Sentry", level: 80 },
-    { name: "OpenTelemetry (web)", level: 100 },
-    { name: "Firebase", level: 80 },
-  ],
-  backend: [
-    { name: "Node.js", level: 100 },
-    { name: "Nest.js", level: 100 },
-    { name: "RabbitMQ", level: 80 },
-    { name: "Redis", level: 80 },
-    { name: "Postgres", level: 80 },
-    { name: "Nginx", level: 95 },
-    { name: "REST", level: 100 },
-    { name: "WebSockets", level: 80 },
-    { name: "WebSockets", level: 80 },
-    { name: "Docker", level: 100 },
-    { name: "Swarm", level: 80 },
-    { name: "Self hosted Gitea", level: 80 },
-    { name: "Self hosted Drone Ci", level: 80 },
-    { name: "Self hosted Grafana", level: 80 },
-    { name: "Self hosted Prometheus", level: 80 },
-    { name: "Self hosted Prometheus", level: 80 },
-  ],
-  observability: [
-    { name: "OpenTelemetry Collector", level: 100 },
-    { name: "Zipkin", level: 100 },
-    { name: "Prometheus", level: 100 },
-    { name: "Loki", level: 100 },
-    { name: "Grafana", level: 100 },
-    { name: "Server monitoring", level: 100 },
-    { name: "User monitoring", level: 100 },
-    { name: "Metrics", level: 100 },
-    { name: "Logs", level: 100 },
-    { name: "Tracing", level: 100 },
-  ],
-  mobile: [
-    { name: "Flutter", level: 80 },
-    { name: "Ionic", level: 90 },
-    { name: "Capacitor", level: 85 },
-    { name: "Offline-first", level: 95 },
-    { name: "Offline-first chat app", level: 95 },
-    { name: "Android/iOS", level: 90 },
-    { name: "Firebase Push Notification", level: 100 },
-  ],
-};
-
-
-const projects = [
-  {
-    title: "Self-Hosted DevOps Stack",
-    blurb:
-      "Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, Drone CI, and metrics/logs/traces pipeline. All self hosted",
-    stack: ["Docker", "Swarm", "Nginx", "Certbot", "Drone", "Prometheus", "Loki"],
-    highlights: [
-      "Blue/green style updates for zero-downtime",
-      "Gitea + Drone CI pipelines to build & deploy",
-      "Centralized logs and dashboards",
-    ],
-  },
-  {
-    title: "Reactive Portfolio Website",
-    blurb:
-      "Responsive Next.js portfolio optimized for web and mobile with smooth animations, 3D elements, and language templates (EN/PT).",
-    stack: ["Next.js", "React", "Tailwind", "Three.js"],
-    highlights: [
-      "Fully responsive and mobile-first design",
-      "Interactive 3D scenes using Three.js",
-      "Multilingual templates (English & Portuguese)",
-    ],
-  },
-];
-
-const experiences = [
-  {
-    role: "Full-Stack Web & Mobile Engineer",
-    period: "2019 — Present",
-    bullets: [
-      "Architected offline-first mobile flows with background sync",
-      "Implemented distributed tracing across web, API, and services",
-      "Managed Docker Swarm stacks with Nginx reverse proxy and TLS",
-    ],
-  },
-    {
-    role: "Full-Stack Web & Mobile Engineer",
-    period: "2019 — Present",
-    bullets: [
-      "Architected offline-first mobile flows with background sync",
-      "Implemented distributed tracing across web, API, and services",
-      "Managed Docker Swarm stacks with Nginx reverse proxy and TLS",
-    ],
-  },
-    {
-    role: "Full-Stack Web & Mobile Engineer",
-    period: "2019 — Present",
-    bullets: [
-      "Architected offline-first mobile flows with background sync",
-      "Implemented distributed tracing across web, API, and services",
-      "Managed Docker Swarm stacks with Nginx reverse proxy and TLS",
-    ],
-  },
-    {
-    role: "Full-Stack Web & Mobile Engineer",
-    period: "2019 — Present",
-    bullets: [
-      "Architected offline-first mobile flows with background sync",
-      "Implemented distributed tracing across web, API, and services",
-      "Managed Docker Swarm stacks with Nginx reverse proxy and TLS",
-    ],
-  },
-];
-
-const testimonials = [
-  {
-    quote:
-      "Peter brought production-grade observability to our stack. We caught issues before users did and shipped faster.",
-    author: "Engineering Manager, SaaS Company",
-  },
-  {
-    quote:
-      "Our media uploads went from fragile to rock-solid, even on spotty networks. Huge win for our mobile users.",
-    author: "Product Lead, Mobile Startup",
-  },
-];
+const skills =  getDictionaryByBrowser().skills;
+const projects = getDictionaryByBrowser().projects;
+const experiences = getDictionaryByBrowser().experiences;
+const testimonials = getDictionaryByBrowser().testimonials;
 
 
 
@@ -206,67 +75,53 @@ const SkillsSection = ({
   activeTab,
   setActiveTab,
 }: {
-  skills: Record<string, { name: string; level: number }[]>,
-  activeTab: string,
-  setActiveTab: (tab: string) => void
+  skills: Record<string, { title: string; items: string[] }>;
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
 }) => {
   const categories = Object.keys(skills);
+  const active = skills[activeTab];
 
   return (
     <section id="skills" className="max-w-6xl mx-auto px-4 py-16">
-      <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">Skills</h2>
+      <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">
+        {active.title}
+      </h2>
 
-      {/* Tabs header */}
       <div className="flex flex-wrap gap-3 mb-8 border-b border-neutral-200 dark:border-neutral-800 pb-2">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveTab(cat)}
-            className={`px-4 py-1.5 text-sm rounded-md transition-colors`}
+            className="px-4 py-1.5 text-sm rounded-md transition-colors"
             style={{
-              background: activeTab === cat
-                ? "lab(83 -18.93 -28.32 / 0.7)"
-                : "lab(83 -18.93 -28.32 / 0.1)",
-              color: activeTab === cat
-                ? "white"
-                : "lab(83 -18.93 -28.32 / 0.7)",
-              cursor:'pointer'
+              background:
+                activeTab === cat
+                  ? "lab(83 -18.93 -28.32 / 0.7)"
+                  : "lab(83 -18.93 -28.32 / 0.1)",
+              color:
+                activeTab === cat
+                  ? "white"
+                  : "lab(83 -18.93 -28.32 / 0.7)",
+              cursor: "pointer",
             }}
           >
-            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+            {skills[cat].title}
           </button>
         ))}
       </div>
 
-      {/* Active tab content */}
-      <motion.div
-        key={activeTab}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
-      >
-        {skills[activeTab].map((s) => (
-          <div key={s.name}>
-            <div className="flex justify-between text-sm text-neutral-700 dark:text-neutral-300">
-              <span>{s.name}</span>
-              <span className="text-neutral-300">{s.level}%</span>
-            </div>
-            <div className="h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                style={{ background:"lab(83 -18.93 -28.32 / 0.7)"}}
-                whileInView={{ width: `${s.level}%` }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="h-full rounded-full bg-indigo-500 dark:bg-indigo-400"
-              />
-            </div>
-          </div>
+      <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {active.items.map((name) => (
+          <li key={name} className="text-neutral-700 dark:text-neutral-300">
+            {name}
+          </li>
         ))}
-      </motion.div>
+      </ul>
     </section>
   );
 };
+
 
 export const projectPreviews = [
   <Monitor

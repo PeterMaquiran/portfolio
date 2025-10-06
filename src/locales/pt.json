@@ -1,0 +1,118 @@
+{
+  "skills": {
+    "web": {
+      "title": "Web",
+      "items": [
+        "Vue",
+        "Angular",
+        "Ionic (Angular)",
+        "TypeScript",
+        "Aplicação de chat",
+        "HTML",
+        "CSS",
+        "Tailwind",
+        "Three.js",
+        "RxJS",
+        "Zod",
+        "Webpack",
+        "Sentry",
+        "OpenTelemetry (web)",
+        "Firebase"
+      ]
+    },
+    "backend": {
+      "title": "Backend",
+      "items": [
+        "Node.js",
+        "Nest.js",
+        "RabbitMQ",
+        "Redis",
+        "Postgres",
+        "Nginx",
+        "REST",
+        "WebSockets",
+        "Docker",
+        "Swarm",
+        "Gitea auto-hospedado",
+        "Drone CI auto-hospedado",
+        "Grafana auto-hospedado",
+        "Prometheus auto-hospedado"
+      ]
+    },
+    "observability": {
+      "title": "Observabilidade",
+      "items": [
+        "OpenTelemetry Collector",
+        "Zipkin",
+        "Prometheus",
+        "Loki",
+        "Grafana",
+        "Monitorização de servidores",
+        "Monitorização de utilizadores",
+        "Métricas",
+        "Registos",
+        "Rastreio (Tracing)"
+      ]
+    },
+    "mobile": {
+      "title": "Mobile",
+      "items": [
+        "Flutter",
+        "Ionic",
+        "Capacitor",
+        "Offline-first",
+        "Aplicação de chat offline-first",
+        "Android/iOS",
+        "Notificações push do Firebase"
+      ]
+    }
+  },
+
+  "projects": [
+    {
+      "title": "Stack DevOps Auto-Hospedada",
+      "blurb": "Cluster Docker Swarm com Nginx reverse proxy, TLS via Certbot, registo privado, Drone CI e pipeline de métricas/registos/rastreios. Tudo auto-hospedado.",
+      "stack": ["Docker", "Swarm", "Nginx", "Certbot", "Drone", "Prometheus", "Loki"],
+      "highlights": [
+        "Atualizações blue/green sem tempo de inatividade",
+        "Pipelines Gitea + Drone CI para compilar e implementar",
+        "Registos e dashboards centralizados"
+      ]
+    },
+    {
+      "title": "Website de Portfólio Reativo",
+      "blurb": "Portfólio Next.js responsivo e otimizado para web e mobile com animações suaves, elementos 3D e suporte a vários idiomas (EN/PT).",
+      "stack": ["Next.js", "React", "Tailwind", "Three.js"],
+      "highlights": [
+        "Design totalmente responsivo e mobile-first",
+        "Cenas 3D interativas com Three.js",
+        "Modelos multilíngua (Inglês e Português)"
+      ]
+    }
+  ],
+
+  "experiences": [
+    {
+      "role": "Engenheiro Full-Stack Web e Mobile",
+      "period": "2019 — Presente",
+      "bullets": [
+        "Desenhou fluxos mobile offline-first com sincronização em segundo plano",
+        "Implementou rastreamento distribuído entre web, API e serviços",
+        "Geriu stacks Docker Swarm com Nginx reverse proxy e TLS"
+      ]
+    }
+  ],
+
+  "testimonials": [
+    {
+      "quote":
+        "Peter brought production-grade observability to our stack. We caught issues before users did and shipped faster.",
+      "author": "Engineering Manager, SaaS Company"
+    },
+    {
+      "quote":
+        "Our media uploads went from fragile to rock-solid, even on spotty networks. Huge win for our mobile users.",
+      "author": "Product Lead, Mobile Startup"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "skills": {
+    "web": {
+      "title": "Web",
+      "items": [
+        "Vue",
+        "Angular",
+        "Ionic (Angular)",
+        "TypeScript",
+        "Chat app",
+        "HTML",
+        "CSS",
+        "Tailwind",
+        "Three.js",
+        "RxJS",
+        "Zod",
+        "Webpack",
+        "Sentry",
+        "OpenTelemetry (web)",
+        "Firebase"
+      ]
+    },
+    "backend": {
+      "title": "Backend",
+      "items": [
+        "Node.js",
+        "Nest.js",
+        "RabbitMQ",
+        "Redis",
+        "Postgres",
+        "Nginx",
+        "REST",
+        "WebSockets",
+        "Docker",
+        "Swarm",
+        "Self hosted Gitea",
+        "Self hosted Drone CI",
+        "Self hosted Grafana",
+        "Self hosted Prometheus"
+      ]
+    },
+    "observability": {
+      "title": "Observability",
+      "items": [
+        "OpenTelemetry Collector",
+        "Zipkin",
+        "Prometheus",
+        "Loki",
+        "Grafana",
+        "Server monitoring",
+        "User monitoring",
+        "Metrics",
+        "Logs",
+        "Tracing"
+      ]
+    },
+    "mobile": {
+      "title": "Mobile",
+      "items": [
+        "Flutter",
+        "Ionic",
+        "Capacitor",
+        "Offline-first",
+        "Offline-first chat app",
+        "Android/iOS",
+        "Firebase Push Notification"
+      ]
+    }
+  },
+
+  "projects": [
+    {
+      "title": "Self-Hosted DevOps Stack",
+      "blurb": "Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, Drone CI, and metrics/logs/traces pipeline. All self hosted.",
+      "stack": ["Docker", "Swarm", "Nginx", "Certbot", "Drone", "Prometheus", "Loki"],
+      "highlights": [
+        "Blue/green style updates for zero-downtime",
+        "Gitea + Drone CI pipelines to build & deploy",
+        "Centralized logs and dashboards"
+      ]
+    },
+    {
+      "title": "Reactive Portfolio Website",
+      "blurb": "Responsive Next.js portfolio optimized for web and mobile with smooth animations, 3D elements, and language templates (EN/PT).",
+      "stack": ["Next.js", "React", "Tailwind", "Three.js"],
+      "highlights": [
+        "Fully responsive and mobile-first design",
+        "Interactive 3D scenes using Three.js",
+        "Multilingual templates (English & Portuguese)"
+      ]
+    }
+  ],
+
+  "experiences": [
+    {
+      "role": "Full-Stack Web & Mobile Engineer",
+      "period": "2019 — Present",
+      "bullets": [
+        "Architected offline-first mobile flows with background sync",
+        "Implemented distributed tracing across web, API, and services",
+        "Managed Docker Swarm stacks with Nginx reverse proxy and TLS"
+      ]
+    }
+  ],
+    "testimonials": [
+    {
+      "quote":
+        "Peter brought production-grade observability to our stack. We caught issues before users did and shipped faster.",
+      "author": "Engineering Manager, SaaS Company"
+    },
+    {
+      "quote":
+        "Our media uploads went from fragile to rock-solid, even on spotty networks. Huge win for our mobile users.",
+      "author": "Product Lead, Mobile Startup"
+    }
+  ]
+}

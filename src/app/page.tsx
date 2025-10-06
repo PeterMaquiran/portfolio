@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 "use client";
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Rocket } from "lucide-react";
-import Image from "next/image";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { ReactNode, useEffect, useState } from "react";
 import EarthBackground from "./components/EarthBackground";
 import Phone from "./components/Phone";
 import Monitor from "./components/Monitor";
 import Modal from "./components/Modal";
+import Header from "./components/Header";
+import SkillsSection from "./components/SkillsSection";
 import { getDictionaryByBrowser } from "@/lib/getDictionary";
 
 // —————————————————————————————————————————————
@@ -20,43 +22,6 @@ const experiences = getDictionaryByBrowser().experiences;
 const testimonials = getDictionaryByBrowser().testimonials;
 const about = getDictionaryByBrowser().about;
 
-
-const Header = () => (
-  <header className="sticky top-0 z-50 w-full backdrop-blur  border-b"
-    style={{
-      background: 'linear-gradient(145deg, #0f172a 0%, #1e293b 40%, #1c2235ff 100%)',
-      borderBottom: '1px solid lab(83 -18.93 -28.32 / 0.3)'
-    }}
-  >
-    <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div className="flex items-center gap-3">
-        {/* <motion.div
-          initial={{ scale: 0.8, rotate: -10 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          className="h-9 w-9 rounded-2xl grid place-items-center bg-gradient-to-br from-indigo-500 to-violet-600 text-white shadow"
-        >
-          <Rocket className="h-5 w-5" />
-        </motion.div> */}
-        <div>
-          <div className="font-semibold text-neutral-900 dark:text-neutral-100">
-            Peter Maquiran
-          </div>
-          <div className="text-xs" style={{ color:"lab(83 -18.93 -28.32 / 0.7)"}}>Software Developer</div>
-        </div>
-      </div>
-      <nav className="hidden md:flex gap-5 text-sm text-neutral-700 dark:text-neutral-300">
-        {["Skills", "Projects", "Experience", "Testimonials"].map(
-          (item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-indigo-500">
-              {item}
-            </a>
-          )
-        )}
-      </nav>
-    </div>
-  </header>
-);
 
 const Section = ({ id, title, children }: any) => (
   <section id={id} className="max-w-6xl mx-auto px-4 py-16"
@@ -70,98 +35,28 @@ const Section = ({ id, title, children }: any) => (
 );
 
 
-const SkillsSection = ({
-  skills,
-  activeTab,
-  setActiveTab,
-}: {
-  skills: Record<string, { title: string; items: { name: string; level: number }[] }>;
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-}) => {
-  const categories = Object.keys(skills);
-  const active = skills[activeTab];
-
-  return (
-    <section id="skills" className="max-w-6xl mx-auto px-4 py-16">
-      <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">
-        {active.title}
-      </h2>
-
-      {/* Tabs header */}
-      <div className="flex flex-wrap gap-3 mb-8 border-b border-neutral-200 dark:border-neutral-800 pb-2">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveTab(cat)}
-            className="px-4 py-1.5 text-sm rounded-md transition-colors"
-            style={{
-              background:
-                activeTab === cat
-                  ? "lab(83 -18.93 -28.32 / 0.7)"
-                  : "lab(83 -18.93 -28.32 / 0.1)",
-              color:
-                activeTab === cat
-                  ? "white"
-                  : "lab(83 -18.93 -28.32 / 0.7)",
-              cursor: "pointer",
-            }}
-          >
-            {skills[cat].title}
-          </button>
-        ))}
-      </div>
-
-      {/* Active tab content */}
-      <motion.div
-        key={activeTab}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
-      >
-        {active.items.map((s) => (
-          <div key={s.name}>
-            <div className="flex justify-between text-sm text-neutral-700 dark:text-neutral-300">
-              <span>{s.name}</span>
-              <span className="text-neutral-400">{s.level}%</span>
-            </div>
-            <div className="h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: `${s.level}%` }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                style={{ background: "lab(83 -18.93 -28.32 / 0.7)" }}
-                className="h-full rounded-full"
-              />
-            </div>
-          </div>
-        ))}
-      </motion.div>
-    </section>
-  );
-};
-
-export const projectPreviews = [
-  <Monitor
-    key="monitor"
-    canvasHeight="800px"
-    canvasWidth="800px"
-    screenSource="/grafana-monitoring.png"
-    //enableZoom
-    //enablePan
-    cameraStepBack={8}
-  />,
-  <Phone
-    key="phone"
-    canvasHeight="800px"
-    canvasWidth="880px"
-    screenSource="/mobile-porfoio.png"
-    enableZoom
-    enablePan
-    cameraStepBack={8}
-  />
-];
+function projectPreviews() {
+  return [
+    <Monitor
+      key="monitor"
+      canvasHeight="800px"
+      canvasWidth="800px"
+      screenSource="/grafana-monitoring.png"
+      //enableZoom
+      //enablePan
+      cameraStepBack={window.innerWidth < 768 ? 12 : 8} // smaller for mobile
+    />,
+    <Phone
+      key="phone"
+      canvasHeight="800px"
+      canvasWidth="880px"
+      screenSource="/mobile-porfoio.png"
+      enableZoom
+      enablePan
+      cameraStepBack={8}
+    />
+  ];
+}
 
 
 export default function Home() {
@@ -221,7 +116,7 @@ export default function Home() {
               key={p.title}
               whileHover={{ scale: 1.02 }}
               className="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm cursor-pointer"
-              onClick={() => openModal(projectPreviews[index])}
+              onClick={() => openModal(projectPreviews()[index])}
             >
               <h3 className="font-semibold text-lg mb-1">{p.title}</h3>
               <p className="text-sm mb-3 text-neutral-600 dark:text-neutral-300">

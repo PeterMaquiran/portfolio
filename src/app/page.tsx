@@ -21,7 +21,7 @@ const projects = getDictionaryByBrowser().projects;
 const experiences = getDictionaryByBrowser().experiences;
 const testimonials = getDictionaryByBrowser().testimonials;
 const about = getDictionaryByBrowser().about;
-
+const sectionsTitle = getDictionaryByBrowser().sectionsTitle;
 
 const Section = ({ id, title, children }: any) => (
   <section id={id} className="max-w-6xl mx-auto px-4 py-16"
@@ -122,7 +122,7 @@ export default function Home() {
 
 
       {/* Projects */}
-      <Section id="projects" title="Projects">
+      <Section id="projects" title={sectionsTitle.Projects}>
         <div className="grid gap-8">
           {projects.map((p, index) => (
             <motion.div
@@ -163,7 +163,7 @@ export default function Home() {
       </Section>
 
       {/* Experience */}
-      <Section id="experience" title="Experience">
+      <Section id="experience" title={sectionsTitle.Experience}>
         <div className="space-y-6">
           {experiences.map((exp, index) => (
             <div 
@@ -189,7 +189,7 @@ export default function Home() {
       </Section>
 
       {/* Testimonials */}
-      <Section id="testimonials" title="Testimonials">
+      <Section id="testimonials" title={sectionsTitle.Testimonials}>
         <div className="grid sm:grid-cols-2 gap-6">
           {testimonials.map((t, i) => (
             <motion.a

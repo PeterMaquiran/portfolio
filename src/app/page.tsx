@@ -12,6 +12,7 @@ import Modal from "./components/Modal";
 import Header from "./components/Header";
 import SkillsSection from "./components/SkillsSection";
 import { getDictionaryByBrowser } from "@/lib/getDictionary";
+import { strong } from "framer-motion/client";
 
 // —————————————————————————————————————————————
 // Portfolio data
@@ -61,6 +62,33 @@ function projectPreviews() : JSX.Element[] {
 
 function experiencePreviews() : JSX.Element[] {
   return [
+    <Phone
+      key="phone"
+      canvasHeight="800px"
+      canvasWidth="880px"
+      screenSource="/digipay.png"
+      enableZoom
+      enablePan
+      cameraStepBack={8}
+    />,
+    <Phone
+      key="phone"
+      canvasHeight="800px"
+      canvasWidth="880px"
+      screenSource="/digipay.png"
+      enableZoom
+      enablePan
+      cameraStepBack={8}
+    />,
+    <Phone
+      key="phone"
+      canvasHeight="800px"
+      canvasWidth="880px"
+      screenSource="/digipay.png"
+      enableZoom
+      enablePan
+      cameraStepBack={8}
+    />,
     <Phone
       key="phone"
       canvasHeight="800px"
@@ -162,31 +190,51 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Experience */}
-      <Section id="experience" title={sectionsTitle.Experience}>
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <div 
-              className="p-3 rounded-2xl cursor-pointer transition-colors"
-              key={exp.role}
-              style={{
-                transition: "background 0.3s ease",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "lab(83 -18.93 -28.32 / 0.1)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "")}
-              onClick={() => openModal(experiencePreviews()[index])}
-            >
-              <h3 className="font-semibold">{exp.role}</h3>
-              <div className="text-sm text-neutral-300 mb-2">{exp.period}</div>
-              <ul className="text-sm list-disc pl-5 space-y-1 text-neutral-600 dark:text-neutral-200">
-                {exp.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Section>
+    {/* Experience */}
+    <Section id="experience" title={sectionsTitle.Experience}>
+      <div className="space-y-6">
+        {experiences.map((exp, index) => (
+          <div
+            className="p-3 rounded-2xl cursor-pointer transition-colors"
+            key={exp.role}
+            style={{
+              transition: "background 0.3s ease",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.background = "lab(83 -18.93 -28.32 / 0.1)")
+            }
+            onMouseLeave={(e) => (e.currentTarget.style.background = "")}
+            onClick={() => openModal(experiencePreviews()[index])}
+          >
+            <h3 className="font-semibold text-lg">{exp.role}</h3>
+            {exp.company && (
+              <div className="text-sm text-neutral-400">{exp.company}</div>
+            )}
+            <div className="text-sm text-neutral-300 mb-2">{exp.period}</div>
+
+            {exp.projects?.map((project) => (
+              <div key={project.name} className="mt-3">
+                <div className="text-sm text-neutral-400">
+                  <strong>Project:</strong> {project.name}
+                </div>
+                {project.position && (
+                  <div className="text-sm text-neutral-400 mb-1">
+                    <strong>Position:</strong> {project.position}
+                  </div>
+                )}
+                <ul className="text-sm list-disc pl-5 space-y-1 text-neutral-600 dark:text-neutral-200">
+                  {project.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </Section>
+
+
 
       {/* Testimonials */}
       <Section id="testimonials" title={sectionsTitle.Testimonials}>

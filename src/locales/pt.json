@@ -93,16 +93,98 @@
 
   "experiences": [
     {
-      "role": "Engenheiro Full-Stack Web e Mobile",
-      "period": "2019 — Presente",
-      "bullets": [
-        "Desenhou fluxos mobile offline-first com sincronização em segundo plano",
-        "Implementou rastreamento distribuído entre web, API e serviços",
-        "Geriu stacks Docker Swarm com Nginx reverse proxy e TLS"
+      "role": "Web & Mobile developer",
+      "company": "Theus",
+      "period": "Jan 2022 – Present",
+      "projects": [
+        {
+          "name": "E-commerce Platform",
+          "position": "Developer",
+          "bullets": [
+            "Built reusable component library in Angular",
+            "Integrated OpenTelemetry for frontend monitoring"
+          ]
+        },
+        {
+          "name": "Company Lading page",
+          "position": "Engineer",
+          "bullets": [
+            "Implemented role-based access control",
+            "Enhanced loading performance with caching"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "BackEnd developer",
+      "company": "TechCorp",
+      "period": "Jan 2022 – Present",
+      "projects": [
+        {
+          "name": "E-commerce Platform",
+          "position": "Lead Developer",
+          "bullets": [
+            "Built reusable component library in Angular",
+            "Integrated OpenTelemetry for frontend monitoring"
+          ]
+        },
+        {
+          "name": "Internal Admin Dashboard",
+          "position": "Frontend Engineer",
+          "bullets": [
+            "Implemented role-based access control",
+            "Enhanced loading performance with caching"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "Web Developer",
+      "company": "TechCorp",
+      "period": "Jan 2022 – Present",
+      "projects": [
+        {
+          "name": "E-commerce Platform",
+          "position": "Lead Developer",
+          "bullets": [
+            "Built reusable component library in Angular",
+            "Integrated OpenTelemetry for frontend monitoring"
+          ]
+        },
+        {
+          "name": "Internal Admin Dashboard",
+          "position": "Frontend Engineer",
+          "bullets": [
+            "Implemented role-based access control",
+            "Enhanced loading performance with caching"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "Web Developer",
+      "company": "TechCorp",
+      "period": "Jan 2022 – Present",
+      "projects": [
+        {
+          "name": "E-commerce Platform",
+          "position": "Lead Developer",
+          "bullets": [
+            "Built reusable component library in Angular",
+            "Integrated OpenTelemetry for frontend monitoring"
+          ]
+        },
+        {
+          "name": "Internal Admin Dashboard",
+          "position": "Frontend Engineer",
+          "bullets": [
+            "Implemented role-based access control",
+            "Enhanced loading performance with caching"
+          ]
+        }
       ]
     }
   ],
-
   "testimonials": [
     {
       "quote": "O Peter trouxe observabilidade a nível de produção para a nossa infraestrutura. Detetámos problemas antes dos utilizadores e lançámos novas versões mais rapidamente.",

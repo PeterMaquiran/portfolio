@@ -93,12 +93,26 @@
 
   "experiences": [
     {
-      "role": "Full-Stack Web & Mobile Engineer",
-      "period": "2019 — Present",
-      "bullets": [
-        "Architected offline-first mobile flows with background sync",
-        "Implemented distributed tracing across web, API, and services",
-        "Managed Docker Swarm stacks with Nginx reverse proxy and TLS"
+      "role": "Frontend Developer",
+      "company": "TechCorp",
+      "period": "Jan 2022 – Present",
+      "projects": [
+        {
+          "name": "E-commerce Platform",
+          "position": "Lead Developer",
+          "bullets": [
+            "Built reusable component library in Angular",
+            "Integrated OpenTelemetry for frontend monitoring"
+          ]
+        },
+        {
+          "name": "Internal Admin Dashboard",
+          "position": "Frontend Engineer",
+          "bullets": [
+            "Implemented role-based access control",
+            "Enhanced loading performance with caching"
+          ]
+        }
       ]
     }
   ],

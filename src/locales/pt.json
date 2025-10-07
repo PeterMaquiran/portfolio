@@ -93,81 +93,61 @@
 
   "experiences": [
     {
-      "role": "Web & Mobile developer",
+      "role": "Web developer",
       "company": "Theus",
-      "period": "Jan 2022 – Present",
+      "period": "Jan 2017 – Mar 2018",
       "projects": [
         {
-          "name": "E-commerce Platform",
+          "name": "Landing page",
           "position": "Developer",
           "bullets": [
-            "Built reusable component library in Angular",
-            "Integrated OpenTelemetry for frontend monitoring"
+            "Implementação de tema escuro/claro dinâmico"
           ]
         },
         {
-          "name": "Company Lading page",
-          "position": "Engineer",
+          "name": "e-commerce",
+          "position": "Developer",
           "bullets": [
-            "Implemented role-based access control",
-            "Enhanced loading performance with caching"
+            "Desenvolvimento da camada frontend de uma plataforma de e-commerce com Vue.js."
           ]
         }
       ]
     },
     {
       "role": "BackEnd developer",
-      "company": "TechCorp",
+      "company": "Multiperfil",
       "period": "Jan 2022 – Present",
       "projects": [
         {
-          "name": "E-commerce Platform",
-          "position": "Lead Developer",
+          "name": "Documentos interno",
+          "position": "Developer",
           "bullets": [
-            "Built reusable component library in Angular",
-            "Integrated OpenTelemetry for frontend monitoring"
-          ]
-        },
-        {
-          "name": "Internal Admin Dashboard",
-          "position": "Frontend Engineer",
-          "bullets": [
-            "Implemented role-based access control",
-            "Enhanced loading performance with caching"
+            "Automação do preenchimento de documentos administrativos com scripts internos."
           ]
         }
       ]
     },
     {
       "role": "Web Developer",
-      "company": "TechCorp",
+      "company": "Powercon",
       "period": "Jan 2022 – Present",
       "projects": [
         {
-          "name": "E-commerce Platform",
+          "name": "Landing page",
           "position": "Lead Developer",
           "bullets": [
-            "Built reusable component library in Angular",
-            "Integrated OpenTelemetry for frontend monitoring"
-          ]
-        },
-        {
-          "name": "Internal Admin Dashboard",
-          "position": "Frontend Engineer",
-          "bullets": [
-            "Implemented role-based access control",
-            "Enhanced loading performance with caching"
+            "Desenvolvimento de landing pages e sistema de gestão de inventário com Vue.js e Laravel."
           ]
         }
       ]
     },
     {
-      "role": "Web Developer",
-      "company": "TechCorp",
+      "role": "Web  & Mobile Developer",
+      "company": "Equilibrium",
       "period": "Jan 2022 – Present",
       "projects": [
         {
-          "name": "E-commerce Platform",
+          "name": "Digipay -- fintech",
           "position": "Lead Developer",
           "bullets": [
             "Built reusable component library in Angular",

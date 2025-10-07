@@ -12,7 +12,7 @@ export default function Modal({
   isOpen,
   onClose,
   children,
-  background = "bg-black/40 backdrop-blur-md", // 🔹 added blur effect
+  background = "lab(8 -4.04 -6.43 / 0.44)",
 }: ModalProps) {
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -25,7 +25,10 @@ export default function Modal({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center ${background} transition-all duration-300`}
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 backdrop-blur-md`}
+      style={{
+        background: background
+      }}
     >
       {children}
       <button

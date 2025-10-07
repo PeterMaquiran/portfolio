@@ -71,13 +71,11 @@ function experiencePreviews() : JSX.Element[] {
       enablePan
       cameraStepBack={8}
     />,
-    <Phone
+    <Monitor
       key="phone"
       canvasHeight="800px"
       canvasWidth="880px"
-      screenSource="/digipay.png"
-      enableZoom
-      enablePan
+      screenSource="/prescricao.jpg"
       cameraStepBack={8}
     />,
     <Phone

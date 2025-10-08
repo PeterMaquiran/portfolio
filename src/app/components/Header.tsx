@@ -1,4 +1,8 @@
 "use client";
+import { getDictionaryByBrowser } from "@/lib/getDictionary";
+
+const navBar = getDictionaryByBrowser().navBar;
+
 export default function Header() {
 
   return (

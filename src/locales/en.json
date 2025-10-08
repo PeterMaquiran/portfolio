@@ -139,5 +139,11 @@
     "Experience": "Experience",
     "Testimonials": "Testimonials",
     "Projects": "Projects"
+  },
+  "navBar": {
+    "skills": "Skills",
+    "projects": "projects",
+    "Experience": "Experience",
+    "testimonials": "testimonials"
   }
 }

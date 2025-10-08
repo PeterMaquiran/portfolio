@@ -188,5 +188,11 @@
     "Experience": "Experiência",
     "Testimonials": "Testemunhos",
     "Projects": "Projetos"
+  },
+  "navBar": {
+    "skills": "Skills",
+    "projects": "projects",
+    "Experience": "Experience",
+    "testimonials": "testimonials"
   }
 }

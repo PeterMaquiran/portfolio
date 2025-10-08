@@ -1,0 +1,25 @@
+kind: pipeline
+type: docker
+name: swarm-deploy
+
+steps:
+  # 1. Build and push Next.js Portfolio Docker image
+  - name: build
+    image: plugins/docker
+    settings:
+      registry: registry.petermaquiran.xyz
+      repo: registry.petermaquiran.xyz/portfolio
+      tags:
+        - latest
+      dockerfile: Dockerfile
+      context: .
+
+  # 2. Trigger service update in Docker Swarm
+  - name: update-service
+    image: curlimages/curl:latest
+    commands:
+      - >
+        curl -X POST https://docker-socket.petermaquiran.xyz/update-service
+        -H "Authorization: Bearer 123"
+        -H "Content-Type: application/json"
+        -d "{\"service\":\"web_portfolio\",\"image\":\"registry.petermaquiran.xyz/portfolio:latest\"}"

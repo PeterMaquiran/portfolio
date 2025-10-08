@@ -191,8 +191,8 @@
   },
   "navBar": {
     "skills": "Skills",
-    "projects": "projects",
-    "Experience": "Experience",
-    "testimonials": "testimonials"
+    "projects": "Projetos",
+    "Experience": "Experiência",
+    "testimonials": "Testemunhos"
   }
 }

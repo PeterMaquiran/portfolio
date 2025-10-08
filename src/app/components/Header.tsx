@@ -30,9 +30,9 @@ export default function Header() {
 					</div>
 				</div>
 				<nav className="hidden md:flex gap-5 text-sm text-neutral-700 dark:text-neutral-300">
-					{["Skills", "Projects", "Experience", "Testimonials"].map(
-						(item) => (
-								<a key={item} href={`#${item.toLowerCase()}`} className="hover:text-indigo-500">
+					{Object.values(navBar).map(
+						(item, index) => (
+								<a key={item} href={`#${Object.keys(navBar)[index].toLowerCase()}`} className="hover:text-indigo-500">
 								{item}
 								</a>
 						)

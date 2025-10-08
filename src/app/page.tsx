@@ -23,6 +23,7 @@ const experiences = getDictionaryByBrowser().experiences;
 const testimonials = getDictionaryByBrowser().testimonials;
 const about = getDictionaryByBrowser().about;
 const sectionsTitle = getDictionaryByBrowser().sectionsTitle;
+const navBar = getDictionaryByBrowser().navBar;
 
 const Section = ({ id, title, children }: any) => (
   <section id={id} className="max-w-6xl mx-auto px-4 py-16"

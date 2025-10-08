@@ -2,20 +2,23 @@
 FROM node:20-bullseye AS builder
 WORKDIR /app
 
-# Install system deps for native builds
-RUN apt-get update && apt-get install -y python3 make g++ libc6-dev && rm -rf /var/lib/apt/lists/*
+# Install build tools + Rust for lightningcss native build
+RUN apt-get update && apt-get install -y python3 make g++ libc6-dev curl && \
+    curl https://sh.rustup.rs -sSf | bash -s -- -y && \
+    . "$HOME/.cargo/env"
 
-# Copy only package files first for caching
+# Copy package files and install deps cleanly
 COPY package*.json ./
-
-# Install fresh deps INSIDE Docker (no host node_modules)
 RUN rm -rf node_modules && npm ci
 
-# Copy app source
+# Copy rest of the code
 COPY . .
 
-# Force lightningcss rebuild for Linux
-RUN npm rebuild lightningcss --build-from-source
+# Force remove any cached prebuilt lightningcss binary
+RUN rm -rf node_modules/lightningcss/node/*.node
+
+# Rebuild lightningcss from source using Rust
+RUN . "$HOME/.cargo/env" && npm rebuild lightningcss --build-from-source
 
 # Build the Next.js app
 RUN npm run build
@@ -25,7 +28,7 @@ FROM node:20-bullseye AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
-# Copy only built output + production deps
+# Copy built app + production deps
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json

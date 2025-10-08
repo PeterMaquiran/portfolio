@@ -144,22 +144,24 @@
     {
       "role": "Web  & Mobile Developer",
       "company": "Equilibrium",
-      "period": "Jan 2022 – Present",
+      "period": "Jan 2020 – Present",
       "projects": [
         {
           "name": "Digipay -- fintech",
-          "position": "Lead Developer",
+          "position": "Web Developer",
           "bullets": [
-            "Built reusable component library in Angular",
-            "Integrated OpenTelemetry for frontend monitoring"
+            "Adesão débito direito com Emis",
+            "Geração de ficheiros Bancários"
           ]
         },
         {
-          "name": "Internal Admin Dashboard",
-          "position": "Frontend Engineer",
+          "name": "Digital Workplace Platform",
+          "position": "Web & Mobile Developer",
           "bullets": [
-            "Implemented role-based access control",
-            "Enhanced loading performance with caching"
+            "Integrated OpenTelemetry",
+            "Integrated Prometheus",
+            "Integrated Loki",
+            "Integrated Zipkin"
           ]
         }
       ]

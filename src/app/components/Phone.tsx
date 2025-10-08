@@ -59,7 +59,7 @@ export default function Phone({
     // 📱 Rounded phone body
     const phoneGeometry = new RoundedBoxGeometry(1, 2, 0.1, 16, 0.1);
     const phoneMaterial = new THREE.MeshStandardMaterial({
-      color: "#1a1a1a",
+      color: "#2a2a2a",     // lighter gray instead of #1a1a1a
       metalness: 0.6,
       roughness: 0.3,
     });
@@ -102,7 +102,7 @@ export default function Phone({
     // 📸 Front camera
     const camGeometry = new THREE.CircleGeometry(0.035, 32);
     const camMaterial = new THREE.MeshStandardMaterial({
-      color: "#222",
+      color: "#444",
       metalness: 0.8,
       roughness: 0.2,
     });

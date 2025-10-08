@@ -60,17 +60,9 @@ function projectPreviews() : JSX.Element[] {
 }
 
 
-function experiencePreviews() : JSX.Element[] {
+function experiencePreviews() : (JSX.Element | null)[] {
   return [
-    <Phone
-      key="phone"
-      canvasHeight="800px"
-      canvasWidth="880px"
-      screenSource="/digipay.png"
-      enableZoom
-      enablePan
-      cameraStepBack={8}
-    />,
+    null,
     <Monitor
       key="phone"
       canvasHeight="800px"
@@ -78,15 +70,7 @@ function experiencePreviews() : JSX.Element[] {
       screenSource="/prescricao.jpg"
       cameraStepBack={8}
     />,
-    <Phone
-      key="phone"
-      canvasHeight="800px"
-      canvasWidth="880px"
-      screenSource="/digipay.png"
-      enableZoom
-      enablePan
-      cameraStepBack={8}
-    />,
+    null,
     <Phone
       key="phone"
       canvasHeight="800px"
@@ -192,17 +176,20 @@ export default function Home() {
     <Section id="experience" title={sectionsTitle.Experience}>
       <div className="space-y-6">
         {experiences.map((exp, index) => (
+          
           <div
-            className="p-3 rounded-2xl cursor-pointer transition-colors"
+            className={`p-3 rounded-2xl transition-colors ${
+              experiencePreviews()[index] != null ? "cursor-pointer" : "cursor-default"
+            }`}
             key={exp.role}
             style={{
               transition: "background 0.3s ease",
             }}
             onMouseEnter={(e) =>
-              (e.currentTarget.style.background = "lab(83 -18.93 -28.32 / 0.1)")
+              experiencePreviews()[index] != null? (e.currentTarget.style.background = "lab(83 -18.93 -28.32 / 0.1)") : ''
             }
             onMouseLeave={(e) => (e.currentTarget.style.background = "")}
-            onClick={() => openModal(experiencePreviews()[index])}
+            onClick={() => experiencePreviews()[index] != null? openModal(experiencePreviews()[index]): '' }
           >
             <h3 className="font-semibold text-lg">{exp.role}</h3>
             {exp.company && (

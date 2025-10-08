@@ -53,7 +53,7 @@ export default function Monitor({
     // 🖥️ Monitor body (bezel)
     const monitorGeometry = new RoundedBoxGeometry(2.5, 1.5, 0.1, 16, 0.05);
     const monitorMaterial = new THREE.MeshStandardMaterial({
-      color: "#111",
+      color: "#2a2a2a",
       metalness: 0.5,
       roughness: 0.3,
     });

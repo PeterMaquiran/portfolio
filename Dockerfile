@@ -2,20 +2,20 @@
 FROM node:20-bullseye AS builder
 WORKDIR /app
 
-# Ensure OpenSSL and build tools are available
-RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
+# Ensure system deps for native modules
+RUN apt-get update && apt-get install -y python3 make g++ libc6-dev && rm -rf /var/lib/apt/lists/*
 
-# Copy package files and install deps
+# Copy package files and install
 COPY package*.json ./
 RUN npm ci
 
 # Copy source code
 COPY . .
 
-# Rebuild lightningcss to ensure correct binary
-RUN npm rebuild lightningcss
+# 🔧 Force rebuild lightningcss native binary
+RUN npm rebuild lightningcss --force
 
-# Build app (disable Turbopack for stable build)
+# Build the app (no Turbopack)
 RUN npm run build
 
 # 2. Production stage
@@ -27,7 +27,6 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 
-# Install only production deps
 RUN npm ci --omit=dev
 
 CMD ["npm", "start"]

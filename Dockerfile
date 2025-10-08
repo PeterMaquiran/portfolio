@@ -1,37 +1,20 @@
-# 1. Build stage
-FROM node:20-bullseye AS builder
+# Stage 1: Dependency Installation
+FROM node:22-alpine AS deps
 WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-# Install build tools + Rust for lightningcss native build
-RUN apt-get update && apt-get install -y python3 make g++ libc6-dev curl && \
-    curl https://sh.rustup.rs -sSf | bash -s -- -y && \
-    . "$HOME/.cargo/env"
-
-# Copy package files and install deps cleanly
-COPY package*.json ./
-RUN rm -rf node_modules && npm ci
-
-# Copy rest of the code
+# Stage 2: Build Application
+FROM node:22-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN yarn build
 
-# Force remove any cached prebuilt lightningcss binary
-RUN rm -rf node_modules/lightningcss/node/*.node
-
-# Rebuild lightningcss from source using Rust
-RUN . "$HOME/.cargo/env" && npm rebuild lightningcss --build-from-source
-
-# Build the Next.js app
-RUN npm run build
-
-# 2. Production stage
-FROM node:20-bullseye AS runner
+# Stage 3: Runner Stage (Production Optimized)
+FROM node:22-alpine AS runner
 WORKDIR /app
-ENV NODE_ENV=production
-
-# Copy built app + production deps
-COPY --from=builder /app/.next ./.next
+ENV NODE_ENV production
+COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/node_modules ./node_modules
-
-CMD ["npm", "start"]
+CMD ["node", "server.js"]

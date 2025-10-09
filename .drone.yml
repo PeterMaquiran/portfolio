@@ -22,4 +22,4 @@ steps:
         curl -X POST https://docker-socket.petermaquiran.xyz/update-service
         -H "Authorization: Bearer 123"
         -H "Content-Type: application/json"
-        -d "{\"service\":\"web_portfolio\",\"image\":\"registry.petermaquiran.xyz/portfolio:latest\"}"
+        -d "{\"service\":\"portfolio_portfolio\",\"image\":\"registry.petermaquiran.xyz/portfolio:latest\"}"

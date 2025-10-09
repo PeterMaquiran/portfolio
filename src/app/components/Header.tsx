@@ -32,9 +32,13 @@ export default function Header() {
 				<nav className="hidden md:flex gap-5 text-sm text-neutral-700 dark:text-neutral-300">
 					{Object.values(navBar).map(
 						(item, index) => (
-								<a key={item} href={`#${Object.keys(navBar)[index].toLowerCase()}`} className="hover:text-indigo-500">
+							<a 
+								key={item} 
+								href={`#${Object.keys(navBar)[index].toLowerCase()}`} 
+								className="transition-colors duration-200 hover:text-[lab(83_-18.93_-28.32_/_0.9)]"
+							>
 								{item}
-								</a>
+							</a>
 						)
 					)}
 				</nav>

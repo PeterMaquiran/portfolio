@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 
 export const metadata: Metadata = {
-  title: "Portfolio & CV | Peter Maquiran — Full-Stack Developer",
+  title: "Portfolio & CV | Peter Maquiran — Software Developer",
   description:
     "Full-stack web and mobile developer skilled in  Angular, Vue, Flutter, NestJS, Docker, and OpenTelemetry. Explore my portfolio, CV, and self-hosted DevOps projects.",
   keywords: [
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     "Flutter"
   ],
   openGraph: {
-    title: "Portfolio & CV | Peter Maquiran — Full-Stack Developer",
+    title: "Portfolio & CV | Peter Maquiran — Software Developer",
     description:
-      "Discover projects, skills, and DevOps expertise from Peter Maquiran — a full-stack developer passionate about observability and performance.",
+      "Discover projects, skills, and DevOps expertise from Peter Maquiran — a Software developer passionate about observability and performance.",
     url: "https://petermaquiran.xyz",
     siteName: "Peter Maquiran Portfolio",
     locale: "en_US",

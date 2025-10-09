@@ -109,7 +109,6 @@ export default function Home() {
     >
       <Header />
       
-
       <div className="max-w-6xl mx-auto px-4 pt-16 flex flex-col md:flex-row items-center justify-between gap-12">
 
         {/* About */}

@@ -69,7 +69,7 @@ function experiencePreviews() : (JSX.Element | null)[] {
       canvasHeight="800px"
       canvasWidth="880px"
       screenSource="/prescricao.jpg"
-      cameraStepBack={8}
+      cameraStepBack={window.innerWidth < 768 ? 12 : 8} // smaller for mobile
     />,
     null,
     <Phone

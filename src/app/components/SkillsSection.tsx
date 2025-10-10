@@ -17,12 +17,12 @@ export default function SkillsSection({
 
   return (
     <section id="skills" className="max-w-6xl mx-auto px-4 py-16">
-      <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">
+      <h2 className="text-2xl font-bold mb-6 text-neutral-100">
         {active.title}
       </h2>
 
       {/* Tabs header */}
-      <div className="flex flex-wrap gap-3 mb-8 border-b border-neutral-200 dark:border-neutral-800 pb-2">
+      <div className="flex flex-wrap gap-3 mb-8 border-b border-neutral-800 pb-2">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -55,11 +55,11 @@ export default function SkillsSection({
       >
         {active.items.map((s) => (
           <div key={s.name}>
-            <div className="flex justify-between text-sm text-neutral-700 dark:text-neutral-300">
+            <div className="flex justify-between text-sm text-neutral-300">
               <span>{s.name}</span>
               <span className="text-neutral-400">{s.level}%</span>
             </div>
-            <div className="h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 overflow-hidden">
+            <div className="h-1.5 rounded-full bg-neutral-800 overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: `${s.level}%` }}

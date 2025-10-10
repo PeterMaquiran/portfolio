@@ -23,13 +23,13 @@ export default function Header() {
 					<Rocket className="h-5 w-5" />
 					</motion.div> */}
 					<div>
-						<div className="font-semibold text-neutral-900 dark:text-neutral-100">
+						<div className="font-semibold text-neutral-100">
 								Peter Maquiran
 						</div>
 						<div className="text-xs" style={{ color:"lab(83 -18.93 -28.32 / 0.7)"}}>Software Developer</div>
 					</div>
 				</div>
-				<nav className="hidden md:flex gap-5 text-sm text-neutral-700 dark:text-neutral-300">
+				<nav className="hidden md:flex gap-5 text-sm text-neutral-300">
 					{Object.values(navBar).map(
 						(item, index) => (
 							<a 

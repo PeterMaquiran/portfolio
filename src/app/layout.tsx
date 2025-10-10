@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Portfolio & CV | Peter Maquiran — Software Developer",
   description:
-    "Full-stack web and mobile developer skilled in  Angular, Vue, Flutter, NestJS, Docker, and OpenTelemetry. Explore my portfolio, CV, and self-hosted DevOps projects.",
+    "Software web and mobile developer skilled in  Angular, Vue, Flutter, NestJS, Docker, and OpenTelemetry. Explore my portfolio, CV, and self-hosted DevOps projects.",
   keywords: [
     "Peter Maquiran",
     "Full Stack Developer",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Peter Maquiran — Portfolio & CV",
     description:
-      "Full-stack web and mobile developer specializing in Angular, Vue, Flutter, Docker, and OpenTelemetry.",
+      "Software web and mobile developer specializing in Angular, Vue, Flutter, Docker, and OpenTelemetry.",
     creator: "@PeterMaquiran",
   },
   metadataBase: new URL("https://petermaquiran.xyz"),

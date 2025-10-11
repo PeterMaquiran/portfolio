@@ -25,30 +25,38 @@ const about = getDictionaryByBrowser().about;
 const sectionsTitle = getDictionaryByBrowser().sectionsTitle;
 const navBar = getDictionaryByBrowser().navBar;
 
+// —————————————————————————————————————————————
+// Helpers
+// —————————————————————————————————————————————
 const Section = ({ id, title, children }: any) => (
-  <section id={id} className="max-w-6xl mx-auto px-4 py-16"
-
-  >
-    <h2 className="text-2xl font-bold mb-6 text-neutral-100">
-      {title}
-    </h2>
+  <section id={id} className="max-w-6xl mx-auto px-4 py-16">
+    <h2 className="text-2xl font-bold mb-6 text-neutral-100">{title}</h2>
     {children}
   </section>
 );
 
-
-function projectPreviews() : JSX.Element[] {
+// —————————————————————————————————————————————
+// Previews
+// —————————————————————————————————————————————
+function projectPreviews(): JSX.Element[][] {
   return [
-    <Monitor
-      key="monitor"
-      canvasHeight="800px"
-      canvasWidth="800px"
-      screenSource="/grafana-monitoring.png"
-      //enableZoom
-      //enablePan
-      cameraStepBack={window.innerWidth < 768 ? 12 : 8} // smaller for mobile
-    />,
-    <Phone
+    [
+      <Monitor
+        key="monitor"
+        canvasHeight="800px"
+        canvasWidth="800px"
+        screenSource="/grafana-monitoring.png"
+        cameraStepBack={window.innerWidth < 768 ? 12 : 8}
+      />,
+      <Monitor
+        key="monitor"
+        canvasHeight="800px"
+        canvasWidth="800px"
+        screenSource="/front-end.png"
+        cameraStepBack={window.innerWidth < 768 ? 12 : 8}
+      />
+    ],
+    [<Phone
       key="phone"
       canvasHeight="800px"
       canvasWidth="880px"
@@ -56,23 +64,24 @@ function projectPreviews() : JSX.Element[] {
       enableZoom
       enablePan
       cameraStepBack={8}
-    />
+    />],
   ];
 }
 
-
-function experiencePreviews() : (JSX.Element | null)[] {
+function experiencePreviews(): (JSX.Element | null)[][] {
   return [
-    null,
-    <Monitor
-      key="phone"
+    [],
+    [
+      <Monitor
+      key="monitor"
       canvasHeight="800px"
       canvasWidth="880px"
       screenSource="/prescricao.jpg"
-      cameraStepBack={window.innerWidth < 768 ? 12 : 8} // smaller for mobile
-    />,
-    null,
-    <Phone
+      cameraStepBack={window.innerWidth < 768 ? 12 : 8}
+    />
+    ],
+    [],
+    [<Phone
       key="phone"
       canvasHeight="800px"
       canvasWidth="880px"
@@ -80,34 +89,37 @@ function experiencePreviews() : (JSX.Element | null)[] {
       enableZoom
       enablePan
       cameraStepBack={8}
-    />
+    />],
   ];
 }
 
-
-function _experiencePreviews() : (boolean | null)[] {
-  return [
-    null,
-    true,
-    null,
-    true
-  ];
+function _experiencePreviews(): (boolean | null)[] {
+  return [null, true, null, true];
 }
 
-
+// —————————————————————————————————————————————
+// Main Component
+// —————————————————————————————————————————————
 export default function Home() {
+  const [showModal, setShowModal] = useState(false);
+  const [tabs, setTabs] = useState<{ label: string; content: ReactNode }[]>([]);
+  const [modalContent, setModalContent] = useState<ReactNode>(null);
+  const [activeTab, setActiveTab] = useState("web"); // default tab
+
   useEffect(() => {
     document.title = "Peter Maquiran | Portfolio";
   }, []);
 
-  const [activeTab, setActiveTab] = useState("web"); // default tab
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState<ReactNode>(null);
-
-  function openModal(content: ReactNode) {
-    setModalContent(content);
+  // ————————————————————————————————————————
+  // Open Modal with multiple tabs
+  // ————————————————————————————————————————
+  function openModal(contents: ReactNode[], labels: string[]) {
+    const combinedTabs = contents.map((content, i) => ({
+      label: labels[i] || `Tab ${i + 1}`,
+      content,
+    }));
+    setTabs(combinedTabs);
     setShowModal(true);
-    document.body.style.overflow = "hidden";
   }
 
   return (
@@ -148,23 +160,23 @@ export default function Home() {
               style={{
                 background: "lab(83 -18.93 -28.32 / 0.1)",
               }}
-              key={p.title}
+              key={index}
               whileHover={{ scale: 1.02 }}
               className="p-6 rounded-2xl border border-neutral-800 bg-neutral-900 shadow-sm cursor-pointer"
-              onClick={() => openModal(projectPreviews()[index])}
+              onClick={() =>
+                openModal(projectPreviews()[index], ["Grafana", "Mobile"])
+              }
             >
               <h3 className="font-semibold text-lg mb-1">{p.title}</h3>
-              <p className="text-sm mb-3 text-neutral-300">
-                {p.blurb}
-              </p>
+              <p className="text-sm mb-3 text-neutral-300">{p.blurb}</p>
               <div className="flex flex-wrap gap-2 mb-3">
-                {p.stack.map((tech) => (
+                {p.stack.map((tech: string) => (
                   <span
                     key={tech}
                     className="text-xs px-2 py-0.5 bg-indigo-900/40 text-indigo-300 rounded"
                     style={{
-                      background: 'lab(83 -18.93 -28.32 / 0.1)',
-                      color: 'lab(83 -18.9 -28.38)'
+                      background: "lab(83 -18.93 -28.32 / 0.1)",
+                      color: "lab(83 -18.9 -28.38)",
                     }}
                   >
                     {tech}
@@ -172,7 +184,7 @@ export default function Home() {
                 ))}
               </div>
               <ul className="text-sm space-y-1 text-neutral-100 list-disc pl-4">
-                {p.highlights.map((h) => (
+                {p.highlights.map((h: string) => (
                   <li key={h}>{h}</li>
                 ))}
               </ul>
@@ -181,53 +193,65 @@ export default function Home() {
         </div>
       </Section>
 
-    {/* Experience */}
-    <Section id="experience" title={sectionsTitle.Experience}>
-      <div className="space-y-6">
-        {experiences.map((exp, index) => (
-          
-          <div
-            className={`p-3 rounded-2xl transition-colors ${
-              _experiencePreviews()[index] != null ? "cursor-pointer" : "cursor-default"
-            }`}
-            key={exp.role}
-            style={{
-              transition: "background 0.3s ease",
-            }}
-            onMouseEnter={(e) =>
-              experiencePreviews()[index] != null? (e.currentTarget.style.background = "lab(83 -18.93 -28.32 / 0.1)") : ''
-            }
-            onMouseLeave={(e) => (e.currentTarget.style.background = "")}
-            onClick={() => experiencePreviews()[index] != null? openModal(experiencePreviews()[index]): '' }
-          >
-            <h3 className="font-semibold text-lg">{exp.role}</h3>
-            {exp.company && (
-              <div className="text-sm text-neutral-400">{exp.company}</div>
-            )}
-            <div className="text-sm text-neutral-300 mb-2">{exp.period}</div>
+      {/* ————————————————————————————————
+          Experience Section
+      ———————————————————————————————— */}
+      <Section id="experience" title={sectionsTitle.Experience}>
+        <div className="space-y-6">
+          {experiences.map((exp, index) => (
+            <div
+              className={`p-3 rounded-2xl transition-colors ${
+                _experiencePreviews()[index] != null
+                  ? "cursor-pointer"
+                  : "cursor-default"
+              }`}
+              key={index}
+              style={{
+                transition: "background 0.3s ease",
+              }}
+              onMouseEnter={(e) =>
+                _experiencePreviews()[index] != null
+                  ? (e.currentTarget.style.background =
+                      "lab(83 -18.93 -28.32 / 0.1)")
+                  : ""
+              }
+              onMouseLeave={(e) => (e.currentTarget.style.background = "")}
+              onClick={() =>
+                _experiencePreviews()[index] != null
+                  ? openModal(
+                      experiencePreviews()[index] as ReactNode[],
+                      ["Prescrição", "Digipay"]
+                    )
+                  : ""
+              }
+            >
+              <h3 className="font-semibold text-lg">{exp.role}</h3>
+              {exp.company && (
+                <div className="text-sm text-neutral-400">{exp.company}</div>
+              )}
+              <div className="text-sm text-neutral-300 mb-2">{exp.period}</div>
 
-            {exp.projects?.map((project) => (
-              <div key={project.name} className="mt-3">
-                <div className="text-sm text-neutral-400">
-                  <strong>Project:</strong> {project.name}
-                </div>
-                {project.position && (
-                  <div className="text-sm text-neutral-400 mb-1">
-                    <strong>Position:</strong> {project.position}
+              {exp.projects?.map((project: any) => (
+                <div key={project.name} className="mt-3">
+                  <div className="text-sm text-neutral-400">
+                    <strong>Project:</strong> {project.name}
                   </div>
-                )}
-                <ul className="text-sm list-disc pl-5 space-y-1 text-neutral-200">
-                  {project.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    </Section>
-
+                  {project.position && (
+                    <div className="text-sm text-neutral-400 mb-1">
+                      <strong>Position:</strong> {project.position}
+                    </div>
+                  )}
+                  <ul className="text-sm list-disc pl-5 space-y-1 text-neutral-200">
+                    {project.bullets.map((b: string) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </Section>
 
 
       {/* Testimonials */}
@@ -256,10 +280,18 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* ————————————————————————————————
+          Modal Component
+      ———————————————————————————————— */}
 
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-        {modalContent}
-      </Modal>
+      { showModal == true ? 
+        <Modal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          tabs={tabs}
+        />
+      : null}
+
 
       {/* Footer */}
       <footer className="py-10 border-t border-neutral-800 text-center text-sm text-neutral-500" style={{ color:"lab(83 -18.93 -28.32 / 0.6)"}}>

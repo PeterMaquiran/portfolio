@@ -69,7 +69,7 @@ function experiencePreviews() : (JSX.Element | null)[] {
       canvasHeight="800px"
       canvasWidth="880px"
       screenSource="/prescricao.jpg"
-      cameraStepBack={window.innerWidth < 768 ? 12 : 8}
+      cameraStepBack={window.innerWidth < 768 ? 12 : 8} // smaller for mobile
     />,
     null,
     <Phone
@@ -84,6 +84,15 @@ function experiencePreviews() : (JSX.Element | null)[] {
   ];
 }
 
+
+function _experiencePreviews() : (boolean | null)[] {
+  return [
+    null,
+    true,
+    null,
+    true
+  ];
+}
 
 
 export default function Home() {
@@ -179,7 +188,7 @@ export default function Home() {
           
           <div
             className={`p-3 rounded-2xl transition-colors ${
-              experiencePreviews()[index] != null ? "cursor-pointer" : "cursor-default"
+              _experiencePreviews()[index] != null ? "cursor-pointer" : "cursor-default"
             }`}
             key={exp.role}
             style={{

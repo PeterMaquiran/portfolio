@@ -74,7 +74,7 @@
     {
       "title": "Self-Hosted DevOps Stack",
       "blurb": "Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, Drone CI, and metrics/logs/traces pipeline. All self hosted.",
-      "stack": ["Docker", "Swarm", "Nginx", "Certbot", "Drone", "Prometheus", "Loki"],
+      "stack": ["Docker", "Swarm", "Nginx", "Certbot", "Drone", "Prometheus", "Loki", "Zipkin"],
       "highlights": [
         "Blue/green style updates for zero-downtime",
         "Gitea + Drone CI pipelines to build & deploy",

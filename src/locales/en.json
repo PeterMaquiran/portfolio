@@ -169,7 +169,9 @@
       ]
     }
   ],
-
+  "experiencesExample" : [
+    ["Mobile", "Web"]
+  ],
   "testimonials": [
     {
       "quote":

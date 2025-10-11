@@ -24,6 +24,7 @@ const testimonials = getDictionaryByBrowser().testimonials;
 const about = getDictionaryByBrowser().about;
 const sectionsTitle = getDictionaryByBrowser().sectionsTitle;
 const navBar = getDictionaryByBrowser().navBar;
+const experiencesExample = getDictionaryByBrowser().experiencesExample;
 
 // —————————————————————————————————————————————
 // Helpers
@@ -41,13 +42,6 @@ const Section = ({ id, title, children }: any) => (
 function projectPreviews(): JSX.Element[][] {
   return [
     [
-      <Monitor
-        key="monitor"
-        canvasHeight="800px"
-        canvasWidth="800px"
-        screenSource="/grafana-monitoring.png"
-        cameraStepBack={window.innerWidth < 768 ? 12 : 8}
-      />,
       <Monitor
         key="monitor"
         canvasHeight="800px"
@@ -70,31 +64,50 @@ function projectPreviews(): JSX.Element[][] {
 
 function experiencePreviews(): (JSX.Element | null)[][] {
   return [
-    [],
+    [
+      <Phone
+        key="phone"
+        canvasHeight="800px"
+        canvasWidth="880px"
+        screenSource="/pontrofrescho-mobile.png"
+        enableZoom
+        enablePan
+        cameraStepBack={8}
+      />,
+      <Monitor
+        key="monitor"
+        canvasHeight="800px"
+        canvasWidth="880px"
+        screenSource="/ponto-fresco-desktop.png"
+        cameraStepBack={window.innerWidth < 768 ? 12 : 8}
+      />
+    ],
     [
       <Monitor
-      key="monitor"
-      canvasHeight="800px"
-      canvasWidth="880px"
-      screenSource="/prescricao.jpg"
-      cameraStepBack={window.innerWidth < 768 ? 12 : 8}
-    />
+        key="monitor"
+        canvasHeight="800px"
+        canvasWidth="880px"
+        screenSource="/prescricao.jpg"
+        cameraStepBack={window.innerWidth < 768 ? 12 : 8}
+      />
     ],
     [],
-    [<Phone
-      key="phone"
-      canvasHeight="800px"
-      canvasWidth="880px"
-      screenSource="/digipay.png"
-      enableZoom
-      enablePan
-      cameraStepBack={8}
-    />],
+    [
+      <Phone
+        key="phone"
+        canvasHeight="800px"
+        canvasWidth="880px"
+        screenSource="/digipay.png"
+        enableZoom
+        enablePan
+        cameraStepBack={8}
+      />
+    ],
   ];
 }
 
 function _experiencePreviews(): (boolean | null)[] {
-  return [null, true, null, true];
+  return [true, true, null, true];
 }
 
 // —————————————————————————————————————————————
@@ -220,7 +233,7 @@ export default function Home() {
                 _experiencePreviews()[index] != null
                   ? openModal(
                       experiencePreviews()[index] as ReactNode[],
-                      ["Prescrição", "Digipay"]
+                      experiencesExample[index] ?? []
                     )
                   : ""
               }

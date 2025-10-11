@@ -169,6 +169,9 @@
       ]
     }
   ],
+  "experiencesExample" : [
+    ["Mobile", "Web"]
+  ],
   "testimonials": [
     {
       "quote": "O Peter trouxe observabilidade a nível de produção para a nossa infraestrutura. Detetámos problemas antes dos utilizadores e lançámos novas versões mais rapidamente.",

@@ -46,7 +46,7 @@ function projectPreviews(): JSX.Element[][] {
         key="monitor"
         canvasHeight="800px"
         canvasWidth="800px"
-        screenSource="/front-end.png"
+        screenSource="/grafana-monitoring.png"
         cameraStepBack={window.innerWidth < 768 ? 12 : 8}
       />
     ],

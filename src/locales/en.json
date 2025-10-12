@@ -189,7 +189,7 @@
   "about": {
     "intro": "I'm a <strong>Web & Mobile Developer</strong> focused on building reliable, observable, and offline-ready applications. I work mainly with  <strong>Angular</strong>, <strong>Vue</strong>,  <strong>Fluter</strong>, <strong>Ionic</strong> and <strong>Nest.JS</strong>, crafting smooth experiences that stay fast, even with poor connectivity.",
     "observability": "I care deeply about <strong>observability</strong> and <strong>performance</strong>, using <strong>OpenTelemetry</strong>, <strong>Zipkin</strong>, <strong>Prometheus</strong>, and <strong>Grafana</strong> to trace and monitor systems end-to-end. I also manage <strong>Docker-based infrastructure</strong> with <strong>Nginx</strong>, <strong>Certbot</strong>, and automated <strong>CI/CD pipelines</strong> for secure, zero-downtime deployments.",
-    "philosophy": "I love turning complex systems into simple, dependable apps — where every request, metric, and trace tells a story."
+    "philosophy": "I love turning complex systems into simple, dependable apps, where every request, metric, and trace tells a story."
   },
   "sectionsTitle": {
     "Experience": "Experience",

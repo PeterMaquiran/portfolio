@@ -62,9 +62,9 @@ function projectPreviews(): JSX.Element[][] {
       cameraStepBack={10}
       targetCameraStepBack={
           window.innerHeight < 640
-            ? 5
-            : window.innerHeight < 880
             ? 7
+            : window.innerHeight < 880
+            ? 5.5
             : 6.5
       }
       spin={true}
@@ -83,9 +83,9 @@ function experiencePreviews(): (JSX.Element | null)[][] {
         cameraStepBack={10}
         targetCameraStepBack={
           window.innerHeight < 640
-            ? 5
-            : window.innerHeight < 880
             ? 7
+            : window.innerHeight < 880
+            ? 5.5
             : 6.5
         }
       />,
@@ -124,9 +124,9 @@ function experiencePreviews(): (JSX.Element | null)[][] {
         cameraStepBack={10}
         targetCameraStepBack={
           window.innerHeight < 640
-            ? 5
-            : window.innerHeight < 880
             ? 7
+            : window.innerHeight < 880
+            ? 5.5
             : 6.5
         }
       />

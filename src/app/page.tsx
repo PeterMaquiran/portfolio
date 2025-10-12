@@ -45,7 +45,13 @@ function projectPreviews(): JSX.Element[][] {
       <Monitor
         key="monitor"
         screenSource="/grafana-monitoring.png"
-        cameraStepBack={window.innerWidth < 768 ? 12 : 8}
+        cameraStepBack={
+          window.innerWidth < 640
+            ? 12
+            : window.innerWidth < 1024
+            ? 8
+            : 6
+        }
       />
     ],
     [<Phone
@@ -53,7 +59,15 @@ function projectPreviews(): JSX.Element[][] {
       screenSource="/mobile-porfoio.png"
       enableZoom
       enablePan
-      cameraStepBack={8}
+      cameraStepBack={10}
+      targetCameraStepBack={
+          window.innerHeight < 640
+            ? 5
+            : window.innerHeight < 880
+            ? 7
+            : 6.5
+      }
+      spin={true}
     />],
   ];
 }
@@ -66,19 +80,38 @@ function experiencePreviews(): (JSX.Element | null)[][] {
         screenSource="/pontrofrescho-mobile.png"
         enableZoom
         enablePan
-        cameraStepBack={8}
+        cameraStepBack={10}
+        targetCameraStepBack={
+          window.innerHeight < 640
+            ? 5
+            : window.innerHeight < 880
+            ? 7
+            : 6.5
+        }
       />,
       <Monitor
         key="monitor"
         screenSource="/ponto-fresco-desktop.png"
-        cameraStepBack={window.innerWidth < 768 ? 12 : 8}
+        cameraStepBack={
+          window.innerWidth < 640
+            ? 12
+            : window.innerWidth < 1024
+            ? 8
+            : 6
+        }
       />
     ],
     [
       <Monitor
         key="monitor"
         screenSource="/prescricao.jpg"
-        cameraStepBack={window.innerWidth < 768 ? 12 : 8}
+        cameraStepBack={
+          window.innerWidth < 640
+            ? 12
+            : window.innerWidth < 1024
+            ? 8
+            : 6
+        }
       />
     ],
     [],
@@ -88,7 +121,14 @@ function experiencePreviews(): (JSX.Element | null)[][] {
         screenSource="/digipay.png"
         enableZoom
         enablePan
-        cameraStepBack={8}
+        cameraStepBack={10}
+        targetCameraStepBack={
+          window.innerHeight < 640
+            ? 5
+            : window.innerHeight < 880
+            ? 7
+            : 6.5
+        }
       />
     ],
   ];
@@ -142,8 +182,8 @@ export default function Home() {
 
         {/* Earth */}
         <div className="flex-1 flex justify-end">
-          {activeTab === "web" && <Monitor spinDuration={2500} screenSource="/front-end.png" canvasHeight="230px" canvasWidth="300px" />}
-          {activeTab === "mobile" && <Phone canvasHeight="230px" canvasWidth="300px" />}
+          {activeTab === "web" && <Monitor  spinDuration={2500} screenSource="/front-end.png" canvasHeight="230px" canvasWidth="300px" />}
+          {activeTab === "mobile" && <Phone targetCameraStepBack={5} cameraStepBack={8} canvasHeight="230px" canvasWidth="300px" />}
           {activeTab === "backend" && <Monitor spinDuration={2500} canvasHeight="230px" canvasWidth="300px" />}
           {activeTab === "observability" && <EarthBackground  />}
         </div>

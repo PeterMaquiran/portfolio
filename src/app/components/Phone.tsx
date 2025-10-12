@@ -10,9 +10,12 @@ export default function Phone({
   screenSource = "/phone.png",
   enableZoom = false,
   enablePan = false,
-  cameraStepBack = 5,
-  spin = true, // 👈 NEW prop
-  spinDuration = 3000, // optional for smoothness control
+  cameraStepBack = 2,
+  spin = true,
+  spinDuration = 2500,
+  zoomEnabled = true, // 👈 new
+  targetCameraStepBack, // 👈 how close the zoom will go
+  zoomSpeed = 0.03, // 👈 smoothness
 }: {
   canvasHeight?: string;
   canvasWidth?: string;
@@ -20,8 +23,11 @@ export default function Phone({
   enableZoom?: boolean;
   enablePan?: boolean;
   cameraStepBack?: number;
-  spin?: boolean; // 👈 control spin on/off
+  spin?: boolean;
   spinDuration?: number;
+  zoomEnabled?: boolean; // 👈 enable/disable smooth zoom
+  targetCameraStepBack?: number; // 👈 target zoom distance
+  zoomSpeed?: number; // 👈 how smooth it zooms
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -125,28 +131,45 @@ export default function Phone({
     phoneMesh.add(camHighlight);
 
     // 🌪️ Spin setup
-    const startRotation = Math.PI; // start showing back
-    const endRotation = 0; // end showing front
+    const startRotation = Math.PI;
+    const endRotation = 0;
     phoneMesh.rotation.y = spin ? startRotation : endRotation;
-
     let startTime: number | null = null;
 
     // Easing function
     const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    
+    // 🌀 Animation variables
+    // 🌀 Animation variables
+    let zoomAnimating = typeof targetCameraStepBack == 'number';
+    let animationFrameId: number;
 
     // 🎞️ Animation loop
     const animate = (time: number) => {
       requestAnimationFrame(animate);
       controls.update();
 
+      // 🔁 Smooth spin
       if (spin) {
         if (!startTime) startTime = time;
         const elapsed = time - startTime;
         const t = Math.min(elapsed / spinDuration, 1);
         const eased = easeOutCubic(t);
-
         phoneMesh.rotation.y =
           startRotation + (endRotation - startRotation) * eased;
+      }
+
+      // 🔍 Smooth zoom
+      if (zoomAnimating) {
+        // Smooth interpolate camera position
+        camera.position.z += (targetCameraStepBack! - camera.position.z) * zoomSpeed;
+
+        // Check if zoom is nearly finished
+        if (Math.abs(camera.position.z - targetCameraStepBack!) < 0.01) {
+          zoomAnimating = false;
+          //controls.enableZoom = false; // 👈 disable user zoom afterwards
+        }
       }
 
       renderer.render(scene, camera);
@@ -162,6 +185,12 @@ export default function Phone({
       renderer.setSize(clientWidth, clientHeight);
     });
     resizeObserver.observe(container);
+
+
+    function onClick(event: MouseEvent) {
+      zoomAnimating = false;
+    }
+
 
     // 🧹 Cleanup
     return () => {
@@ -187,9 +216,21 @@ export default function Phone({
 
       renderer.dispose();
       container.removeChild(renderer.domElement);
+      // Attach listener
+      renderer.domElement.addEventListener("click", onClick);
       scene.clear();
     };
-  }, [screenSource, enableZoom, enablePan, cameraStepBack, spin, spinDuration]);
+  }, [
+    screenSource,
+    enableZoom,
+    enablePan,
+    cameraStepBack,
+    spin,
+    spinDuration,
+    zoomEnabled,
+    targetCameraStepBack,
+    zoomSpeed,
+  ]);
 
   return (
     <div

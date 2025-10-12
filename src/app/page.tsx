@@ -135,7 +135,7 @@ function experiencePreviews(): (JSX.Element | null)[][] {
 }
 
 function _experiencePreviews(): (boolean | null)[] {
-  return [true, true, null, true];
+  return [true, true, null, true].reverse();
 }
 
 // —————————————————————————————————————————————

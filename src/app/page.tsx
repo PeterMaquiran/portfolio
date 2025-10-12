@@ -44,16 +44,12 @@ function projectPreviews(): JSX.Element[][] {
     [
       <Monitor
         key="monitor"
-        canvasHeight="800px"
-        canvasWidth="800px"
         screenSource="/grafana-monitoring.png"
         cameraStepBack={window.innerWidth < 768 ? 12 : 8}
       />
     ],
     [<Phone
       key="phone"
-      canvasHeight="800px"
-      canvasWidth="880px"
       screenSource="/mobile-porfoio.png"
       enableZoom
       enablePan
@@ -67,8 +63,6 @@ function experiencePreviews(): (JSX.Element | null)[][] {
     [
       <Phone
         key="phone"
-        canvasHeight="800px"
-        canvasWidth="880px"
         screenSource="/pontrofrescho-mobile.png"
         enableZoom
         enablePan
@@ -76,8 +70,6 @@ function experiencePreviews(): (JSX.Element | null)[][] {
       />,
       <Monitor
         key="monitor"
-        canvasHeight="800px"
-        canvasWidth="880px"
         screenSource="/ponto-fresco-desktop.png"
         cameraStepBack={window.innerWidth < 768 ? 12 : 8}
       />
@@ -85,8 +77,6 @@ function experiencePreviews(): (JSX.Element | null)[][] {
     [
       <Monitor
         key="monitor"
-        canvasHeight="800px"
-        canvasWidth="880px"
         screenSource="/prescricao.jpg"
         cameraStepBack={window.innerWidth < 768 ? 12 : 8}
       />
@@ -95,8 +85,6 @@ function experiencePreviews(): (JSX.Element | null)[][] {
     [
       <Phone
         key="phone"
-        canvasHeight="800px"
-        canvasWidth="880px"
         screenSource="/digipay.png"
         enableZoom
         enablePan
@@ -154,10 +142,10 @@ export default function Home() {
 
         {/* Earth */}
         <div className="flex-1 flex justify-end">
-          {activeTab === "web" && <Monitor screenSource="/front-end.png" />}
-          {activeTab === "mobile" && <Phone />}
-          {activeTab === "backend" && <Monitor />}
-          {activeTab === "observability" && <EarthBackground />}
+          {activeTab === "web" && <Monitor screenSource="/front-end.png" canvasHeight="230px" canvasWidth="300px" />}
+          {activeTab === "mobile" && <Phone canvasHeight="230px" canvasWidth="300px" />}
+          {activeTab === "backend" && <Monitor canvasHeight="230px" canvasWidth="300px" />}
+          {activeTab === "observability" && <EarthBackground  />}
         </div>
       </div>
 

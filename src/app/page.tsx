@@ -19,7 +19,7 @@ import { strong } from "framer-motion/client";
 // —————————————————————————————————————————————
 const skills =  getDictionaryByBrowser().skills;
 const projects = getDictionaryByBrowser().projects;
-const experiences = getDictionaryByBrowser().experiences;
+const experiences = getDictionaryByBrowser().experiences.reverse();
 const testimonials = getDictionaryByBrowser().testimonials;
 const about = getDictionaryByBrowser().about;
 const sectionsTitle = getDictionaryByBrowser().sectionsTitle;

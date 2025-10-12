@@ -95,55 +95,6 @@
 
   "experiences": [
     {
-      "role": "Web developer",
-      "company": "Theus",
-      "period": "Jan 2017 – Mar 2018",
-      "projects": [
-        {
-          "name": "Landing page",
-          "position": "Developer",
-          "bullets": [
-            "Implementação de tema escuro/claro dinâmico"
-          ]
-        },
-        {
-          "name": "e-commerce",
-          "position": "Developer",
-          "bullets": [
-            "Desenvolvimento da camada frontend de uma plataforma de e-commerce com Vue.js."
-          ]
-        }
-      ]
-    },
-    {
-      "role": "BackEnd developer",
-      "company": "Multiperfil",
-      "period": "Sep 2018 — Dec 2018",
-      "projects": [
-        {
-          "name": "Documentos interno",
-          "position": "Developer",
-          "bullets": [
-            "Automação do preenchimento de documentos administrativos com scripts internos."
-          ]
-        }
-      ]
-    },
-    {
-      "role": "Web Developer",
-      "company": "Powercon",
-      "period": "Jan 2019 — Julho 2020",
-      "projects": [
-        {
-          "name": "Landing page",
-          "position": "Lead Developer",
-          "bullets": [
-            "Desenvolvimento de landing pages e sistema de gestão de inventário com Vue.js e Laravel."
-          ]
-        }
-      ]
-    },
-    {
       "role": "Web  & Mobile Developer",
       "company": "Equilibrium",
       "period": "Julho 2020 – Presente",
@@ -167,9 +118,61 @@
           ]
         }
       ]
+    },
+        {
+      "role": "Web Developer",
+      "company": "Powercon",
+      "period": "Jan 2019 — Julho 2020",
+      "projects": [
+        {
+          "name": "Landing page",
+          "position": "Lead Developer",
+          "bullets": [
+            "Desenvolvimento de landing pages e sistema de gestão de inventário com Vue.js e Laravel."
+          ]
+        }
+      ]
+    },
+    {
+      "role": "BackEnd developer",
+      "company": "Multiperfil",
+      "period": "Sep 2018 — Dec 2018",
+      "projects": [
+        {
+          "name": "Documentos interno",
+          "position": "Developer",
+          "bullets": [
+            "Automação do preenchimento de documentos administrativos com scripts internos."
+          ]
+        }
+      ]
+    },
+    {
+      "role": "Web developer",
+      "company": "Theus",
+      "period": "Jan 2017 – Mar 2018",
+      "projects": [
+        {
+          "name": "Landing page",
+          "position": "Developer",
+          "bullets": [
+            "Implementação de tema escuro/claro dinâmico"
+          ]
+        },
+        {
+          "name": "e-commerce",
+          "position": "Developer",
+          "bullets": [
+            "Desenvolvimento da camada frontend de uma plataforma de e-commerce com Vue.js."
+          ]
+        }
+      ]
     }
   ],
   "experiencesExample" : [
+    [],
+    [],
+    [],
     ["Mobile", "Web"]
   ],
   "testimonials": [

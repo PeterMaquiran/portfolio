@@ -19,7 +19,7 @@ import { strong } from "framer-motion/client";
 // —————————————————————————————————————————————
 const skills =  getDictionaryByBrowser().skills;
 const projects = getDictionaryByBrowser().projects;
-const experiences = getDictionaryByBrowser().experiences.reverse();
+const experiences = getDictionaryByBrowser().experiences;
 const testimonials = getDictionaryByBrowser().testimonials;
 const about = getDictionaryByBrowser().about;
 const sectionsTitle = getDictionaryByBrowser().sectionsTitle;
@@ -135,7 +135,7 @@ function experiencePreviews(): (JSX.Element | null)[][] {
 }
 
 function _experiencePreviews(): (boolean | null)[] {
-  return [true, true, null, true].reverse();
+  return [true, null, true, true];
 }
 
 // —————————————————————————————————————————————

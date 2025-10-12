@@ -46,11 +46,8 @@ export default function SkillsSection({
       </div>
 
       {/* Active tab content */}
-      <motion.div
+      <div
         key={activeTab}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
         className="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
       >
         {active.items.map((s) => (
@@ -60,17 +57,18 @@ export default function SkillsSection({
               <span className="text-neutral-400">{s.level}%</span>
             </div>
             <div className="h-1.5 rounded-full bg-neutral-800 overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: `${s.level}%` }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                style={{ background: "lab(83 -18.93 -28.32 / 0.7)" }}
+              <div
+                style={{
+                  background: "lab(83 -18.93 -28.32 / 0.7)",
+                  width: `${s.level}%`,
+                }}
                 className="h-full rounded-full"
               />
             </div>
           </div>
         ))}
-      </motion.div>
+      </div>
+
     </section>
   );
 }

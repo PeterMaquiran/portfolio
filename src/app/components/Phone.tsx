@@ -7,17 +7,21 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 export default function Phone({
   canvasHeight =window.innerHeight+'px',
   canvasWidth = window.innerWidth+'px',
-  screenSource = '/phone.png',
+  screenSource = "/phone.png",
   enableZoom = false,
   enablePan = false,
   cameraStepBack = 5,
+  spin = true, // 👈 NEW prop
+  spinDuration = 3000, // optional for smoothness control
 }: {
-  canvasHeight?: string,
-  canvasWidth?: string,
-  screenSource?: string,
-  enableZoom?: boolean,
-  enablePan?: boolean,
-  cameraStepBack?: number,
+  canvasHeight?: string;
+  canvasWidth?: string;
+  screenSource?: string;
+  enableZoom?: boolean;
+  enablePan?: boolean;
+  cameraStepBack?: number;
+  spin?: boolean; // 👈 control spin on/off
+  spinDuration?: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -32,22 +36,20 @@ export default function Phone({
       0.1,
       100
     );
-
-    // Move camera slightly to the side and above
-    camera.position.set(0, 0, cameraStepBack); // 5 units in front of the monitor
-    camera.lookAt(0, 0, 0);      // look straight at the center
+    camera.position.set(0, 0, cameraStepBack);
+    camera.lookAt(0, 0, 0);
 
     // 🖥️ Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setClearColor(0x000000, 0);
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
     // 💡 Lights
-    const light = new THREE.DirectionalLight("#ffffff", 2);
-    light.position.set(2, 2, 3);
-    scene.add(light);
+    const dirLight = new THREE.DirectionalLight("#ffffff", 2);
+    dirLight.position.set(2, 2, 3);
+    scene.add(dirLight);
     scene.add(new THREE.AmbientLight("#ffffff", 0.4));
 
     // 🎮 Controls
@@ -56,18 +58,16 @@ export default function Phone({
     controls.enableZoom = enableZoom;
     controls.enablePan = enablePan;
 
-    // 📱 Rounded phone body
+    // 📱 Phone body
     const phoneGeometry = new RoundedBoxGeometry(1, 2, 0.1, 16, 0.1);
     const phoneMaterial = new THREE.MeshStandardMaterial({
-      color: "#2a2a2a",     // lighter gray instead of #1a1a1a
+      color: "#2a2a2a",
       metalness: 0.6,
       roughness: 0.3,
     });
     const phoneMesh = new THREE.Mesh(phoneGeometry, phoneMaterial);
     phoneMesh.castShadow = true;
     phoneMesh.receiveShadow = true;
-    phoneMesh.rotation.set(0, 0, 0); // no rotation
-
     scene.add(phoneMesh);
 
     // 🖼️ Screen texture
@@ -110,24 +110,49 @@ export default function Phone({
     frontCam.position.set(0, 0.88, 0.052);
     phoneMesh.add(frontCam);
 
-    // 💎 Camera reflection
+    // 💎 Camera highlight
     const camHighlightGeometry = new THREE.CircleGeometry(0.015, 32);
     const camHighlightMaterial = new THREE.MeshBasicMaterial({
       color: "#66ccff",
       transparent: true,
       opacity: 0.25,
     });
-    const camHighlight = new THREE.Mesh(camHighlightGeometry, camHighlightMaterial);
+    const camHighlight = new THREE.Mesh(
+      camHighlightGeometry,
+      camHighlightMaterial
+    );
     camHighlight.position.set(0.01, 0.89, 0.053);
     phoneMesh.add(camHighlight);
 
-    // 🌀 Animation
-    const animate = () => {
+    // 🌪️ Spin setup
+    const startRotation = Math.PI; // start showing back
+    const endRotation = 0; // end showing front
+    phoneMesh.rotation.y = spin ? startRotation : endRotation;
+
+    let startTime: number | null = null;
+
+    // Easing function
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    // 🎞️ Animation loop
+    const animate = (time: number) => {
       requestAnimationFrame(animate);
       controls.update();
+
+      if (spin) {
+        if (!startTime) startTime = time;
+        const elapsed = time - startTime;
+        const t = Math.min(elapsed / spinDuration, 1);
+        const eased = easeOutCubic(t);
+
+        phoneMesh.rotation.y =
+          startRotation + (endRotation - startRotation) * eased;
+      }
+
       renderer.render(scene, camera);
     };
-    animate();
+
+    requestAnimationFrame(animate);
 
     // 📏 Resize handling
     const resizeObserver = new ResizeObserver(() => {
@@ -138,10 +163,8 @@ export default function Phone({
     });
     resizeObserver.observe(container);
 
-
     // 🧹 Cleanup
     return () => {
-      //cancelAnimationFrame(animationFrameId);
       resizeObserver.disconnect();
       controls.dispose();
       screenTexture.dispose();
@@ -166,16 +189,17 @@ export default function Phone({
       container.removeChild(renderer.domElement);
       scene.clear();
     };
-  }, [screenSource, enableZoom, enablePan, cameraStepBack]);
+  }, [screenSource, enableZoom, enablePan, cameraStepBack, spin, spinDuration]);
 
   return (
     <div
       ref={containerRef}
       style={{
         height: canvasHeight,
-        width: canvasWidth
+        width: canvasWidth,
+        cursor: "grab",
       }}
-      className={`overflow-hidden`}
+      className="overflow-hidden"
     />
   );
 }

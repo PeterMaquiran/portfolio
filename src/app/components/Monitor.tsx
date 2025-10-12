@@ -9,11 +9,15 @@ export default function Monitor({
   canvasWidth = window.innerWidth+'px',
   screenSource = '/screen.png',
 	cameraStepBack = 5,
+  spin = true, // 👈 NEW prop
+  spinDuration = 3000, // optional for smoothness control
 }: {
   canvasHeight?: string,
   canvasWidth?: string,
   screenSource?: string,
 	cameraStepBack?: number,
+  spin?: boolean; // 👈 control spin on/off
+  spinDuration?: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -109,13 +113,35 @@ export default function Monitor({
     baseMesh.position.set(0, -1.275, 0);
     monitorMesh.add(baseMesh);
 
-    // 🌀 Animation
-    const animate = () => {
+    // 🌪️ Spin setup
+    const startRotation = Math.PI; // start showing back
+    const endRotation = 0; // end showing front
+    monitorMesh.rotation.y = spin ? startRotation : endRotation;
+
+    let startTime: number | null = null;
+
+    // Easing function
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    // 🎞️ Animation loop
+    const animate = (time: number) => {
       requestAnimationFrame(animate);
       controls.update();
+
+      if (spin) {
+        if (!startTime) startTime = time;
+        const elapsed = time - startTime;
+        const t = Math.min(elapsed / spinDuration, 1);
+        const eased = easeOutCubic(t);
+
+        monitorMesh.rotation.y =
+          startRotation + (endRotation - startRotation) * eased;
+      }
+
       renderer.render(scene, camera);
     };
-    animate();
+
+    requestAnimationFrame(animate);
 
     // 📏 Resize handling
     const resizeObserver = new ResizeObserver(() => {
@@ -159,7 +185,8 @@ export default function Monitor({
       ref={containerRef}
         style={{
         height: canvasHeight,
-        width: canvasWidth
+        width: canvasWidth,
+        cursor: "grab",
       }}
       className={`overflow-hidden`}
     />

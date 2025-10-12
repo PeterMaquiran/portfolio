@@ -5,8 +5,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
 export default function Phone({
-  canvasHeight ='300px',
-  canvasWidth = '280px',
+  canvasHeight =window.innerHeight+'px',
+  canvasWidth = window.innerWidth+'px',
   screenSource = '/phone.png',
   enableZoom = false,
   enablePan = false,

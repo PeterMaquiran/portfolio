@@ -5,8 +5,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
 export default function Monitor({
-  canvasHeight ='230px',
-  canvasWidth = '300px',
+  canvasHeight =window.innerHeight+'px',
+  canvasWidth = window.innerWidth+'px',
   screenSource = '/screen.png',
 	cameraStepBack = 5,
 }: {

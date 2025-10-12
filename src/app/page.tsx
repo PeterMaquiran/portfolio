@@ -44,16 +44,12 @@ function projectPreviews(): JSX.Element[][] {
     [
       <Monitor
         key="monitor"
-        canvasHeight="800px"
-        canvasWidth="800px"
         screenSource="/grafana-monitoring.png"
         cameraStepBack={window.innerWidth < 768 ? 12 : 8}
       />
     ],
     [<Phone
       key="phone"
-      canvasHeight="800px"
-      canvasWidth="880px"
       screenSource="/mobile-porfoio.png"
       enableZoom
       enablePan
@@ -67,8 +63,6 @@ function experiencePreviews(): (JSX.Element | null)[][] {
     [
       <Phone
         key="phone"
-        canvasHeight="800px"
-        canvasWidth="880px"
         screenSource="/pontrofrescho-mobile.png"
         enableZoom
         enablePan
@@ -76,8 +70,6 @@ function experiencePreviews(): (JSX.Element | null)[][] {
       />,
       <Monitor
         key="monitor"
-        canvasHeight="800px"
-        canvasWidth="880px"
         screenSource="/ponto-fresco-desktop.png"
         cameraStepBack={window.innerWidth < 768 ? 12 : 8}
       />
@@ -85,8 +77,6 @@ function experiencePreviews(): (JSX.Element | null)[][] {
     [
       <Monitor
         key="monitor"
-        canvasHeight="800px"
-        canvasWidth="880px"
         screenSource="/prescricao.jpg"
         cameraStepBack={window.innerWidth < 768 ? 12 : 8}
       />
@@ -95,8 +85,6 @@ function experiencePreviews(): (JSX.Element | null)[][] {
     [
       <Phone
         key="phone"
-        canvasHeight="800px"
-        canvasWidth="880px"
         screenSource="/digipay.png"
         enableZoom
         enablePan

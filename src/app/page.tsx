@@ -131,7 +131,7 @@ function experiencePreviews(): (JSX.Element | null)[][] {
         }
       />
     ],
-  ];
+  ].reverse();
 }
 
 function _experiencePreviews(): (boolean | null)[] {

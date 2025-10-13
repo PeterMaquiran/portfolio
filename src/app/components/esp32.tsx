@@ -13,7 +13,6 @@ export default function Phone({
   cameraStepBack = 2,
   spin = true,
   spinDuration = 2500,
-  zoomEnabled = true,
   targetCameraStepBack,
   zoomSpeed = 0.03,
 }: {
@@ -25,7 +24,6 @@ export default function Phone({
   cameraStepBack?: number;
   spin?: boolean;
   spinDuration?: number;
-  zoomEnabled?: boolean;
   targetCameraStepBack?: number;
   zoomSpeed?: number;
 }) {
@@ -187,7 +185,6 @@ export default function Phone({
     cameraStepBack,
     spin,
     spinDuration,
-    zoomEnabled,
     targetCameraStepBack,
     zoomSpeed,
   ]);

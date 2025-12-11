@@ -67,6 +67,19 @@
         { "name": "Android/iOS", "level": 90 },
         { "name": "Firebase Push Notification", "level": 85 }
       ]
+    },
+    "Microcontroller": {
+      "title": "Microcontroller",
+      "items": [
+        { "name": "ESP32 / ESP8266", "level": 85 },
+        { "name": "MicroPython", "level": 80 },
+        { "name": "Arduino Framework", "level": 80 },
+        { "name": "C / C++ for Microcontrollers", "level": 75 },
+        { "name": "Wi-Fi & Bluetooth (BLE)", "level": 80 },
+        { "name": "IoT Communication (MQTT / REST)", "level": 85 },
+        { "name": "Sensor Integration", "level": 80 },
+        { "name": "Three.js 3D Model Visualization (ESP32)", "level": 70 }
+      ]
     }
   },
 

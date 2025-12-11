@@ -185,7 +185,7 @@ export default function Home() {
         <div className="flex-1 flex justify-end">
           {activeTab === "web" && <Monitor  spinDuration={2500} screenSource="/front-end.png" canvasHeight="230px" canvasWidth="300px" />}
           {activeTab === "mobile" && <Phone targetCameraStepBack={5} cameraStepBack={8} canvasHeight="230px" canvasWidth="300px" />}
-          {/* {activeTab === "mobile" && <ESP32 targetCameraStepBack={5} cameraStepBack={8} canvasHeight="230px" canvasWidth="300px" />} */}
+          {activeTab === "Microcontroller" && <ESP32 targetCameraStepBack={5} cameraStepBack={8} canvasHeight="230px" canvasWidth="300px" />}
           {activeTab === "backend" && <Monitor spinDuration={2500} canvasHeight="230px" canvasWidth="300px" />}
           {activeTab === "observability" && <EarthBackground  />}
         </div>

@@ -23,7 +23,7 @@ export default function SkillsSection({
 
       {/* Tabs header */}
       <div className="flex flex-wrap gap-3 mb-8 border-b border-neutral-800 pb-2">
-        {categories.map((cat) => (
+        {categories.filter(e => e!= 'Microcontroller').map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveTab(cat)}

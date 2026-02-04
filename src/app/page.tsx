@@ -336,6 +336,26 @@ export default function Home() {
       : null}
 
 
+      {/* LinkedIn badge above footer */}
+      <div className="mt-12 mb-4 flex justify-center">
+        <div
+          className="badge-base LI-profile-badge"
+          data-locale="en_US"
+          data-size="large"
+          data-theme="dark"
+          data-type="HORIZONTAL"
+          data-vanity="petermaquiran"
+          data-version="v1"
+        >
+          <a
+            className="badge-base__link LI-simple-link"
+            href="https://ao.linkedin.com/in/petermaquiran?trk=profile-badge"
+          >
+            Peter Maquiran
+          </a>
+        </div>
+      </div>
+
       {/* Footer */}
       <footer className="py-10 border-t border-neutral-800 text-center text-sm text-neutral-500" style={{ color:"lab(83 -18.93 -28.32 / 0.6)"}}>
         <div className="flex justify-center gap-4 mb-2">

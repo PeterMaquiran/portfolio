@@ -12,8 +12,9 @@ export default function StableRealisticEarth() {
 
     // 1. Scene Setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(22, container.clientWidth / container.clientHeight, 0.1, 100);
-    camera.position.set(4, 2, 4);
+    // Camera settings from first example (21.5 FOV, specific position)
+    const camera = new THREE.PerspectiveCamera(21.5, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(4.5, 2, 3);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -22,17 +23,23 @@ export default function StableRealisticEarth() {
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     container.appendChild(renderer.domElement);
 
-    // 2. FIXED Controls (Defined once)
+    // 2. Controls (Syncing with first example: enable damping, no zoom/pan)
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.enableZoom = false;
+    controls.enablePan = false;
 
-    // 3. Static Sun
-    const sunDirection = new THREE.Vector3(5, 2, 2).normalize();
+    // 3. Static Sun (Aligned to the light position in the first example: 0, 0, 3)
+    const sunPos = new THREE.Vector3(0, 0, 3);
+    const sunDirection = sunPos.clone().normalize();
     const sunLight = new THREE.DirectionalLight(0xffffff, 3);
-    sunLight.position.copy(sunDirection.clone().multiplyScalar(10));
+    sunLight.position.copy(sunPos);
     scene.add(sunLight);
+
+    // Ambient light from first example to soften shadows
+    const ambient = new THREE.AmbientLight("#182134", 0.5);
+    scene.add(ambient);
 
     const loader = new THREE.TextureLoader();
     const textures = {
@@ -44,7 +51,7 @@ export default function StableRealisticEarth() {
 
     // 4. Earth with Axial Tilt
     const earthGroup = new THREE.Group();
-    earthGroup.rotation.z = THREE.MathUtils.degToRad(23.5); // The magic tilt
+    earthGroup.rotation.z = THREE.MathUtils.degToRad(23.5); 
     scene.add(earthGroup);
 
     const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
@@ -76,8 +83,11 @@ export default function StableRealisticEarth() {
           vec3 nightColor = texture2D(uNightTex, vUv).rgb;
           float specMask = texture2D(uSpecTex, vUv).r;
           float diff = dot(vNormal, uSunDir);
-          float dayWeight = smoothstep(-0.15, 0.15, diff);
+          
+          // Day/Night transition logic
+          float dayWeight = smoothstep(-0.1, 0.1, diff);
           vec3 color = mix(nightColor * 2.5, dayColor, dayWeight);
+          
           float spec = pow(max(dot(vNormal, uSunDir), 0.0), 32.0) * specMask;
           color += (spec * 0.3);
           gl_FragColor = vec4(color, 1.0);
@@ -86,28 +96,30 @@ export default function StableRealisticEarth() {
     });
 
     const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+    // Setting initial rotation so the "terminator" is visible immediately
+    earth.rotation.y = -1.5; 
     earthGroup.add(earth);
 
-    // 5. Clouds (also inside the tilted group)
+    // 5. Clouds
     const cloudMat = new THREE.MeshStandardMaterial({
       map: textures.clouds,
       transparent: true,
-      opacity: 0.9,
+      opacity: 0.8,
       blending: THREE.AdditiveBlending,
       depthWrite: false
     });
     const clouds = new THREE.Mesh(earthGeometry, cloudMat);
     clouds.scale.setScalar(1.015);
+    clouds.rotation.y = -1.5;
     earthGroup.add(clouds);
 
-    // 6. Atmosphere (Fixed to be subtle and tight)
+    // 6. Atmosphere
     const atmosMat = new THREE.ShaderMaterial({
       side: THREE.BackSide,
       transparent: true,
       vertexShader: `
         varying vec3 vNormal;
         void main() {
-          // Use normalMatrix to keep the glow aligned with the camera
           vNormal = normalize(normalMatrix * normal);
           gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
@@ -115,14 +127,8 @@ export default function StableRealisticEarth() {
       fragmentShader: `
         varying vec3 vNormal;
         void main() {
-          // intensity logic: 
-          // 0.8 is the "edge" start. 
-          // 7.0 (increased from 4.0) makes the falloff much sharper/thinner.
           float intensity = pow(0.8 - dot(vNormal, vec3(0, 0, 1.0)), 7.0);
-          
-          // Using a softer, more realistic Rayleigh-scattering blue
           vec3 atmosColor = vec3(0.3, 0.6, 1.0);
-          
           gl_FragColor = vec4(atmosColor, intensity);
         }
       `,
@@ -130,8 +136,6 @@ export default function StableRealisticEarth() {
     });
 
     const atmosphere = new THREE.Mesh(earthGeometry, atmosMat);
-    
-    // Scale reduced from 1.15 to 1.04 for a much tighter fit
     atmosphere.scale.setScalar(1.04); 
     scene.add(atmosphere);
 
@@ -139,11 +143,11 @@ export default function StableRealisticEarth() {
     const animate = () => {
       requestAnimationFrame(animate);
       
-      // Rotate meshes on their Y-axis
-      earth.rotation.y += 0.001;
-      clouds.rotation.y += 0.0013;
+      // Speed updated to match your base example (0.0015)
+      earth.rotation.y += 0.0015;
+      clouds.rotation.y += 0.0018; // Clouds move slightly faster for depth
 
-      controls.update(); // Smoothly updates the mouse movement
+      controls.update();
       renderer.render(scene, camera);
     };
     animate();
@@ -158,7 +162,13 @@ export default function StableRealisticEarth() {
     return () => {
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
-      container.removeChild(renderer.domElement);
+      earthGeometry.dispose();
+      earthMaterial.dispose();
+      cloudMat.dispose();
+      atmosMat.dispose();
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
     };
   }, []);
 

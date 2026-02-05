@@ -92,7 +92,7 @@ export default function StableRealisticEarth() {
     const cloudMat = new THREE.MeshStandardMaterial({
       map: textures.clouds,
       transparent: true,
-      opacity: 0.7,
+      opacity: 0.9,
       blending: THREE.AdditiveBlending,
       depthWrite: false
     });

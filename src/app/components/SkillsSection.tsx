@@ -22,7 +22,8 @@ export default function SkillsSection({
       </h2>
 
       {/* Tabs header */}
-      <div className="flex flex-wrap gap-3 mb-8 border-b border-neutral-800 pb-2">
+      <div className="flex flex-wrap gap-3 mb-8 border-b  pb-2"
+      style={{ borderColor: "lab(83 -18.93 -28.32 / 0.2)" }}>
         {categories.filter(e => e!= 'Microcontroller').map((cat) => (
           <button
             key={cat}

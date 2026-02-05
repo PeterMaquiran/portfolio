@@ -1,137 +1,166 @@
 "use client";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-export default function Earth() {
+export default function StableRealisticEarth() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current!;
+    const container = containerRef.current;
+    if (!container) return;
+
+    // 1. Scene Setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      21.5,
-      container.clientWidth / container.clientHeight,
-      0.1,
-      100
-    );
-    camera.position.set(4.5, 2, 3);
+    const camera = new THREE.PerspectiveCamera(22, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(4, 2, 4);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
     container.appendChild(renderer.domElement);
 
-    // 🌞 Lighting
-    const sun = new THREE.DirectionalLight("#ffffff", 2);
-    sun.position.set(0, 0, 3);
-    scene.add(sun);
-
-    const ambient = new THREE.AmbientLight("#182134", 0.5);
-    scene.add(ambient);
-
-    // 🧭 Controls
+    // 2. FIXED Controls (Defined once)
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.minDistance = 0;
-    controls.maxDistance = 10;
+    controls.dampingFactor = 0.05;
+    controls.enableZoom = false;
 
-		// ⛔ prevent zoom and pan
-		controls.enableZoom = false;
-		controls.enablePan = false;
+    // 3. Static Sun
+    const sunDirection = new THREE.Vector3(5, 2, 2).normalize();
+    const sunLight = new THREE.DirectionalLight(0xffffff, 3);
+    sunLight.position.copy(sunDirection.clone().multiplyScalar(10));
+    scene.add(sunLight);
 
-
-    // 🖼️ Textures
     const loader = new THREE.TextureLoader();
-    const dayTexture = loader.load("/textures/earth_day_4096.jpg");
-    const nightTexture = loader.load("/textures/earth_night_4096.jpg");
-    const bumpTexture = loader.load("/textures/earth_bump_roughness_clouds_4096.jpg");
-    dayTexture.colorSpace = THREE.SRGBColorSpace;
-    nightTexture.colorSpace = THREE.SRGBColorSpace;
+    const textures = {
+      day: loader.load("/Gemini_Generated_Image_xbfeynxbfeynxbfe.png"),
+      night: loader.load("https://threejs.org/examples/textures/planets/earth_lights_2048.png"),
+      spec: loader.load("https://threejs.org/examples/textures/planets/earth_specular_2048.jpg"),
+      clouds: loader.load("https://threejs.org/examples/textures/planets/earth_clouds_1024.png"),
+    };
 
-    // 🌍 Earth Surface
-    const geometry = new THREE.SphereGeometry(1, 64, 64);
-		const dayMaterial = new THREE.MeshPhongMaterial({
-			map: dayTexture,
-			bumpMap: bumpTexture,
-			bumpScale: 0.005, // increased from 0.05 → makes relief more visible
-			specularMap: bumpTexture,
-			shininess: 20,   // slight increase in highlight intensity
-		});
-    const earth = new THREE.Mesh(geometry, dayMaterial);
-    scene.add(earth);
+    // 4. Earth with Axial Tilt
+    const earthGroup = new THREE.Group();
+    earthGroup.rotation.z = THREE.MathUtils.degToRad(23.5); // The magic tilt
+    scene.add(earthGroup);
 
-    // 🌃 Night lights overlay
-    const nightMaterial = new THREE.MeshBasicMaterial({
-      map: nightTexture,
-      blending: THREE.AdditiveBlending,
-      transparent: true,
-      opacity: 0.5,
+    const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
+    const earthMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        uDayTex: { value: textures.day },
+        uNightTex: { value: textures.night },
+        uSpecTex: { value: textures.spec },
+        uSunDir: { value: sunDirection },
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        varying vec3 vNormal;
+        void main() {
+          vUv = uv;
+          vNormal = normalize(vec3(modelMatrix * vec4(normal, 0.0)));
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D uDayTex;
+        uniform sampler2D uNightTex;
+        uniform sampler2D uSpecTex;
+        uniform vec3 uSunDir;
+        varying vec2 vUv;
+        varying vec3 vNormal;
+        void main() {
+          vec3 dayColor = texture2D(uDayTex, vUv).rgb;
+          vec3 nightColor = texture2D(uNightTex, vUv).rgb;
+          float specMask = texture2D(uSpecTex, vUv).r;
+          float diff = dot(vNormal, uSunDir);
+          float dayWeight = smoothstep(-0.15, 0.15, diff);
+          vec3 color = mix(nightColor * 2.5, dayColor, dayWeight);
+          float spec = pow(max(dot(vNormal, uSunDir), 0.0), 32.0) * specMask;
+          color += (spec * 0.3);
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `
     });
-    const nightEarth = new THREE.Mesh(geometry, nightMaterial);
-    scene.add(nightEarth);
 
-    // ✨ Atmospheric glow
-		const glowMaterial = new THREE.ShaderMaterial({
-			uniforms: {},
-			vertexShader: `
-				varying vec3 vNormal;
-				void main() {
-					vNormal = normalize(normalMatrix * normal);
-					gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-				}
-			`,
-			fragmentShader: `
-				varying vec3 vNormal;
-				void main() {
-					// Slightly smoother falloff
-					float intensity = pow(0.75 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 5.5);
-					// Soft lab(83 -18.93 -28.32 / 0.7) ≈ rgb(130,180,255)
-					gl_FragColor = vec4(0.51, 0.71, 1.0, 0.5) * intensity;
-				}
-			`,
-			side: THREE.BackSide,
-			blending: THREE.AdditiveBlending,
-			transparent: true,
-		});
+    const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+    earthGroup.add(earth);
 
+    // 5. Clouds (also inside the tilted group)
+    const cloudMat = new THREE.MeshStandardMaterial({
+      map: textures.clouds,
+      transparent: true,
+      opacity: 0.7,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+    const clouds = new THREE.Mesh(earthGeometry, cloudMat);
+    clouds.scale.setScalar(1.015);
+    earthGroup.add(clouds);
 
-    const atmosphere = new THREE.Mesh(geometry, glowMaterial);
-    atmosphere.scale.setScalar(1.1);
+    // 6. Atmosphere (Fixed to be subtle and tight)
+    const atmosMat = new THREE.ShaderMaterial({
+      side: THREE.BackSide,
+      transparent: true,
+      vertexShader: `
+        varying vec3 vNormal;
+        void main() {
+          // Use normalMatrix to keep the glow aligned with the camera
+          vNormal = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vNormal;
+        void main() {
+          // intensity logic: 
+          // 0.8 is the "edge" start. 
+          // 7.0 (increased from 4.0) makes the falloff much sharper/thinner.
+          float intensity = pow(0.8 - dot(vNormal, vec3(0, 0, 1.0)), 7.0);
+          
+          // Using a softer, more realistic Rayleigh-scattering blue
+          vec3 atmosColor = vec3(0.3, 0.6, 1.0);
+          
+          gl_FragColor = vec4(atmosColor, intensity);
+        }
+      `,
+      blending: THREE.AdditiveBlending,
+    });
+
+    const atmosphere = new THREE.Mesh(earthGeometry, atmosMat);
+    
+    // Scale reduced from 1.15 to 1.04 for a much tighter fit
+    atmosphere.scale.setScalar(1.04); 
     scene.add(atmosphere);
 
-    // 🌀 Animation
+    // 7. Animation Loop
     const animate = () => {
       requestAnimationFrame(animate);
-      earth.rotation.y += 0.0015;
-      nightEarth.rotation.y += 0.0015;
-      atmosphere.rotation.y += 0.0015;
-      controls.update();
+      
+      // Rotate meshes on their Y-axis
+      earth.rotation.y += 0.001;
+      clouds.rotation.y += 0.0013;
+
+      controls.update(); // Smoothly updates the mouse movement
       renderer.render(scene, camera);
     };
     animate();
 
-    // 📏 Responsive resize
-    const resizeObserver = new ResizeObserver(() => {
-      const { clientWidth, clientHeight } = container;
-      camera.aspect = clientWidth / clientHeight;
+    const handleResize = () => {
+      camera.aspect = container.clientWidth / container.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(clientWidth, clientHeight);
-    });
-    //resizeObserver.observe(container);
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    };
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      resizeObserver.disconnect();
-      container.removeChild(renderer.domElement);
+      window.removeEventListener('resize', handleResize);
       renderer.dispose();
+      container.removeChild(renderer.domElement);
     };
   }, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className="w-[280px] h-[270px] overflow-hidden"
-    />
-  );
+  return <div ref={containerRef} className="w-[300px] h-[300px] cursor-grab active:cursor-grabbing" />;
 }

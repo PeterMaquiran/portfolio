@@ -149,7 +149,7 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [tabs, setTabs] = useState<{ label: string; content: ReactNode }[]>([]);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
-  const [activeTab, setActiveTab] = useState("observability"); // default tab
+  const [activeTab, setActiveTab] = useState("web"); // default tab
 
   useEffect(() => {
     document.title = "Peter Maquiran | Portfolio";

@@ -31,8 +31,11 @@ const experiencesExample = getDictionaryByBrowser().experiencesExample;
 // Helpers
 // —————————————————————————————————————————————
 const Section = ({ id, title, children }: any) => (
-  <section id={id} className="max-w-6xl mx-auto px-4 py-16">
-    <h2 className="text-2xl font-bold mb-6 text-neutral-100">{title}</h2>
+  <section id={id} className="relative max-w-6xl mx-auto px-4 py-16">
+    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-500/50 to-transparent" />
+    <h2 className="mb-8 text-xs font-semibold tracking-[0.3em] text-slate-400 uppercase">
+      {title}
+    </h2>
     {children}
   </section>
 );
@@ -165,9 +168,11 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100"
+    <div
+      className="min-h-screen text-neutral-100 relative overflow-hidden"
       style={{
-        background: "linear-gradient(145deg, #0f172a 0%, #1e293b 40%, #1c2235ff 100%)",
+        background:
+          "radial-gradient(circle at -10% -10%, rgba(56,189,248,0.10), transparent 55%), radial-gradient(circle at 110% -10%, rgba(129,140,248,0.12), transparent 55%), radial-gradient(circle at 50% 40%, rgba(148,163,184,0.18), transparent 60%), radial-gradient(circle at 50% 120%, rgba(45, 212, 190, 0.14), transparent 55%), linear-gradient(145deg, #020617 0%, #020617 40%, #0f172a 100%)",
       }}
     >
       <Header />
@@ -197,36 +202,39 @@ export default function Home() {
 
       {/* Projects */}
       <Section id="projects" title={sectionsTitle.Projects}>
-        <div className="grid gap-8">
+        <div className="grid gap-7">
           {projects.map((p, index) => (
             <motion.div
-              style={{
-                background: "lab(83 -18.93 -28.32 / 0.1)",
-              }}
               key={index}
-              whileHover={{ scale: 1.02 }}
-              className="p-6 rounded-2xl border border-neutral-800 bg-neutral-900 shadow-sm cursor-pointer"
+              whileHover={{ y: -4 }}
+              className="group relative overflow-hidden rounded-2xl border border-slate-700/70 bg-slate-900/80 px-6 py-5 shadow-[0_18px_45px_rgba(15,23,42,0.5)] cursor-pointer transition-transform duration-200"
               onClick={() =>
                 openModal(projectPreviews()[index], ["Grafana", "Mobile"])
               }
             >
-              <h3 className="font-semibold text-lg mb-1">{p.title}</h3>
-              <p className="text-sm mb-3 text-neutral-300">{p.blurb}</p>
-              <div className="flex flex-wrap gap-2 mb-3">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/10 via-sky-400/5 to-transparent opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100" />
+
+              <div className="relative flex flex-col gap-3">
+                <h3 className="text-base font-semibold text-neutral-50">
+                  {p.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-neutral-300">
+                  {p.blurb}
+                </p>
+              </div>
+
+              <div className="relative mt-4 mb-3 flex flex-wrap gap-2">
                 {p.stack.map((tech: string) => (
                   <span
                     key={tech}
-                    className="text-xs px-2 py-0.5 bg-indigo-900/40 text-indigo-300 rounded"
-                    style={{
-                      background: "lab(83 -18.93 -28.32 / 0.1)",
-                      color: "lab(83 -18.9 -28.38)",
-                    }}
+                    className="text-[11px] px-2.5 py-1 rounded-full border border-sky-400/30 bg-slate-800/70 text-sky-200/95"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-              <ul className="text-sm space-y-1 text-neutral-100 list-disc pl-4">
+
+              <ul className="relative text-sm space-y-1.5 text-neutral-100 list-disc pl-4">
                 {p.highlights.map((h: string) => (
                   <li key={h}>{h}</li>
                 ))}
@@ -240,25 +248,15 @@ export default function Home() {
           Experience Section
       ———————————————————————————————— */}
       <Section id="experience" title={sectionsTitle.Experience}>
-        <div className="space-y-6">
+        <div className="space-y-5">
           {experiences.map((exp, index) => (
             <div
-              className={`p-3 rounded-2xl transition-colors ${
+              className={`group relative overflow-hidden rounded-2xl border border-slate-700/70 bg-slate-900/75 px-5 py-4 transition-colors ${
                 _experiencePreviews()[index] != null
-                  ? "cursor-pointer"
+                  ? "cursor-pointer hover:border-sky-400/40"
                   : "cursor-default"
               }`}
               key={index}
-              style={{
-                transition: "background 0.3s ease",
-              }}
-              onMouseEnter={(e) =>
-                _experiencePreviews()[index] != null
-                  ? (e.currentTarget.style.background =
-                      "lab(83 -18.93 -28.32 / 0.1)")
-                  : ""
-              }
-              onMouseLeave={(e) => (e.currentTarget.style.background = "")}
               onClick={() =>
                 _experiencePreviews()[index] != null
                   ? openModal(
@@ -268,23 +266,31 @@ export default function Home() {
                   : ""
               }
             >
-              <h3 className="font-semibold text-lg">{exp.role}</h3>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-sky-500/10 via-blue-500/5 to-transparent opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100" />
+
+              <h3 className="relative text-base font-semibold text-neutral-50">
+                {exp.role}
+              </h3>
               {exp.company && (
-                <div className="text-sm text-neutral-400">{exp.company}</div>
+                <div className="relative text-xs uppercase tracking-[0.2em] text-slate-400 mt-1">
+                  {exp.company}
+                </div>
               )}
-              <div className="text-sm text-neutral-300 mb-2">{exp.period}</div>
+              <div className="relative mt-1 text-xs text-slate-400">
+                {exp.period}
+              </div>
 
               {exp.projects?.map((project: any) => (
-                <div key={project.name} className="mt-3">
-                  <div className="text-sm text-neutral-400">
+                <div key={project.name} className="relative mt-4 rounded-xl bg-slate-800/70 px-3 py-3 border border-slate-700/70">
+                  <div className="text-xs font-medium text-slate-300">
                     <strong>Project:</strong> {project.name}
                   </div>
                   {project.position && (
-                    <div className="text-sm text-neutral-400 mb-1">
+                    <div className="text-xs text-slate-400 mb-1 mt-0.5">
                       <strong>Position:</strong> {project.position}
                     </div>
                   )}
-                  <ul className="text-sm list-disc pl-5 space-y-1 text-neutral-200">
+                  <ul className="text-sm list-disc pl-4 space-y-1.5 text-neutral-200">
                     {project.bullets.map((b: string) => (
                       <li key={b}>{b}</li>
                     ))}
@@ -303,19 +309,17 @@ export default function Home() {
           {testimonials.map((t, i) => (
             <motion.a
               href={t.link}
-              style={{
-                background: "lab(83 -18.93 -28.32 / 0.1)",
-              }}
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="p-6 rounded-2xl border border-neutral-800 bg-neutral-900 shadow-sm"
+              className="relative overflow-hidden rounded-2xl border border-slate-700/70 bg-slate-900/80 p-6 shadow-[0_16px_40px_rgba(15,23,42,0.5)]"
             >
-              <p className="italic text-neutral-300 mb-3">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-400/12 via-sky-400/10 to-transparent opacity-0 blur-xl transition-opacity duration-300 hover:opacity-100" />
+              <p className="relative italic text-neutral-300 mb-3">
                 “{t.quote}”
               </p>
-              <div className="text-sm text-neutral-500 flex flex-col justify-between" style={{ color:"lab(83 -18.93 -28.32 / 0.8)"}}>
+              <div className="relative text-sm text-slate-300 flex flex-col justify-between">
                 {t.author}
               </div>
             </motion.a>
@@ -336,28 +340,53 @@ export default function Home() {
       : null}
 
 
-      {/* LinkedIn badge above footer */}
-      {/* <div className="mt-12 mb-4 flex justify-center">
-        <div
-          className="badge-base LI-profile-badge"
-          data-locale="en_US"
-          data-size="large"
-          data-theme="dark"
-          data-type="HORIZONTAL"
-          data-vanity="petermaquiran"
-          data-version="v1"
+      {/* Premium LinkedIn badge above footer */}
+      <div className="mt-12 mb-6 flex justify-center">
+        <a
+          href="https://www.linkedin.com/in/petermaquiran/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative flex items-center gap-4 rounded-2xl border border-blue-500/40 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 px-5 py-4 shadow-[0_18px_45px_rgba(15,23,42,0.9)] transition transform hover:-translate-y-0.5 hover:shadow-[0_22px_60px_rgba(37,99,235,0.55)]"
         >
-          <a
-            className="badge-base__link LI-simple-link"
-            href="https://ao.linkedin.com/in/petermaquiran?trk=profile-badge"
-          >
-            Peter Maquiran
-          </a>
-        </div>
-      </div> */}
+          {/* Glow */}
+          <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 via-cyan-400/10 to-transparent opacity-0 blur-xl transition-opacity group-hover:opacity-100" />
+
+          {/* Avatar */}
+          <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl border border-blue-400/40 bg-slate-800">
+            <img
+              src="/peter-linkedin.jpg" // <-- replace with your actual photo path
+              alt="Peter Maquiran"
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          {/* Text */}
+          <div className="relative flex flex-col">
+            <span className="text-xs uppercase tracking-[0.18em] text-blue-300/80">
+              Available for opportunities
+            </span>
+            <span className="text-sm font-semibold text-neutral-50">
+              Peter Maquiran
+            </span>
+            <span className="text-xs text-neutral-400">
+              Software Developer · Web, Mobile & Observability
+            </span>
+          </div>
+
+          {/* LinkedIn pill */}
+          <div className="relative ml-4 flex items-center gap-2 rounded-full bg-blue-600/90 px-3 py-1 text-xs font-semibold text-white shadow-lg group-hover:bg-blue-500">
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-[11px] font-bold text-blue-600">
+              in
+            </span>
+            <span className="hidden sm:inline">
+              View profile
+            </span>
+          </div>
+        </a>
+      </div>
 
       {/* Footer */}
-      <footer className="py-10 border-t border-neutral-800 text-center text-sm text-neutral-500" style={{ color:"lab(83 -18.93 -28.32 / 0.6)"}}>
+      <footer className="py-10 border-t text-center text-sm text-neutral-500" style={{ color:"lab(83 -18.93 -28.32 / 0.6)", borderColor: "lab(83 -18.93 -28.32 / 0.2)"}}>
         <div className="flex justify-center gap-4 mb-2">
           <a href="https://github.com/PeterMaquiran" className="hover:text-neutral-300">
             <Github className="w-5 h-5" />

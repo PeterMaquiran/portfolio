@@ -53,7 +53,8 @@
         { "name": "User monitoring", "level": 90 },
         { "name": "Metrics", "level": 95 },
         { "name": "Logs", "level": 95 },
-        { "name": "Tracing", "level": 95 }
+        { "name": "Tracing", "level": 95 },
+        { "name": "Uptime Kuma", "level": 95 }
       ]
     },
     "mobile": {

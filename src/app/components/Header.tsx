@@ -30,7 +30,7 @@ export default function Header() {
 					<div className="font-semibold text-neutral-100">
 							Peter Maquiran
 					</div>
-					<div className="text-xs" style={{ color:"lab(83 -18.93 -28.32 / 0.7)"}}>Software Developer</div>
+					<div className="text-xs" style={{ color:"lab(83 -18.93 -28.32 / 0.7)"}}>Software Developer · Web, Mobile & Observability</div>
 				</div>
 			</div>
 			<nav className="hidden md:flex gap-5 text-sm text-neutral-300">

@@ -202,10 +202,10 @@
     }
   ],
   "about": {
-    "intro": "Sou <strong>Desenvolvedor Web & Mobile</strong> focado em criar aplicações confiáveis, observáveis e preparadas para funcionar offline. Trabalho principalmente com <strong>Angular</strong>, <strong>Vue</strong>,  <strong>Fluter</strong>, <strong>Ionic</strong> e <strong>Nest.JS</strong>, criando experiências suaves que permanecem rápidas, mesmo com conexão instável.",
-    "observability": "Tenho grande interesse em <strong>observabilidade</strong> e <strong>performance</strong>, usando <strong>OpenTelemetry</strong>, <strong>Zipkin</strong>, <strong>Prometheus</strong> e <strong>Grafana</strong> para rastrear e monitorar sistemas de ponta a ponta. Também gerencio <strong>infraestrutura baseada em Docker</strong> com <strong>Nginx</strong>, <strong>Certbot</strong> e pipelines de <strong>CI/CD</strong> automatizados para implantações seguras e sem downtime.",
-    "philosophy": "Adoro transformar sistemas complexos em apps simples e confiáveis, onde cada requisição, métrica e trace conta uma história."
-  },
+    "intro": "Sou um <strong>Engenheiro Web, Mobile & Observabilidade</strong> com 9 anos de experiência, focado em criar sistemas fiáveis, escaláveis e observáveis. Crio aplicações que simplesmente funcionam, mesmo em ambientes complexos ou com conectividade instável.",
+    "observability": "O meu foco está em <strong>Web, Mobile e Observabilidade</strong>, combinando experiência prática em produção com uma visão completa de sistemas de ponta a ponta. Gosto de transformar sistemas complexos em soluções simples, eficientes e fáceis de manter, onde cada métrica, cada log e cada rastreio contam a história do sistema.",
+    "philosophy": "Quando se trata de entregar <strong>qualidade, desempenho e fiabilidade</strong>, sou a pessoa certa para o trabalho."
+  }
   "sectionsTitle": {
     "Experience": "Experiência",
     "Testimonials": "Testemunhos",

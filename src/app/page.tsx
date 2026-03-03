@@ -369,7 +369,7 @@ export default function Home() {
               Peter Maquiran
             </span>
             <span className="text-xs text-neutral-400">
-              Software Developer · Web, Mobile & Observability
+              Web, Mobile & Observability Engineer
             </span>
           </div>
 

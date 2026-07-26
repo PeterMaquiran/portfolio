@@ -33,13 +33,46 @@ const projectPreviewFactories: Array<() => JSX.Element[]> = [
       spin={true}
     />,
   ],
-  () => [
-    <Monitor
-      key="monitor"
-      screenSource="/tvone.png"
-      cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
-    />,
-  ],
+    () => [
+      <Monitor
+        key="monitor"
+        screenSource="/tvone.png"
+        cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
+      />,
+    ],
+    () => [
+      <Phone
+        key="phone"
+        screenSource="/pontrofrescho-mobile.png"
+        enableZoom
+        enablePan
+        cameraStepBack={10}
+        targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
+      />,
+      <Monitor
+        key="monitor"
+        screenSource="/ponto-fresco-desktop.png"
+        cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
+      />,
+    ],
+    () => [
+      <Phone
+        key="phone"
+        screenSource="/orga-login.png"
+        enableZoom
+        enablePan
+        cameraStepBack={10}
+        targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
+      />,
+      <Phone
+        key="phone"
+        screenSource="/orga-habit.png"
+        enableZoom
+        enablePan
+        cameraStepBack={10}
+        targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
+      />,
+    ],
 ]
 
 type Tab = { label: string; content: ReactNode }

@@ -4,15 +4,20 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import ContactButton from './ContactButton'
 import ThemeToggle from './ThemeToggle'
+import type { Dictionary } from '@/lib/getDictionary'
 
-const navItems = [
-  { href: '#about', label: 'About' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#experience', label: 'Experience' },
-] as const
+type Props = {
+  labels: Dictionary['navBar']
+}
 
-export default function Header() {
+export default function Header({ labels }: Props) {
   const [scrolled, setScrolled] = useState(false)
+
+  const navItems = [
+    { href: '#about', label: labels.about },
+    { href: '#projects', label: labels.projects },
+    { href: '#experience', label: labels.experience },
+  ] as const
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -54,7 +59,7 @@ export default function Header() {
         <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle className="hover:bg-surface-hover" />
           <ContactButton className="rounded-full bg-cta px-3.5 py-1.5 text-[12px] font-medium tracking-[-0.01em] text-cta-fg transition-opacity hover:opacity-90">
-            Contact
+            {labels.contact}
           </ContactButton>
         </div>
       </div>

@@ -41,7 +41,7 @@ export default async function Home() {
         style={{ backgroundImage: noiseBg, opacity: 'var(--noise-opacity)' }}
       />
 
-      <Header />
+      <Header labels={dict.navBar} />
 
       <main className="relative z-10 mx-auto max-w-6xl space-y-32 px-6 pt-40 pb-24 md:pt-36">
         {/* HERO SECTION */}
@@ -51,7 +51,7 @@ export default async function Home() {
         >
           <div className="space-y-6 lg:col-span-8">
             <h1
-              className="bg-clip-text text-4xl leading-[1.05] font-extrabold tracking-tight text-transparent sm:text-7xl"
+              className="bg-clip-text text-4xl leading-[1.05] font-extrabold tracking-tight text-transparent md:text-6xl"
               style={{
                 backgroundImage:
                   'linear-gradient(to bottom, var(--hero-from), var(--hero-via), var(--hero-to))',
@@ -83,12 +83,12 @@ export default async function Home() {
               />
 
               {/* Outer Ring / Atmospheric Layer */}
-              <div className="relative flex h-64 w-64 items-center justify-center overflow-hidden rounded-full backdrop-blur-3xl sm:h-80 sm:w-80">
+              <div className="relative flex h-70 w-70 items-center justify-center overflow-hidden rounded-full backdrop-blur-3xl sm:h-80 sm:w-80">
                 <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-soft-light" />
                 {/* <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent dark:via-white/[0.03]" /> */}
 
                 {/* Inner Globe Container with dynamic rim glow */}
-                <div className="relative z-10 flex h-48 w-48 items-center justify-center overflow-hidden rounded-full sm:h-60 sm:w-60">
+                <div className="relative z-10 flex h-[14.4rem] w-[14.4rem] items-center justify-center overflow-hidden rounded-full sm:h-60 sm:w-60">
                   <EarthBackground />
                 </div>
               </div>

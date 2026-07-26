@@ -29,6 +29,28 @@
         "Redis-backed caching for fast article delivery",
         "RabbitMQ queues for publish and notification jobs"
       ]
+    },
+    {
+      "title": "E-Commerce Platform",
+      "blurb": "Full-stack e-commerce platform with secure payments, real-time order processing, and resilient infrastructure designed for high availability and performance.",
+      "stack": ["Nuxt.js", "Laravel", "MySQL"],
+      "highlights": [
+        "Product listing and shopping cart functionality",
+        "Checkout and payment integration",
+        "Order management and tracking",
+        "Admin panel for managing products and users"
+      ]
+    },
+    {
+      "title": "Holistic Life Organizer",
+      "blurb": "Cultivating wellbeing through intentional habit tracking, mindful scheduling, and an integrated organic garden planner, all within a personal management suite.",
+      "stack": ["Flutter", "NestJs", "Keycloak", "PostgreSQL"],
+      "highlights": [
+      "Interactive organic garden planner and calendar",
+      "Personalized habit tracking and reflection tools",
+      "Integrated calendar for mindful scheduling",
+      "Holistic progress dashboard and insights"
+      ]
     }
   ],
 
@@ -103,5 +125,11 @@
     "ExperienceEyebrow": "Career History",
     "Testimonials": "Testimonials",
     "Projects": "Projects"
+  },
+  "navBar": {
+    "about": "About",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
   }
 }

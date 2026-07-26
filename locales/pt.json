@@ -3,7 +3,7 @@
     {
       "title": "Stack DevOps Auto-Hospedada",
       "blurb": "Cluster Docker Swarm com Nginx reverse proxy, TLS via Certbot, registo privado, Drone CI e pipeline de métricas/registos/rastreios. Tudo auto-hospedado.",
-      "stack": ["Docker", "Nginx", "Certbot", "Drone", "Prometheus", "Loki", "Zipkin", "Gitea"],
+      "stack": ["Docker", "Grafana", "Drone CI", "Gitea"],
       "highlights": [
         "Atualizações blue/green sem tempo de inatividade",
         "Pipelines Gitea + Drone CI para compilar e implementar",
@@ -28,6 +28,28 @@
         "API e fluxos editoriais com NestJS",
         "Cache com Redis para entrega rápida de artigos",
         "Filas RabbitMQ para publicação e notificações"
+      ]
+    },
+    {
+      "title": "Plataforma de E-Commerce",
+      "blurb": "Plataforma de e-commerce full-stack com pagamentos seguros, processamento de pedidos em tempo real e uma infraestrutura resiliente projetada para alta disponibilidade e desempenho.",
+      "stack": ["Nuxt.js", "Laravel", "MySQL"],
+      "highlights": [
+        "Listagem de produtos e funcionalidade de carrinho de compras",
+        "Checkout e integração de pagamentos",
+        "Gestão e acompanhamento de pedidos",
+        "Painel administrativo para gerir produtos e utilizadores"
+      ]
+    },
+    {
+      "title": "Organizador de Vida Holístico",
+      "blurb": "Promovendo o bem-estar através do acompanhamento intencional de hábitos, planeamento consciente e um planeador de jardim orgânico integrado, tudo dentro de uma suite de gestão pessoal.",
+      "stack": ["Flutter", "NestJs", "Keycloak", "PostgreSQL"],
+      "highlights": [
+        "Planeador interativo de jardim orgânico e calendário",
+        "Ferramentas personalizadas de acompanhamento de hábitos e reflexão",
+        "Calendário integrado para planeamento consciente",
+        "Dashboard holístico de progresso e insights"
       ]
     }
   ],
@@ -98,5 +120,11 @@
     "ExperienceEyebrow": "Carreira",
     "Testimonials": "Testemunhos",
     "Projects": "Projetos"
+  },
+  "navBar": {
+    "about": "Sobre",
+    "projects": "Projetos",
+    "experience": "Experiência",
+    "contact": "Contacto"
   }
 }

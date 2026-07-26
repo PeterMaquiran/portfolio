@@ -59,21 +59,31 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile nav — Apple-like secondary row */}
+      {/* Mobile nav — Apple-like secondary row; hides on scroll down */}
       <nav
-        className="flex items-center justify-center gap-5 border-t border-border-subtle px-4 py-2.5 md:hidden"
+        className={`grid overflow-hidden border-border-subtle transition-[grid-template-rows,opacity,border-color] duration-300 ease-out md:hidden ${
+          scrolled
+            ? 'grid-rows-[0fr] border-t-transparent opacity-0'
+            : 'grid-rows-[1fr] border-t border-t-border-subtle opacity-100'
+        }`}
         aria-label="Mobile"
+        aria-hidden={scrolled}
         style={{ backgroundColor: 'var(--header-mobile)' }}
       >
-        {navItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="text-[11px] font-normal text-fg/75 transition-colors hover:text-fg"
-          >
-            {item.label}
-          </Link>
-        ))}
+        <div className="min-h-0">
+          <div className="flex items-center justify-center gap-5 px-4 py-2.5">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                tabIndex={scrolled ? -1 : undefined}
+                className="text-[11px] font-normal text-fg/75 transition-colors hover:text-fg"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
       </nav>
     </header>
   )

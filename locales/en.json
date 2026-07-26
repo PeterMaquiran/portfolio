@@ -1,0 +1,107 @@
+{
+  "projects": [
+    {
+      "title": "Self-Hosted DevOps Stack",
+      "blurb": "Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, Drone CI, and metrics/logs/traces pipeline. All self hosted.",
+      "stack": ["Docker", "Grafana", "Drone CI", "Gitea"],
+      "highlights": [
+        "Blue/green style updates for zero-downtime",
+        "Gitea + Drone CI pipelines to build & deploy",
+        "Centralized logs and dashboards"
+      ]
+    },
+    {
+      "title": "Reactive Portfolio Website",
+      "blurb": "Responsive Next.js portfolio with glassmorphism cards, Apple-inspired depth and blur, smooth animations, 3D accents, and EN/PT language templates.",
+      "stack": ["Next.js", "Tailwind", "Three.js", "theme"],
+      "highlights": [
+        "Glass cards with frosted blur and soft depth",
+        "Apple-inspired layout, typography, and motion",
+        "Interactive 3D scenes and multilingual templates"
+      ]
+    },
+    {
+      "title": "TVOne News Portal",
+      "blurb": "News portal built with NestJS and Next.js, using Redis for caching and RabbitMQ for async content pipelines and real-time publishing.",
+      "stack": ["NestJS", "Next.js", "Redis", "RabbitMQ"],
+      "highlights": [
+        "API and editorial workflows powered by NestJS",
+        "Redis-backed caching for fast article delivery",
+        "RabbitMQ queues for publish and notification jobs"
+      ]
+    }
+  ],
+
+  "experiences": [
+    {
+      "role": "Frontend Developer",
+      "company": "Equilibrium",
+      "period": "Jun 2020 — Present",
+      "current": true,
+      "bullets": [
+        "Banking Systems Integration (Fintech): Development of payment solutions compliant with EMIS standards, implementing secure automatic direct-debit subscription flows to optimize recurring collections.",
+        "Corporate File Automation & Generation: Built high-reliability modules for generating and validating standard bank collection files (IDD pacs.003), ensuring accuracy in financial transactions and reducing operational errors.",
+        "Digital Workplace Platform: Developed and maintained critical systems integrating advanced institutional calendar modules, K2-based workflows, and real-time internal chat/messaging channels to improve team communication and collaboration.",
+        "Infrastructure Efficiency & Monitoring: Connected corporate platforms to advanced audit tooling (logs, metrics, and tracing), improving overall IT ecosystem observability and delivering a 15% increase in global system stability."
+      ]
+    },
+    {
+      "role": "Full-Stack Developer",
+      "company": "Powercon",
+      "period": "Jan 2019 — Jun 2020",
+      "current": false,
+      "bullets": [
+        "System Diagnostics Optimization: Implemented modern distributed tracing and observability tools that cut critical failure debugging and resolution time by 40%, minimizing platform downtime.",
+        "Application Performance Engineering: Designed automated, dynamic systems for background task processing directly in the user interface, drastically improving response time and compute resource usage.",
+        "Corporate Digital Interfaces: Redesign and development of responsive digital portals and integrated inventory systems, aligning visual identity with international market best practices."
+      ]
+    },
+    {
+      "role": "Backend Developer",
+      "company": "Clínica Multiperfil",
+      "period": "Sep 2018 — Dec 2018",
+      "current": false,
+      "bullets": [
+        "Administrative Process Automation: Built scripts and automated routines for filling internal documentation, eliminating repetitive tasks and increasing productivity for the hospital administrative team."
+      ]
+    },
+    {
+      "role": "Frontend Developer",
+      "company": "Theus",
+      "period": "Jan 2017 — Mar 2018",
+      "current": false,
+      "bullets": [
+        "E-Commerce Platform Development: Construction of user interfaces for e-commerce portals, applying reactive design and ensuring accessibility and a fluid purchase journey.",
+        "Visual Experience Enhancement: Implemented dynamic themes (light/dark mode) and modern fast-loading architectures, raising user retention and engagement."
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Peter brought production-grade observability to our stack. We caught issues before users did and shipped faster.",
+      "author": "Eudes Inácio, Equilibrium",
+      "link": "https://www.linkedin.com/in/eudes-in%C3%A1cio-8862a889/"
+    },
+    {
+      "quote": "Our media uploads went from fragile to rock-solid, even on spotty networks. Huge win for our mobile users.",
+      "author": "Natanael de Sousa Neto, Equilibrium",
+      "link": "https://www.linkedin.com/in/natanael-de-sousa-neto-133a65143/"
+    }
+  ],
+  "about": {
+    "intro": "I'm a <strong>Web, Mobile & Observability Engineer</strong> with 9 years of experience, focused on building reliable, scalable, and observable systems. I create applications that just work, even in complex environments or with unstable connectivity.",
+    "observability": "My focus is on <strong>Web, Mobile, and Observability</strong>, combining hands-on production experience with a full end-to-end systems perspective. I enjoy turning complex systems into simple, efficient, and maintainable solutions, where every metric, log, and trace tells the story of the system.",
+    "philosophy": "When it comes to delivering <strong>quality, performance, and reliability</strong>, I am the right person for the job."
+  },
+  "hero": {
+    "name": "PETER MAQUIRAN.",
+    "tagline": "Building Systems for Resilience and Performance.",
+    "description": "Web, Mobile & Observability with 9+ years of experience. Focused on building reliable, scalable, and observable systems across full-stack applications."
+  },
+  "sectionsTitle": {
+    "Experience": "Experience",
+    "ExperienceEyebrow": "Career History",
+    "Testimonials": "Testimonials",
+    "Projects": "Projects"
+  }
+}

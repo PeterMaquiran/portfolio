@@ -1,7 +1,22 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
+
+const themeInitScript = `
+(function(){
+  try {
+    var stored = localStorage.getItem('theme');
+    var dark = stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var theme = dark ? 'dark' : 'light';
+    document.documentElement.classList.add(theme);
+    document.documentElement.style.colorScheme = theme;
+  } catch (e) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,11 +87,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased select-none`}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
         <Script
           src="https://platform.linkedin.com/badges/js/profile.js"
           async

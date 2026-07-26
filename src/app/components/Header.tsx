@@ -1,52 +1,80 @@
-"use client";
-import { getDictionaryByBrowser } from "@/lib/getDictionary";
+'use client'
 
-const navBar = getDictionaryByBrowser().navBar;
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import ContactButton from './ContactButton'
+import ThemeToggle from './ThemeToggle'
+
+const navItems = [
+  { href: '#about', label: 'About' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#experience', label: 'Experience' },
+] as const
 
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-	<header
-		className="sticky top-0 z-50 w-full border-b border-slate-800/60 bg-transparent backdrop-blur-xl"
-		style={{
-			background:
-			"linear-gradient(120deg, rgba(15,23,42,0.9), rgba(15,23,42,0.78))",
-		}}
-	>
-		<div className="relative max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-			{/* thin glow line at bottom */}
-			<div className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
+    <header
+      className="fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300"
+      style={{
+        backgroundColor: scrolled ? 'var(--header-bg-scrolled)' : 'var(--header-bg)',
+        backdropFilter: 'saturate(180%) blur(20px)',
+        WebkitBackdropFilter: 'saturate(180%) blur(20px)',
+        borderBottom: `1px solid ${scrolled ? 'var(--border-strong)' : 'var(--header-border)'}`,
+      }}
+    >
+      <div className="mx-auto flex h-12 max-w-[1140px] items-center justify-between px-5 sm:px-6">
+        <Link
+          href="#about"
+          className="shrink-0 text-[15px] font-semibold tracking-tight text-fg transition-opacity hover:opacity-80"
+        >
+          Peter Maquiran
+        </Link>
 
-			<div className="flex items-center gap-3">
-				{/* <motion.div
-				initial={{ scale: 0.8, rotate: -10 }}
-				animate={{ scale: 1, rotate: 0 }}
-				transition={{ type: "spring", stiffness: 200 }}
-				className="h-9 w-9 rounded-2xl grid place-items-center bg-gradient-to-br from-indigo-500 to-violet-600 text-white shadow"
-				>
-				<Rocket className="h-5 w-5" />
-				</motion.div> */}
-				<div>
-					<div className="font-semibold text-neutral-100">
-							Peter Maquiran
-					</div>
-					<div className="text-xs" style={{ color:"lab(83 -18.93 -28.32 / 0.7)"}}>Web, Mobile & Observability Engineer</div>
-				</div>
-			</div>
-			<nav className="hidden md:flex gap-5 text-sm text-neutral-300">
-				{Object.values(navBar).map(
-					(item, index) => (
-						<a 
-							key={item} 
-							href={`#${Object.keys(navBar)[index].toLowerCase()}`} 
-							className="transition-colors duration-200 hover:text-[lab(83_-18.93_-28.32_/_0.9)]"
-						>
-							{item}
-						</a>
-					)
-				)}
-			</nav>
-		</div>
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-[12px] font-normal tracking-[-0.01em] text-fg/80 transition-colors hover:text-fg"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex shrink-0 items-center gap-2">
+          <ThemeToggle className="hover:bg-surface-hover" />
+          <ContactButton className="rounded-full bg-cta px-3.5 py-1.5 text-[12px] font-medium tracking-[-0.01em] text-cta-fg transition-opacity hover:opacity-90">
+            Contact
+          </ContactButton>
+        </div>
+      </div>
+
+      {/* Mobile nav — Apple-like secondary row */}
+      <nav
+        className="flex items-center justify-center gap-5 border-t border-border-subtle px-4 py-2.5 md:hidden"
+        aria-label="Mobile"
+        style={{ backgroundColor: 'var(--header-mobile)' }}
+      >
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="text-[11px] font-normal text-fg/75 transition-colors hover:text-fg"
+          >
+            {item.label}
+          </Link>
+        ))}
+      </nav>
     </header>
-  );
+  )
 }

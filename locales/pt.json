@@ -1,0 +1,102 @@
+{
+  "projects": [
+    {
+      "title": "Stack DevOps Auto-Hospedada",
+      "blurb": "Cluster Docker Swarm com Nginx reverse proxy, TLS via Certbot, registo privado, Drone CI e pipeline de métricas/registos/rastreios. Tudo auto-hospedado.",
+      "stack": ["Docker", "Nginx", "Certbot", "Drone", "Prometheus", "Loki", "Zipkin", "Gitea"],
+      "highlights": [
+        "Atualizações blue/green sem tempo de inatividade",
+        "Pipelines Gitea + Drone CI para compilar e implementar",
+        "Registos e dashboards centralizados"
+      ]
+    },
+    {
+      "title": "Website de Portfólio Reativo",
+      "blurb": "Portfólio Next.js responsivo com cards glassmorphism, profundidade e blur inspirados na Apple, animações suaves, detalhes 3D e templates EN/PT.",
+      "stack": ["Next.js", "React", "Tailwind", "Three.js"],
+      "highlights": [
+        "Cards de vidro com blur fosco e profundidade suave",
+        "Layout, tipografia e movimento inspirados na Apple",
+        "Cenas 3D interativas e templates multilíngua"
+      ]
+    },
+    {
+      "title": "Portal de Notícias TVOne",
+      "blurb": "Portal de notícias feito com NestJS e Next.js, com Redis para cache e RabbitMQ para pipelines assíncronos de conteúdo e publicação em tempo real.",
+      "stack": ["NestJS", "Next.js", "Redis", "RabbitMQ"],
+      "highlights": [
+        "API e fluxos editoriais com NestJS",
+        "Cache com Redis para entrega rápida de artigos",
+        "Filas RabbitMQ para publicação e notificações"
+      ]
+    }
+  ],
+
+  "experiences": [
+    {
+      "role": "Frontend Developer",
+      "company": "Equilibrium",
+      "period": "Junho de 2020 — Presente",
+      "current": true,
+      "bullets": [
+        "Integração de Sistemas Bancários (Fintech): Desenvolveu técnico de soluções de pagamento em conformidade com as normas da EMIS, implementando fluxos seguros de subscrição de débito direto automático para otimização de cobranças regulares.",
+        "Automação e Geração de Ficheiros Corporativos: Desenvolveu módulos de alta confiabilidade para geração e validação de ficheiros de cobrança bancária padrão (IDD pacs.003), assegurando precisão em transações financeiras e reduzindo erros operacionais.",
+        "Plataforma de Local de Trabalho Digital: Atuou no desenvolvimento e manutenção de sistemas críticos, integrando módulos avançados de calendário institucional, fluxos de trabalho e processos baseados em K2, e canais internos de chat/mensajaria em tempo real para otimizar a comunicação e colaboração das equipas.",
+        "Eficiência e Monitoramento de Infraestrutura: Conectou plataformas corporativas a ferramentas avançadas de auditoria (Logs, Métricas e Rastreamento), melhorando a observabilidade geral do ecossistema de TI e resultando num incremento de 15% na estabilidade global dos sistemas."
+      ]
+    },
+    {
+      "role": "Desenvolvedor Full-Stack",
+      "company": "Powercon",
+      "period": "Janeiro de 2019 — Junho de 2020",
+      "current": false,
+      "bullets": [
+        "Otimização de Diagnóstico de Sistemas: Implementou ferramentas modernas de rastreamento distribuído e observabilidade que reduziram o tempo de depuração e resolução de falhas críticas em 40%, minimizando o tempo de inatividade da plataforma.",
+        "Desempenho e Engenharia de Aplicações: Projetou sistemas automatizados e dinâmicos para processamento de tarefas em segundo plano diretamente na interface do utilizador, otimizando drasticamente o tempo de resposta e o consumo de recursos de computação.",
+        "Interfaces Digitais Corporativas: Reestruturação e o desenvolvimento de portais digitais responsivos e sistemas de inventário integrados, alinhando a identidade visual às melhores práticas do mercado internacional."
+      ]
+    },
+    {
+      "role": "Desenvolvedor Backend",
+      "company": "Clínica Multiperfil",
+      "period": "Setembro de 2018 — Dezembro de 2018",
+      "current": false,
+      "bullets": [
+        "Automação de Processos Administrativos: Desenvolveu scripts e rotinas automatizadas para o preenchimento automático de documentação interna, eliminando tarefas repetitivas e aumentando a produtividade da equipe administrativa do hospital."
+      ]
+    },
+    {
+      "role": "Desenvolvedor Frontend",
+      "company": "Theus",
+      "period": "Janeiro de 2017 — Março de 2018",
+      "current": false,
+      "bullets": [
+        "Desenvolvimento de Plataformas de E-Commerce: Construiu da interface de utilizador para portais de comércio eletrónico, aplicando design reativo e garantindo acessibilidade e fluidez na jornada de compra.",
+        "Aprimoramento de Experiência Visual: Implementou temas dinâmicos (modo claro/escuro) e arquiteturas modernas de carregamento rápido, elevando os níveis de retenção e engajamento dos utilizadores."
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "O Peter trouxe observabilidade a nível de produção para a nossa infraestrutura. Detetámos problemas antes dos utilizadores e lançámos novas versões mais rapidamente.",
+      "author": "Eudes Inácio, Equilibrium",
+      "link": "https://www.linkedin.com/in/eudes-in%C3%A1cio-8862a889/"
+    },
+    {
+      "quote": "Os nossos envios de ficheiros multimédia passaram de instáveis a extremamente fiáveis, mesmo em redes com pouca ligação. Uma grande vitória para os nossos utilizadores móveis.",
+      "author": "Natanael de Sousa Neto, Equilibrium",
+      "link": "https://www.linkedin.com/in/natanael-de-sousa-neto-133a65143/"
+    }
+  ],
+  "hero": {
+    "name": "PETER MAQUIRAN.",
+    "tagline": "A Construir Sistemas para Resiliência e Performance.",
+    "description": "Web, Mobile & Observabilidade com mais de 9 anos de experiência. Focado em construir sistemas fiáveis, escaláveis e observáveis em aplicações full-stack."
+  },
+  "sectionsTitle": {
+    "Experience": "Experiência Profissional",
+    "ExperienceEyebrow": "Carreira",
+    "Testimonials": "Testemunhos",
+    "Projects": "Projetos"
+  }
+}

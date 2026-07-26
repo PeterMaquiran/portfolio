@@ -35,11 +35,11 @@ export default function Monitor({
     camera.position.set(0, 0, cameraStepBack); // 5 units in front of the monitor
     camera.lookAt(0, 0, 0);      // look straight at the center
 
-    // 🖥️ Renderer
+    // 🖥️ Renderer (cap pixel ratio for faster render on high-DPI)
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setClearColor(0x000000, 0);
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
     // 💡 Lights
@@ -68,10 +68,11 @@ export default function Monitor({
     monitorMesh.rotation.set(0, 0, 0); // no rotation
     monitorMesh.position.y = 0.3; // 1 unit above ground
     
-    // 🖼️ Screen
+    // 🖼️ Screen (minFilter/magFilter for faster sampling when scaled)
     const loader = new THREE.TextureLoader();
-    const screenTexture = loader.load(screenSource); // Replace with your screen content
+    const screenTexture = loader.load(screenSource);
     screenTexture.colorSpace = THREE.SRGBColorSpace;
+    screenTexture.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 4);
 
     const screenGeometry = new THREE.PlaneGeometry(2.3, 1.3);
     const screenMaterial = new THREE.MeshBasicMaterial({

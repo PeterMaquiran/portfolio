@@ -1,60 +1,66 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+'use client'
+import React, { useEffect, useRef } from 'react'
+import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 export default function StableRealisticEarth() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const container = containerRef.current
+    if (!container) return
 
     // 1. Scene Setup
-    const scene = new THREE.Scene();
+    const scene = new THREE.Scene()
     // Camera settings from first example (21.5 FOV, specific position)
-    const camera = new THREE.PerspectiveCamera(21.5, container.clientWidth / container.clientHeight, 0.1, 100);
-    camera.position.set(4.5, 2, 3);
+    const camera = new THREE.PerspectiveCamera(
+      21.5,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      100,
+    )
+    camera.position.set(4.5, 2, 3)
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    container.appendChild(renderer.domElement);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer.setSize(container.clientWidth, container.clientHeight)
+    renderer.outputColorSpace = THREE.SRGBColorSpace
+    renderer.toneMapping = THREE.ACESFilmicToneMapping
+    container.appendChild(renderer.domElement)
 
     // 2. Controls (Syncing with first example: enable damping, no zoom/pan)
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.enableZoom = false;
-    controls.enablePan = false;
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.enableDamping = true
+    controls.dampingFactor = 0.05
+    controls.enableZoom = false
+    controls.enablePan = false
 
     // 3. Static Sun (Aligned to the light position in the first example: 0, 0, 3)
-    const sunPos = new THREE.Vector3(0, 0, 3);
-    const sunDirection = sunPos.clone().normalize();
-    const sunLight = new THREE.DirectionalLight(0xffffff, 3);
-    sunLight.position.copy(sunPos);
-    scene.add(sunLight);
+    const sunPos = new THREE.Vector3(0, 0, 3)
+    const sunDirection = sunPos.clone().normalize()
+    const sunLight = new THREE.DirectionalLight(0xffffff, 3)
+    sunLight.position.copy(sunPos)
+    scene.add(sunLight)
 
     // Ambient light from first example to soften shadows
-    const ambient = new THREE.AmbientLight("#182134", 0.5);
-    scene.add(ambient);
+    const ambient = new THREE.AmbientLight('#182134', 0.5)
+    scene.add(ambient)
 
-    const loader = new THREE.TextureLoader();
+    const loader = new THREE.TextureLoader()
     const textures = {
-      day: loader.load("/Gemini_Generated_Image_xbfeynxbfeynxbfe.png"),
-      night: loader.load("https://threejs.org/examples/textures/planets/earth_lights_2048.png"),
-      spec: loader.load("https://threejs.org/examples/textures/planets/earth_specular_2048.jpg"),
-      clouds: loader.load("https://threejs.org/examples/textures/planets/earth_clouds_1024.png"),
-    };
+      day: loader.load('/Gemini_Generated_Image_xbfeynxbfeynxbfe.png'),
+      night: loader.load('https://threejs.org/examples/textures/planets/earth_lights_2048.png'),
+      spec: loader.load('https://threejs.org/examples/textures/planets/earth_specular_2048.jpg'),
+      clouds: loader.load('https://threejs.org/examples/textures/planets/earth_clouds_1024.png'),
+    }
 
     // 4. Earth with Axial Tilt
-    const earthGroup = new THREE.Group();
-    earthGroup.rotation.z = THREE.MathUtils.degToRad(23.5); 
-    scene.add(earthGroup);
+    const earthGroup = new THREE.Group()
+    earthGroup.rotation.z = THREE.MathUtils.degToRad(23.5)
+    scene.add(earthGroup)
 
-    const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
+    // Fewer segments = faster render (32 is enough for ~300px display)
+    const earthGeometry = new THREE.SphereGeometry(1, 32, 32)
     const earthMaterial = new THREE.ShaderMaterial({
       uniforms: {
         uDayTex: { value: textures.day },
@@ -92,13 +98,13 @@ export default function StableRealisticEarth() {
           color += (spec * 0.3);
           gl_FragColor = vec4(color, 1.0);
         }
-      `
-    });
+      `,
+    })
 
-    const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+    const earth = new THREE.Mesh(earthGeometry, earthMaterial)
     // Setting initial rotation so the "terminator" is visible immediately
-    earth.rotation.y = -1.5; 
-    earthGroup.add(earth);
+    earth.rotation.y = -1.5
+    earthGroup.add(earth)
 
     // 5. Clouds
     const cloudMat = new THREE.MeshStandardMaterial({
@@ -106,12 +112,12 @@ export default function StableRealisticEarth() {
       transparent: true,
       opacity: 0.8,
       blending: THREE.AdditiveBlending,
-      depthWrite: false
-    });
-    const clouds = new THREE.Mesh(earthGeometry, cloudMat);
-    clouds.scale.setScalar(1.015);
-    clouds.rotation.y = -1.5;
-    earthGroup.add(clouds);
+      depthWrite: false,
+    })
+    const clouds = new THREE.Mesh(earthGeometry, cloudMat)
+    clouds.scale.setScalar(1.015)
+    clouds.rotation.y = -1.5
+    earthGroup.add(clouds)
 
     // 6. Atmosphere
     const atmosMat = new THREE.ShaderMaterial({
@@ -133,44 +139,47 @@ export default function StableRealisticEarth() {
         }
       `,
       blending: THREE.AdditiveBlending,
-    });
+    })
 
-    const atmosphere = new THREE.Mesh(earthGeometry, atmosMat);
-    atmosphere.scale.setScalar(1.04); 
-    scene.add(atmosphere);
+    const atmosphere = new THREE.Mesh(earthGeometry, atmosMat)
+    atmosphere.scale.setScalar(1.04)
+    scene.add(atmosphere)
 
     // 7. Animation Loop
     const animate = () => {
-      requestAnimationFrame(animate);
-      
-      // Speed updated to match your base example (0.0015)
-      earth.rotation.y += 0.0015;
-      clouds.rotation.y += 0.0018; // Clouds move slightly faster for depth
+      requestAnimationFrame(animate)
 
-      controls.update();
-      renderer.render(scene, camera);
-    };
-    animate();
+      // Speed updated to match your base example (0.0015)
+      earth.rotation.y += 0.0015
+      clouds.rotation.y += 0.0018 // Clouds move slightly faster for depth
+
+      controls.update()
+      renderer.render(scene, camera)
+    }
+    animate()
 
     const handleResize = () => {
-      camera.aspect = container.clientWidth / container.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
-    };
-    window.addEventListener('resize', handleResize);
+      camera.aspect = container.clientWidth / container.clientHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(container.clientWidth, container.clientHeight)
+    }
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      renderer.dispose();
-      earthGeometry.dispose();
-      earthMaterial.dispose();
-      cloudMat.dispose();
-      atmosMat.dispose();
+      window.removeEventListener('resize', handleResize)
+      Object.values(textures).forEach((t) => t.dispose?.())
+      renderer.dispose()
+      earthGeometry.dispose()
+      earthMaterial.dispose()
+      cloudMat.dispose()
+      atmosMat.dispose()
       if (container.contains(renderer.domElement)) {
-        container.removeChild(renderer.domElement);
+        container.removeChild(renderer.domElement)
       }
-    };
-  }, []);
+    }
+  }, [])
 
-  return <div ref={containerRef} className="w-[300px] h-[300px] cursor-grab active:cursor-grabbing" />;
+  return (
+    <div ref={containerRef} className="w-[300px] h-[300px] cursor-grab active:cursor-grabbing" />
+  )
 }

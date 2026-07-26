@@ -1,6 +1,6 @@
 import { headers } from 'next/headers'
-import en from '../../locales/en.json'
-import pt from '../../locales/pt.json'
+import en from '../locales/en.json'
+import pt from '../locales/pt.json'
 
 export type Dictionary = typeof en
 export type Locale = 'en' | 'pt'

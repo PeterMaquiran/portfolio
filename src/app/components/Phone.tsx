@@ -76,10 +76,11 @@ export default function Phone({
     phoneMesh.receiveShadow = true;
     scene.add(phoneMesh);
 
-    // 🖼️ Screen texture
+    // 🖼️ Screen texture (limit anisotropy for faster sampling)
     const loader = new THREE.TextureLoader();
     const screenTexture = loader.load(screenSource);
     screenTexture.colorSpace = THREE.SRGBColorSpace;
+    screenTexture.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 4);
 
     const screenGeometry = new THREE.PlaneGeometry(0.88, 1.76);
     const screenMaterial = new THREE.MeshBasicMaterial({

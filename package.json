@@ -1,34 +1,31 @@
 {
-  "name": "portfolio3.0",
+  "name": "porfolio-v1",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "22.x"
-  },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack -p 4000",
     "build": "next build",
     "start": "next start -p 4000",
     "lint": "eslint"
   },
   "dependencies": {
-    "framer-motion": "^12.23.26",
-    "lucide-react": "^0.560.0",
-    "next": "16.0.8",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
-    "three": "^0.182.0"
+    "@react-three/fiber": "^9.6.1",
+    "eslint-config-prettier": "^10.1.8",
+    "framer-motion": "^12.42.2",
+    "lucide-react": "^1.26.0",
+    "next": "16.2.11",
+    "prettier": "^3.9.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/three": "^0.182.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.0.8",
-    "i": "^0.3.7",
-    "npm": "^11.7.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.2.11",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

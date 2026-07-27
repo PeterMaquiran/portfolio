@@ -1,3 +1,7 @@
+# pnpm-workspace.yaml
+packages:
+  - '.'
+
 allowBuilds:
   sharp: true
   unrs-resolver: true

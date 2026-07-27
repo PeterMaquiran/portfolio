@@ -96,7 +96,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <ObservabilitySection />
+        <ObservabilitySection labels={dict.observabilitySection} />
 
         <ProjectsSection
           projects={dict.projects}

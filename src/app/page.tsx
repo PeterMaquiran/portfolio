@@ -51,7 +51,7 @@ export default async function Home() {
         >
           <div className="space-y-6 lg:col-span-8">
             <h1
-              className="bg-clip-text text-4xl leading-[1.05] font-extrabold tracking-tight text-transparent md:text-6xl"
+              className="bg-clip-text text-4xl sm:text-6xl  leading-[1.05] font-extrabold tracking-tight text-transparent"
               style={{
                 backgroundImage:
                   'linear-gradient(to bottom, var(--hero-from), var(--hero-via), var(--hero-to))',

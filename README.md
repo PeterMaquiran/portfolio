@@ -35,9 +35,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-
 docker build -t registry.tvone.ao/portfolio:latest .
 docker push registry.tvone.ao/portfolio:latest
 cd ..
 cd infra
-docker compose -f services/portfolio/docker-compose.yml up -d --force-recreate nextjs-app
+docker compose -f services/portfolio/docker-compose.yml up -d --force-recreate portfolio-app

@@ -7,6 +7,7 @@ import ProjectsSection from './components/ProjectsSection'
 import ExperienceSection from './components/ExperienceSection'
 import ContactButton, { LINKEDIN_URL, WHATSAPP_URL } from './components/ContactButton'
 import { getDictionary } from '@/lib/getDictionary'
+import Image from 'next/image'
 
 function Github({ className }: { className?: string }) {
   return (
@@ -67,29 +68,20 @@ export default async function Home() {
 
           {/* Globe Graphic Accent */}
           <div className="relative flex justify-center lg:col-span-4 lg:justify-end">
-            <div
-              className="absolute inset-0 rounded-full blur-3xl"
-              style={{ backgroundColor: 'var(--globe-blur)' }}
-            />
+            {/* <div className="absolute inset-0 rounded-full blur-3xl" /> */}
 
             <div className="relative flex items-center justify-center">
               {/* Outer Glow Halo behind the globe */}
-              <div
-                className="absolute h-72 w-72 rounded-full bg-blue-500/20 blur-3xl sm:h-96 sm:w-96 animate-pulse"
-                style={{
-                  backgroundColor: 'var(--globe-glow, rgba(59, 130, 246, 0.30))',
-                  animationDuration: '3s',
-                }}
-              />
+              {/* <div className="absolute h-72 w-72 rounded-full bg-blue-500/20 blur-3xl sm:h-96 sm:w-96" /> */}
 
               {/* Outer Ring / Atmospheric Layer */}
               <div className="relative flex h-70 w-70 items-center justify-center overflow-hidden rounded-full backdrop-blur-3xl sm:h-80 sm:w-80">
-                <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-soft-light" />
+                {/* <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-soft-light" /> */}
                 {/* <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent dark:via-white/[0.03]" /> */}
 
                 {/* Inner Globe Container with dynamic rim glow */}
                 <div className="relative z-10 flex h-[14.4rem] w-[14.4rem] items-center justify-center overflow-hidden rounded-full sm:h-60 sm:w-60">
-                  <EarthBackground />
+                  <Image src="/peter.png" alt="Peter Maquiran" width={500} height={100} />
                 </div>
               </div>
             </div>

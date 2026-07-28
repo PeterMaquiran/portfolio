@@ -119,10 +119,10 @@
       "blurb": "Cultivating wellbeing through intentional habit tracking, mindful scheduling, and an integrated organic garden planner, all within a personal management suite.",
       "stack": ["Flutter", "NestJs", "Keycloak", "PostgreSQL"],
       "highlights": [
-      "Interactive organic garden planner and calendar",
-      "Personalized habit tracking and reflection tools",
-      "Integrated calendar for mindful scheduling",
-      "Holistic progress dashboard and insights"
+        "Interactive organic garden planner and calendar",
+        "Personalized habit tracking and reflection tools",
+        "Integrated calendar for mindful scheduling",
+        "Holistic progress dashboard and insights"
       ]
     }
   ],

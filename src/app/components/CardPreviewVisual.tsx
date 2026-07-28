@@ -27,8 +27,12 @@ export default function CardPreviewVisual({
         className={`project-preview relative overflow-hidden ${isAside ? 'p-4 md:p-5' : 'px-4 pt-5'}`}
         style={{ animationDelay: `${index * 60}ms` }}
       >
-        <div className="overflow-hidden rounded-t-xl border border-b-0 border-border-subtle bg-surface-elevated shadow-[0_12px_40px_rgba(0,0,0,0.18)]">
-          <div className="flex h-5 items-center gap-1 border-b border-border-subtle px-2.5">
+        <div
+          className={`overflow-hidden rounded-t-xl border border-b-0 border-border-subtle bg-surface-elevated shadow-[0_12px_40px_rgba(0,0,0,0.18)] ${
+            isAside ? '' : 'flex h-full flex-col'
+          }`}
+        >
+          <div className="flex h-5 shrink-0 items-center gap-1 border-b border-border-subtle px-2.5">
             <span className="h-1.5 w-1.5 rounded-full bg-fg-faint/50" />
             <span className="h-1.5 w-1.5 rounded-full bg-fg-faint/40" />
             <span className="h-1.5 w-1.5 rounded-full bg-fg-faint/30" />
@@ -38,7 +42,9 @@ export default function CardPreviewVisual({
             alt={preview.alt}
             width={960}
             height={540}
-            className="project-preview-media w-full object-cover object-top"
+            className={`project-preview-media w-full object-cover object-top ${
+              isAside ? '' : 'min-h-0 flex-1'
+            }`}
           />
         </div>
         {!isAside && (

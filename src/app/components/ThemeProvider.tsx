@@ -37,13 +37,10 @@ function applyTheme(theme: Theme) {
   root.style.colorScheme = theme
 }
 
-function themeFromDom(): Theme {
-  if (typeof document === 'undefined') return 'dark'
-  return document.documentElement.classList.contains('light') ? 'light' : 'dark'
-}
-
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(themeFromDom)
+  // Fixed default so SSR and the first client render match. Real theme is
+  // applied by the inline layout script on <html>, then synced after mount.
+  const [theme, setThemeState] = useState<Theme>('dark')
 
   const syncFromStorage = useEffectEvent(() => {
     const stored = localStorage.getItem(STORAGE_KEY)

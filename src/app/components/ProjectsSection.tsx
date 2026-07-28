@@ -2,22 +2,13 @@
 
 import { useState, type JSX, type ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import Modal from './Modal'
+import CardPreviewVisual, { type CardPreview } from './CardPreviewVisual'
 import type { Dictionary } from '@/lib/getDictionary'
 
 const Monitor = dynamic(() => import('./Monitor'), { ssr: false })
 const Phone = dynamic(() => import('./Phone'), { ssr: false })
-
-type PreviewKind = 'desktop' | 'mobile' | 'duo' | 'phones'
-
-type CardPreview = {
-  kind: PreviewKind
-  primary: string
-  secondary?: string
-  alt: string
-}
 
 const projectCardPreviews: CardPreview[] = [
   {
@@ -26,13 +17,15 @@ const projectCardPreviews: CardPreview[] = [
     alt: 'Grafana monitoring dashboard',
   },
   {
-    kind: 'mobile',
-    primary: '/mobile-porfolio.png',
+    kind: 'duo',
+    secondary: '/mobile-portfolio.png',
+    primary: '/desktop-porfolio.png',
     alt: 'Portfolio mobile UI',
   },
   {
-    kind: 'desktop',
+    kind: 'duo',
     primary: '/tvone.png',
+    secondary: '/tvone-mobile.png',
     alt: 'TVOne news portal',
   },
   {
@@ -56,19 +49,23 @@ const projectPreviewFactories: Array<() => JSX.Element[]> = [
   () => [
     <Monitor
       key="monitor"
-      screenSource="/grafana-monitoring.png"
+      screenSource="/grafana-monitoring.jpeg"
       cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
     />,
   ],
   () => [
     <Phone
       key="phone"
-      screenSource="/mobile-porfolio.png"
+      screenSource="/mobile-portfolio.png"
       enableZoom
       enablePan
       cameraStepBack={10}
       targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
-      spin={true}
+    />,
+    <Monitor
+      key="monitor"
+      screenSource="/desktop-porfolio.png"
+      cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
     />,
   ],
   () => [
@@ -112,147 +109,6 @@ const projectPreviewFactories: Array<() => JSX.Element[]> = [
     />,
   ],
 ]
-
-function CardPreviewVisual({ preview, index }: { preview: CardPreview; index: number }) {
-  if (preview.kind === 'desktop') {
-    return (
-      <div
-        className="project-preview relative h-40 overflow-hidden sm:h-44"
-        style={{ animationDelay: `${index * 60}ms` }}
-      >
-        <div className="absolute inset-x-4 top-5 bottom-0 overflow-hidden rounded-t-xl border border-b-0 border-border-subtle bg-surface-elevated shadow-[0_12px_40px_rgba(0,0,0,0.18)]">
-          <div className="flex h-5 items-center gap-1 border-b border-border-subtle px-2.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-fg-faint/50" />
-            <span className="h-1.5 w-1.5 rounded-full bg-fg-faint/40" />
-            <span className="h-1.5 w-1.5 rounded-full bg-fg-faint/30" />
-          </div>
-          <Image
-            src={preview.primary}
-            alt={preview.alt}
-            width={960}
-            height={540}
-            className="project-preview-media h-[calc(100%-1.25rem)] w-full object-cover object-top"
-          />
-        </div>
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-16"
-          style={{
-            background:
-              'linear-gradient(to top, color-mix(in srgb, var(--background) 72%, transparent) 0%, transparent 100%)',
-          }}
-        />
-      </div>
-    )
-  }
-
-  if (preview.kind === 'mobile') {
-    return (
-      <div
-        className="project-preview relative flex h-40 items-end justify-center overflow-hidden sm:h-44"
-        style={{ animationDelay: `${index * 60}ms` }}
-      >
-        <div className="relative mb-0 h-[9.5rem] w-[4.75rem] overflow-hidden rounded-[1.15rem] border border-border-subtle bg-surface-elevated shadow-[0_16px_40px_rgba(0,0,0,0.22)] sm:h-40 sm:w-20">
-          <div className="absolute top-1.5 left-1/2 z-10 h-1 w-8 -translate-x-1/2 rounded-full bg-fg-faint/35" />
-          <Image
-            src={preview.primary}
-            alt={preview.alt}
-            width={320}
-            height={690}
-            className="project-preview-media h-full w-full object-cover object-top"
-          />
-        </div>
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-14"
-          style={{
-            background:
-              'linear-gradient(to top, color-mix(in srgb, var(--background) 72%, transparent) 0%, transparent 100%)',
-          }}
-        />
-      </div>
-    )
-  }
-
-  if (preview.kind === 'phones') {
-    return (
-      <div
-        className="project-preview relative flex h-40 items-end justify-center gap-3 overflow-hidden px-4 sm:h-44"
-        style={{ animationDelay: `${index * 60}ms` }}
-      >
-        <div className="relative mb-1 h-[8.25rem] w-[3.85rem] -rotate-6 overflow-hidden rounded-[1rem] border border-border-subtle bg-surface-elevated shadow-[0_14px_32px_rgba(0,0,0,0.22)] sm:h-36 sm:w-[4.25rem]">
-          <div className="absolute top-1 left-1/2 z-10 h-0.5 w-5 -translate-x-1/2 rounded-full bg-fg-faint/35" />
-          <Image
-            src={preview.primary}
-            alt={preview.alt}
-            width={280}
-            height={600}
-            className="project-preview-media h-full w-full object-cover object-top"
-          />
-        </div>
-        {preview.secondary && (
-          <div className="relative z-10 mb-0 h-[9rem] w-[4.15rem] rotate-3 overflow-hidden rounded-[1.05rem] border border-border-subtle bg-surface-elevated shadow-[0_16px_36px_rgba(0,0,0,0.28)] sm:h-40 sm:w-[4.6rem]">
-            <div className="absolute top-1.5 left-1/2 z-10 h-1 w-7 -translate-x-1/2 rounded-full bg-fg-faint/35" />
-            <Image
-              src={preview.secondary}
-              alt={`${preview.alt} habits`}
-              width={280}
-              height={600}
-              className="project-preview-media h-full w-full object-cover object-top"
-            />
-          </div>
-        )}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-14"
-          style={{
-            background:
-              'linear-gradient(to top, color-mix(in srgb, var(--background) 72%, transparent) 0%, transparent 100%)',
-          }}
-        />
-      </div>
-    )
-  }
-
-  // duo: desktop + phone overlap
-  return (
-    <div
-      className="project-preview relative h-40 overflow-hidden sm:h-44"
-      style={{ animationDelay: `${index * 60}ms` }}
-    >
-      <div className="absolute inset-x-3 top-6 right-14 bottom-0 overflow-hidden rounded-t-xl border border-b-0 border-border-subtle bg-surface-elevated shadow-[0_12px_36px_rgba(0,0,0,0.16)]">
-        <div className="flex h-4 items-center gap-1 border-b border-border-subtle px-2">
-          <span className="h-1 w-1 rounded-full bg-fg-faint/50" />
-          <span className="h-1 w-1 rounded-full bg-fg-faint/40" />
-          <span className="h-1 w-1 rounded-full bg-fg-faint/30" />
-        </div>
-        <Image
-          src={preview.primary}
-          alt={preview.alt}
-          width={960}
-          height={540}
-          className="project-preview-media h-[calc(100%-1rem)] w-full object-cover object-top"
-        />
-      </div>
-      {preview.secondary && (
-        <div className="absolute right-3 bottom-0 z-10 h-[7.75rem] w-[3.65rem] overflow-hidden rounded-[0.95rem] border border-border-subtle bg-surface-elevated shadow-[0_14px_32px_rgba(0,0,0,0.28)] sm:h-[8.5rem] sm:w-16">
-          <div className="absolute top-1 left-1/2 z-10 h-0.5 w-5 -translate-x-1/2 rounded-full bg-fg-faint/35" />
-          <Image
-            src={preview.secondary}
-            alt={`${preview.alt} mobile`}
-            width={280}
-            height={600}
-            className="project-preview-media h-full w-full object-cover object-top"
-          />
-        </div>
-      )}
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-14"
-        style={{
-          background:
-              'linear-gradient(to top, color-mix(in srgb, var(--background) 72%, transparent) 0%, transparent 100%)',
-        }}
-      />
-    </div>
-  )
-}
 
 type Tab = { label: string; content: ReactNode }
 

@@ -74,7 +74,7 @@ export default function ProjectCardPreview({
         className="project-preview relative flex h-48 shrink-0 items-end justify-center gap-3 overflow-hidden px-4 pt-4 sm:h-52"
         style={{ animationDelay: `${index * 60}ms` }}
       >
-        <div className="relative h-[86%] w-[3.85rem] -rotate-6 overflow-hidden rounded-[1rem] border border-border-subtle bg-surface-elevated shadow-[0_14px_32px_rgba(0,0,0,0.22)] sm:w-[4.25rem]">
+        <div className="relative h-[86%] md:h-[75%] w-[3.85rem] -rotate-6 overflow-hidden rounded-[1rem] border border-border-subtle bg-surface-elevated shadow-[0_14px_32px_rgba(0,0,0,0.22)] sm:w-[4.25rem]">
           <div className="absolute top-1 left-1/2 z-10 h-0.5 w-5 -translate-x-1/2 rounded-full bg-fg-faint/35 sm:top-1.5 sm:h-1 sm:w-8" />
           <Image
             src={preview.primary}
@@ -85,7 +85,7 @@ export default function ProjectCardPreview({
           />
         </div>
         {preview.secondary && (
-          <div className="relative z-10 h-[86%] w-[4.15rem] rotate-3 overflow-hidden rounded-[1.05rem] border border-border-subtle bg-surface-elevated shadow-[0_16px_36px_rgba(0,0,0,0.28)] sm:w-[4.6rem]">
+          <div className="relative z-10 h-[86%] md:h-[75%] w-[4.15rem] rotate-3 overflow-hidden rounded-[1.05rem] border border-border-subtle bg-surface-elevated shadow-[0_16px_36px_rgba(0,0,0,0.28)] sm:w-[4.6rem]">
             <div className="absolute top-1.5 left-1/2 z-10 h-1 w-7 -translate-x-1/2 rounded-full bg-fg-faint/35 sm:top-2 sm:h-1.5 sm:w-9" />
             <Image
               src={preview.secondary}

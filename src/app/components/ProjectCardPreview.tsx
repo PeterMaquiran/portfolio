@@ -7,7 +7,7 @@ function Fade({ tall }: { tall?: boolean }) {
       className={`pointer-events-none absolute inset-x-0 bottom-0 z-20 ${tall ? 'h-16' : 'h-14'}`}
       style={{
         background:
-          'linear-gradient(to top, color-mix(in srgb, var(--background) 72%, transparent) 0%, transparent 100%)',
+          'linear-gradient(to top, color-mix(in srgb, var(--background) 30%, transparent) 0%, transparent 100%)',
       }}
     />
   )

@@ -172,7 +172,7 @@ export default function ExperienceSection({ experiences, noiseBg, title, eyebrow
                         {canPreview && (
                           <ArrowUpRight className="pointer-events-none absolute top-4 right-4 z-20 h-5 w-5 text-fg-muted transition-colors group-hover:text-icon-hover" />
                         )}
-                        <CardPreviewVisual preview={cardPreview} index={index} variant="aside" />
+                        <CardPreviewVisual preview={cardPreview} index={index} />
                       </div>
                     )}
 

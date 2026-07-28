@@ -4,7 +4,8 @@ import { useState, type JSX, type ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { ArrowUpRight } from 'lucide-react'
 import Modal from './Modal'
-import CardPreviewVisual, { type CardPreview } from './CardPreviewVisual'
+import ProjectCardPreview from './ProjectCardPreview'
+import type { CardPreview } from './CardPreviewVisual'
 import type { Dictionary } from '@/lib/getDictionary'
 
 const Monitor = dynamic(() => import('./Monitor'), { ssr: false })
@@ -13,7 +14,7 @@ const Phone = dynamic(() => import('./Phone'), { ssr: false })
 const projectCardPreviews: CardPreview[] = [
   {
     kind: 'desktop',
-    primary: '/grafana-monitoring.png',
+    primary: '/grafana-monitoring.jpeg',
     alt: 'Grafana monitoring dashboard',
   },
   {
@@ -184,7 +185,7 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
                     style={{ backgroundImage: noiseBg }}
                   />
 
-                  {cardPreview && <CardPreviewVisual preview={cardPreview} index={index} />}
+                  {cardPreview && <ProjectCardPreview preview={cardPreview} index={index} />}
 
                   <div className="relative z-10 flex flex-1 flex-col p-6 pt-4 sm:p-8 sm:pt-5">
                     <div className="mb-3 flex items-start justify-between gap-3">

@@ -96,8 +96,7 @@ export default function Modal({ isOpen, onClose, tabs, background }: ModalProps)
               onClick={() => setActiveTab(i)}
               className="cursor-pointer rounded-full px-4 py-2 text-sm font-medium backdrop-blur-md transition-all duration-300"
               style={{
-                background:
-                  activeTab === i ? 'var(--modal-tab-active)' : 'var(--modal-tab-idle)',
+                background: activeTab === i ? 'var(--modal-tab-active)' : 'var(--modal-tab-idle)',
                 color: activeTab === i ? 'var(--cta-fg)' : 'var(--modal-tab-idle-fg)',
               }}
             >

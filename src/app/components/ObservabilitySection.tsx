@@ -243,6 +243,25 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
                   <StackItem name="Drone CI" iconSrc="/drone-ci.svg" />
 
                   <StackItem name="Playwright" iconSrc="/playwright-logo.svg" />
+
+                  <StackItem
+                    name="Firebase"
+                    iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/firebase.svg"
+                  />
+
+                  <StackItem
+                    name="Cloudflare"
+                    iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/cloudflare.svg"
+                  />
+
+                  <StackItem
+                    name="WireGuard"
+                    iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/wireguard.svg"
+                  />
+                  {/* <StackItem
+                    name="ESP32"
+                    iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/espressif.svg"
+                  /> */}
                 </div>
               </>
             )}

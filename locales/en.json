@@ -75,7 +75,7 @@
   "projects": [
     {
       "title": "Self-Hosted DevOps Stack",
-      "blurb": "Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, Drone CI, and metrics/logs/traces pipeline. All self hosted.",
+      "blurb": "Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, private repository, Drone CI, and metrics/logs/traces pipeline. All self hosted.",
       "stack": ["Docker", "Grafana", "Drone CI", "Gitea"],
       "highlights": [
         "Blue/green style updates for zero-downtime",

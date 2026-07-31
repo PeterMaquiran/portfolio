@@ -2,7 +2,7 @@
   "projects": [
     {
       "title": "Stack DevOps Auto-Hospedada",
-      "blurb": "Cluster Docker Swarm com Nginx reverse proxy, TLS via Certbot, registo privado, Drone CI e pipeline de métricas/registos/rastreios. Tudo auto-hospedado.",
+      "blurb": "Cluster Docker Swarm com Nginx reverse proxy, TLS via Certbot, registo privado, repositório privado, Drone CI e pipeline de métricas/registos/rastreios. Tudo auto-hospedado.",
       "stack": ["Docker", "Grafana", "Drone CI", "Gitea"],
       "highlights": [
         "Atualizações blue/green sem tempo de inatividade",

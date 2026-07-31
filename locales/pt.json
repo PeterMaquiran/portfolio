@@ -2,7 +2,7 @@
   "projects": [
     {
       "title": "Stack DevOps Auto-Hospedada",
-      "blurb": "Cluster Docker Swarm com Nginx reverse proxy, TLS via Certbot, registo privado, repositório privado, Drone CI e pipeline de métricas/registos/rastreios. Tudo auto-hospedado.",
+      "blurb": "Cluster Docker Swarm com Nginx reverse proxy, TLS via Certbot, registry privado, repository privado, Drone CI e pipeline de métricas/registos/rastreios. Tudo auto-hospedado.",
       "stack": ["Docker", "Grafana", "Drone CI", "Gitea"],
       "highlights": [
         "Atualizações blue/green sem tempo de inatividade",
@@ -113,7 +113,7 @@
   "hero": {
     "name": "PETER MAQUIRAN.",
     "tagline": "A Construir Sistemas para Resiliência e Performance.",
-    "description": "Backend, DevOps e Observabilidade com mais de 9 anos de experiência. Focado em construir sistemas fiáveis, escaláveis e observáveis em aplicações full-stack."
+    "description": "Web, Mobile & Observabilidade com mais de 9 anos de experiência. Focado em construir sistemas fiáveis, escaláveis e observáveis em aplicações full-stack."
   },
   "sectionsTitle": {
     "Experience": "Experiência Profissional",

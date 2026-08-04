@@ -258,6 +258,11 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
                     name="WireGuard"
                     iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/wireguard.svg"
                   />
+
+                  <StackItem
+                    name="Vault"
+                    iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/vault.svg"
+                  />
                   {/* <StackItem
                     name="ESP32"
                     iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/espressif.svg"

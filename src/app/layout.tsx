@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Portfolio | Peter Maquiran — Software Developer',
     description:
-      'Discover projects, skills, and DevOps expertise from Peter Maquiran — a Software developer passionate about observability and performance.',
+      'Discover projects, skills and experience from Peter Maquiran — a Software developer passionate about observability and performance.',
     url: 'https://petermaquiran.xyz',
     siteName: 'Peter Maquiran Portfolio',
     locale: 'en_US',

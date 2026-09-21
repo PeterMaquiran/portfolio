@@ -1,6 +1,9 @@
 import { createServer } from 'node:http'
 import next from 'next'
 import { Server } from 'socket.io'
+import { getDb } from './lib/chat-db.mjs'
+import { handleChatRequest } from './lib/chat-http.mjs'
+import { attachChat } from './lib/chat-io.mjs'
 
 const dev = process.env.NODE_ENV !== 'production'
 const hostname = process.env.HOSTNAME || 'localhost'
@@ -36,8 +39,14 @@ const handler = app.getRequestHandler()
 await app.prepare()
 const upgradeHandler = app.getUpgradeHandler()
 
+getDb()
+
 const httpServer = createServer((req, res) => {
   if (req.url?.startsWith('/socket.io')) return
+  if (req.url?.startsWith('/api/chat')) {
+    handleChatRequest(req, res)
+    return
+  }
   handler(req, res)
 })
 
@@ -74,6 +83,8 @@ function totalSockets() {
 function broadcastPresence() {
   io.emit('presence:global', { total: totalSockets() })
 }
+
+attachChat(io)
 
 io.on('connection', (socket) => {
   socket.data.name = `Guest ${socket.id.slice(0, 4)}`

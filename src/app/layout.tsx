@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Script from 'next/script'
+import { Suspense } from 'react'
 import { ThemeProvider } from './components/ThemeProvider'
+import ChatWidget from './components/ChatWidget'
 import './globals.css'
 
 const themeInitScript = `
@@ -105,7 +107,12 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased select-none`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <Suspense fallback={null}>
+            <ChatWidget />
+          </Suspense>
+        </ThemeProvider>
         <Script
           src="https://platform.linkedin.com/badges/js/profile.js"
           async

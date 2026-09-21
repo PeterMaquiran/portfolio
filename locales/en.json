@@ -86,7 +86,7 @@
     {
       "title": "Reactive Portfolio Website",
       "blurb": "Responsive Next.js portfolio with glassmorphism cards, Apple-inspired depth and blur, smooth animations, 3D accents, and EN/PT language templates.",
-      "stack": ["Next.js", "Tailwind", "Three.js", "theme"],
+      "stack": ["Next.js", "Tailwind", "Three.js", "Socket.io"],
       "highlights": [
         "Glass cards with frosted blur and soft depth",
         "Apple-inspired layout, typography, and motion",

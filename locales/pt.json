@@ -13,7 +13,7 @@
     {
       "title": "Website de Portfólio Reativo",
       "blurb": "Portfólio Next.js responsivo com cards glassmorphism, profundidade e blur inspirados na Apple, animações suaves, detalhes 3D e templates EN/PT.",
-      "stack": ["Next.js", "React", "Tailwind", "Three.js"],
+      "stack": ["Next.js", "Tailwind", "Three.js", "Socket.io"],
       "highlights": [
         "Cards de vidro com blur fosco e profundidade suave",
         "Layout, tipografia e movimento inspirados na Apple",

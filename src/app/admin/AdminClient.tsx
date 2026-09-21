@@ -3,9 +3,9 @@
 import Link from 'next/link'
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import type { Socket } from 'socket.io-client'
-import { adminChatDb, saveConversation, saveMessages } from '@/lib/chatDexie'
+import { adminChatDb, mergeIps, saveConversation, saveMessages } from '@/lib/chatDexie'
 import { acquireBrowserSocket, releaseBrowserSocket } from '@/lib/browserSocket'
-import type { ChatConversation, ChatMessage } from '@/lib/chatTypes'
+import type { ChatConversation, ChatIp, ChatMessage } from '@/lib/chatTypes'
 import ThemeToggle from '../components/ThemeToggle'
 
 type MeResponse = { ok: boolean }
@@ -43,6 +43,7 @@ export default function AdminClient() {
         ip: next.ip || prev?.ip || '',
         country: next.country || prev?.country || 'Unknown',
         countryCode: next.countryCode || prev?.countryCode || '',
+        ips: mergeIps(prev?.ips, next.ips),
       })
       return [...map.values()].sort(
         (a, b) => (b.lastMessageAt || b.createdAt) - (a.lastMessageAt || a.createdAt),
@@ -316,6 +317,9 @@ export default function AdminClient() {
                     </span>
                     <span className="font-mono text-xs text-fg-muted">
                       {conversation.ip || '—'}
+                      {(conversation.ips?.length || 0) > 1
+                        ? ` · ${conversation.ips!.length} IPs`
+                        : ''}
                     </span>
                     <span className="text-[11px] text-fg-faint">
                       {conversation.startedAt ? 'Open' : 'Not started'}
@@ -338,10 +342,10 @@ export default function AdminClient() {
             </p>
           ) : (
             <>
-              <div className="flex items-center justify-between gap-3 border-b border-border-subtle px-5 py-4">
-                <div>
+              <div className="flex items-start justify-between gap-3 border-b border-border-subtle px-5 py-4">
+                <div className="min-w-0">
                   <p className="text-sm font-semibold text-fg">{active.country || 'Unknown'}</p>
-                  <p className="font-mono text-xs text-fg-muted">{active.ip || '—'}</p>
+                  <IpHistory ips={active.ips} currentIp={active.ip} />
                 </div>
                 {!active.startedAt ? (
                   <button
@@ -406,5 +410,29 @@ export default function AdminClient() {
         </section>
       </main>
     </div>
+  )
+}
+
+function IpHistory({ ips, currentIp }: { ips?: ChatIp[]; currentIp?: string }) {
+  const rows = ips?.length
+    ? ips
+    : currentIp
+      ? [{ ip: currentIp, country: '', countryCode: '', firstSeen: 0, lastSeen: 0 }]
+      : []
+
+  if (!rows.length) {
+    return <p className="font-mono text-xs text-fg-muted">—</p>
+  }
+
+  return (
+    <ul className="mt-1 space-y-1">
+      {rows.map((entry, index) => (
+        <li key={entry.ip} className="font-mono text-xs text-fg-muted">
+          {entry.ip}
+          {entry.country ? ` · ${entry.country}` : ''}
+          {index === 0 ? <span className="ml-1 text-fg-faint">current</span> : null}
+        </li>
+      ))}
+    </ul>
   )
 }

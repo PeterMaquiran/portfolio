@@ -1,6 +1,6 @@
 'use client'
 
-import { MessageCircle } from 'lucide-react'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { acquireBrowserSocket, releaseBrowserSocket } from '@/lib/browserSocket'
@@ -18,10 +18,23 @@ export default function ChatWidget() {
   const [draft, setDraft] = useState('')
   const [sending, setSending] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [unread, setUnread] = useState(0)
   const endRef = useRef<HTMLDivElement>(null)
   const socketRef = useRef<ReturnType<typeof acquireBrowserSocket> | null>(null)
+  const openRef = useRef(false)
 
   const started = Boolean(conversation?.startedAt)
+  openRef.current = open
+
+  const popupFromAdmin = useCallback((count: number) => {
+    if (count <= 0) return
+    if (openRef.current) {
+      setUnread(0)
+      return
+    }
+    setOpen(true)
+    setUnread(count)
+  }, [])
 
   const persistIncoming = useCallback(async (incoming: ChatMessage[], visitor: string) => {
     const mine = incoming.filter((message) => message.conversationId === visitor)
@@ -68,17 +81,24 @@ export default function ChatWidget() {
           const inbox = response.inbox || []
           void persistIncoming(inbox, id)
           ackInbox(inbox)
+          popupFromAdmin(inbox.filter((message) => message.sender === 'admin').length)
         },
       )
     }
 
     const onMessage = (message: ChatMessage) => {
+      if (message.conversationId !== id) return
       void persistIncoming([message], id)
-      if (message.sender === 'admin') socket.emit('chat:ack', { ids: [message.id] })
+      if (message.sender === 'admin') {
+        socket.emit('chat:ack', { ids: [message.id] })
+        popupFromAdmin(1)
+      }
     }
 
     const onStarted = (next: ChatConversation) => {
-      if (next.id === id) setConversation(next)
+      if (next.id !== id) return
+      setConversation(next)
+      popupFromAdmin(1)
     }
 
     if (socket.connected) hello()
@@ -93,10 +113,13 @@ export default function ChatWidget() {
       socket.off('chat:started', onStarted)
       releaseBrowserSocket()
     }
-  }, [hidden, persistIncoming])
+  }, [hidden, persistIncoming, popupFromAdmin])
 
   useEffect(() => {
-    if (open) endRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (open) {
+      setUnread(0)
+      endRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
   }, [messages, open])
 
   const send = useCallback(() => {
@@ -133,7 +156,7 @@ export default function ChatWidget() {
     )
   }, [draft, started, visitorId])
 
-  if (hidden) return null
+  if (hidden || !started) return null
 
   return (
     <div className="fixed right-4 bottom-4 z-40 flex flex-col items-end gap-3">
@@ -142,11 +165,18 @@ export default function ChatWidget() {
           className="flex h-[28rem] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border border-border-subtle bg-surface backdrop-blur-3xl"
           style={{ boxShadow: 'var(--shadow-card)' }}
         >
-          <div className="border-b border-border-subtle px-4 py-3">
-            <p className="text-sm font-semibold text-fg">Chat</p>
-            <p className="text-xs text-fg-muted">
-              {started ? 'Messages stay on this device.' : 'Waiting for the host to start this chat.'}
-            </p>
+          <div className="flex items-center gap-3 border-b border-border-subtle px-4 py-3">
+            <Image
+              src="/peter.png"
+              alt="Peter Maquiran"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-full object-cover"
+            />
+            <div>
+              <p className="text-sm font-semibold text-fg">Peter Maquiran</p>
+              <p className="text-xs text-fg-muted">Messages stay on this device.</p>
+            </div>
           </div>
 
           <div className="min-h-0 flex-1 space-y-2 overflow-y-auto px-3 py-3">
@@ -183,14 +213,13 @@ export default function ChatWidget() {
             <input
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
-              disabled={!started}
               maxLength={2000}
-              placeholder={started ? 'Write a message' : 'Waiting for host'}
-              className="min-w-0 flex-1 rounded-2xl border border-border-subtle bg-surface-elevated px-3 py-2 text-sm text-fg outline-none placeholder:text-fg-faint focus:border-border-strong disabled:opacity-50"
+              placeholder="Write a message"
+              className="min-w-0 flex-1 rounded-2xl border border-border-subtle bg-surface-elevated px-3 py-2 text-sm text-fg outline-none placeholder:text-fg-faint focus:border-border-strong"
             />
             <button
               type="submit"
-              disabled={!started || sending || !draft.trim()}
+              disabled={sending || !draft.trim()}
               className="rounded-2xl bg-cta px-3 py-2 text-sm font-medium text-cta-fg disabled:opacity-40"
             >
               Send
@@ -202,10 +231,17 @@ export default function ChatWidget() {
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-cta text-cta-fg shadow-lg transition-opacity hover:opacity-90"
-        aria-label={open ? 'Close chat' : 'Open chat'}
+        className="relative h-12 w-12 rounded-full shadow-lg ring-2 ring-border-subtle transition-opacity hover:opacity-90"
+        aria-label={open ? 'Close chat' : unread ? `${unread} new chat messages` : 'Open chat'}
       >
-        <MessageCircle className="h-5 w-5" />
+        <span className="absolute inset-0 overflow-hidden rounded-full">
+          <Image src="/peter.png" alt="Peter Maquiran" fill className="object-cover" sizes="48px" />
+        </span>
+        {!open && unread > 0 ? (
+          <span className="absolute -top-1 -right-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-semibold text-white">
+            {unread > 9 ? '9+' : unread}
+          </span>
+        ) : null}
       </button>
     </div>
   )

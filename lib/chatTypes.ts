@@ -8,6 +8,14 @@ export type ChatMessage = {
   createdAt: number
 }
 
+export type ChatIp = {
+  ip: string
+  country: string
+  countryCode: string
+  firstSeen: number
+  lastSeen: number
+}
+
 export type ChatConversation = {
   id: string
   ip: string
@@ -17,6 +25,7 @@ export type ChatConversation = {
   startedAt: number | null
   lastMessageAt: number | null
   pending: number
+  ips?: ChatIp[]
 }
 
 export const VISITOR_ID_KEY = 'portfolio-visitor-id'

@@ -6,6 +6,7 @@ import EarthBackground from './components/EarthBackgroundLazy'
 import ProjectsSection from './components/ProjectsSection'
 import ExperienceSection from './components/ExperienceSection'
 import ContactButton, { LINKEDIN_URL, WHATSAPP_URL } from './components/ContactButton'
+import LiveVisitors from './components/LiveVisitors'
 import { getDictionary } from '@/lib/getDictionary'
 import Image from 'next/image'
 
@@ -64,6 +65,7 @@ export default async function Home() {
             <p className="max-w-2xl text-lg leading-relaxed font-normal text-fg-secondary sm:text-xl">
               {dict.hero.description}
             </p>
+            <LiveVisitors labels={dict.liveVisitors} />
           </div>
 
           {/* Globe Graphic Accent */}

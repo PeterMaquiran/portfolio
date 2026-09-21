@@ -203,5 +203,10 @@
   "observabilitySection": {
     "showMore": "Show More",
     "showLess": "Show Less"
+  },
+  "liveVisitors": {
+    "checking": "Checking who is here…",
+    "one": "1 person online",
+    "many": "{count} people online"
   }
 }

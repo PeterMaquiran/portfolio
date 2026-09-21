@@ -32,11 +32,21 @@ export default function AdminClient() {
     [activeId, conversations],
   )
 
+  const clearPending = useCallback((ids: string[]) => {
+    if (!ids.length) return
+    setConversations((current) =>
+      current.map((conversation) =>
+        ids.includes(conversation.id) ? { ...conversation, pending: 0 } : conversation,
+      ),
+    )
+  }, [])
+
   const upsertConversation = useCallback((next: ChatConversation) => {
     void saveConversation(adminChatDb, next)
     setConversations((current) => {
       const map = new Map(current.map((conversation) => [conversation.id, conversation]))
       const prev = map.get(next.id)
+      const viewing = activeIdRef.current === next.id
       map.set(next.id, {
         ...prev,
         ...next,
@@ -44,6 +54,11 @@ export default function AdminClient() {
         country: next.country || prev?.country || 'Unknown',
         countryCode: next.countryCode || prev?.countryCode || '',
         ips: mergeIps(prev?.ips, next.ips),
+        pending: viewing
+          ? 0
+          : Number(next.pending) > 0
+            ? Math.max(Number(next.pending), prev?.pending || 0)
+            : prev?.pending || 0,
       })
       return [...map.values()].sort(
         (a, b) => (b.lastMessageAt || b.createdAt) - (a.lastMessageAt || a.createdAt),
@@ -93,10 +108,11 @@ export default function AdminClient() {
     setSocket(next)
 
     const ackVisitorMail = (inbox: ChatMessage[]) => {
-      const ids = inbox
-        .filter((message) => message.sender === 'visitor')
-        .map((message) => message.id)
-      if (ids.length) next.emit('chat:ack', { ids })
+      const visitorMail = inbox.filter((message) => message.sender === 'visitor')
+      const ids = visitorMail.map((message) => message.id)
+      if (!ids.length) return
+      clearPending([...new Set(visitorMail.map((message) => message.conversationId))])
+      next.emit('chat:ack', { ids })
     }
 
     const subscribe = () => {
@@ -123,7 +139,12 @@ export default function AdminClient() {
 
     const onMessage = (message: ChatMessage) => {
       void persistIncoming([message])
-      if (message.sender === 'visitor') next.emit('chat:ack', { ids: [message.id] })
+      if (message.sender === 'visitor') {
+        next.emit('chat:ack', { ids: [message.id] })
+        if (activeIdRef.current === message.conversationId) {
+          clearPending([message.conversationId])
+        }
+      }
     }
 
     if (next.connected) subscribe()
@@ -143,19 +164,20 @@ export default function AdminClient() {
       next.off('chat:message', onMessage)
       releaseBrowserSocket()
     }
-  }, [authed, persistIncoming, upsertConversation])
+  }, [authed, clearPending, persistIncoming, upsertConversation])
 
   useEffect(() => {
     if (!activeId) {
       setMessages([])
       return
     }
+    clearPending([activeId])
     adminChatDb.messages
       .where('conversationId')
       .equals(activeId)
       .sortBy('createdAt')
       .then(setMessages)
-  }, [activeId])
+  }, [activeId, clearPending])
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -217,6 +239,7 @@ export default function AdminClient() {
       return [...map.values()].sort((a, b) => a.createdAt - b.createdAt)
     })
     setDraft('')
+    clearPending([active.id])
     socket.emit('chat:send', message, (response: { ok: boolean; error?: string }) => {
       setSending(false)
       if (!response?.ok) setError(response?.error || 'Could not send.')

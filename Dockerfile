@@ -50,6 +50,4 @@ COPY --from=builder --chown=nextjs:nodejs /app/locales ./locales
 
 USER nextjs
 
-EXPOSE 3000
-
 CMD ["node", "socket-server.mjs"]

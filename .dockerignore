@@ -1,0 +1,8 @@
+.git
+.next
+node_modules
+*.md
+.vscode
+.codesandbox
+.cursor
+agent-transcripts

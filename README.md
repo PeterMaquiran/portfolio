@@ -7,45 +7,51 @@ A modern, minimalist, dark-mode portfolio website designed to showcase personal 
 ## 🛠 Tech Stack
 
 ### Observability & DevOps
-* **OpenTelemetry**
-* **Zipkin**
-* **Grafana**
-* **Docker Swarm**
-* **Drone CI**
-* **Gitea**
+
+- **OpenTelemetry**
+- **Zipkin**
+- **Grafana**
+- **Docker Swarm**
+- **Drone CI**
+- **Gitea**
 
 ### Frontend
-* **React / Next.js**
-* **Vue**
-* **Flutter**
-* **Tailwind CSS**
-* **Three.js**
-* **Animations**
+
+- **React / Next.js**
+- **Vue**
+- **Flutter**
+- **Tailwind CSS**
+- **Three.js**
+- **Animations**
 
 ### Backend & Databases
-* **Node.js**
-* **Python**
-* **NestJS**
-* **PostgreSQL**
-* **Go / Golang**
-* **GraphQL**
+
+- **Node.js**
+- **Python**
+- **NestJS**
+- **PostgreSQL**
+- **Go / Golang**
+- **GraphQL**
 
 ---
 
 ## 🚀 Featured Projects
 
-* **Self-Hosted DevOps Stack**  
+- **Self-Hosted DevOps Stack**  
   Infrastructure platform featuring distributed tracing, telemetry, log aggregation, and single-node swarm automation.
-* **Interactive Portfolio Website**  
+- **Interactive Portfolio Website**  
   Minimalist dark-mode web application featuring interactive 3D models and responsive components.
-* **TV ONE News Portal**  
+- **TV ONE News Portal**  
   Online media platform built to stream dynamic content, optimize reader accessibility, and manage regional media updates.
-* **E-Commerce Platform**  
+- **E-Commerce Platform**  
   Scalable online storefront architecture focused on high availability, low-latency API communication, and secure payment workflows.
-* **Holistic Life Organizer**  
+- **Holistic Life Organizer**  
   Mobile application focused on dynamic habit tracking, calendar integration, and personal task management.
 
 ---
 
-
-
+docker build -t registry.tvone.ao/portfolio:latest .
+docker push registry.tvone.ao/portfolio:latest
+cd ..
+cd infra
+docker compose -f services/portfolio/docker-compose.yml up -d --force-recreate portfolio

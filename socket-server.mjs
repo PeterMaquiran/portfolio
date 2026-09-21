@@ -25,7 +25,12 @@ function normalizeName(raw) {
   return name || null
 }
 
-const app = next({ dev, hostname, port, webpack: true })
+const app = next({
+  dev,
+  hostname,
+  port,
+  ...(dev ? { webpack: true } : {}),
+})
 const handler = app.getRequestHandler()
 
 await app.prepare()
@@ -165,6 +170,6 @@ httpServer
     console.error(err)
     process.exit(1)
   })
-  .listen(port, () => {
+  .listen(port, hostname === 'localhost' ? undefined : hostname, () => {
     console.log(`> Ready on http://${hostname}:${port}`)
   })

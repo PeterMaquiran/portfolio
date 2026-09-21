@@ -162,7 +162,7 @@ export default function ChatWidget() {
     <div className="fixed right-4 bottom-4 z-40 flex flex-col items-end gap-3">
       {open ? (
         <div
-          className="flex h-[28rem] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border border-border-subtle bg-surface backdrop-blur-3xl"
+          className="flex h-[28rem] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border border-border-subtle bg-chat backdrop-blur-3xl"
           style={{ boxShadow: 'var(--shadow-card)' }}
         >
           <div className="flex items-center gap-3 border-b border-border-subtle px-4 py-3">
@@ -189,7 +189,7 @@ export default function ChatWidget() {
                   <div key={message.id} className={`flex ${mine ? 'justify-end' : 'justify-start'}`}>
                     <div
                       className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed ${
-                        mine ? 'bg-cta text-cta-fg' : 'bg-surface-chip text-fg'
+                        mine ? 'bg-cta text-cta-fg' : 'bg-chat-bubble text-fg'
                       }`}
                     >
                       {message.text}
@@ -215,7 +215,7 @@ export default function ChatWidget() {
               onChange={(event) => setDraft(event.target.value)}
               maxLength={2000}
               placeholder="Write a message"
-              className="min-w-0 flex-1 rounded-2xl border border-border-subtle bg-surface-elevated px-3 py-2 text-sm text-fg outline-none placeholder:text-fg-faint focus:border-border-strong"
+              className="min-w-0 flex-1 rounded-2xl border border-border-subtle bg-chat-input px-3 py-2 text-sm text-fg outline-none placeholder:text-fg-faint focus:border-border-strong"
             />
             <button
               type="submit"

@@ -88,6 +88,10 @@ html.light {
   --globe-ring: rgba(0, 0, 0, 0.876);
   --globe-fill: rgba(42, 83, 115, 0.836);
   --globe-blur: rgba(6, 87, 167, 0.349);
+
+  --chat-bg: rgba(255, 255, 255, 0.86);
+  --chat-bubble: rgba(0, 0, 0, 0.05);
+  --chat-input: rgba(245, 245, 247, 0.9);
 }
 
 html.dark {
@@ -169,6 +173,10 @@ html.dark {
   --globe-ring: rgba(255, 255, 255, 0.1);
   --globe-fill: rgba(255, 255, 255, 0.02);
   --globe-blur: rgba(59, 130, 246, 0.1);
+
+  --chat-bg: rgba(11, 18, 32, 0.86);
+  --chat-bubble: rgba(255, 255, 255, 0.1);
+  --chat-input: rgba(21, 28, 44, 0.88);
 }
 
 @theme inline {
@@ -182,6 +190,9 @@ html.dark {
   --color-surface-elevated: var(--surface-elevated);
   --color-surface-hover: var(--surface-hover);
   --color-surface-chip: var(--surface-chip);
+  --color-chat: var(--chat-bg);
+  --color-chat-bubble: var(--chat-bubble);
+  --color-chat-input: var(--chat-input);
   --color-border-subtle: var(--border);
   --color-border-strong: var(--border-strong);
   --color-cta: var(--cta-bg);

@@ -50,8 +50,4 @@ A modern, minimalist, dark-mode portfolio website designed to showcase personal 
 
 ---
 
-docker build -t registry.tvone.ao/portfolio:latest .
-docker push registry.tvone.ao/portfolio:latest
-cd ..
-cd infra
-docker compose -f services/portfolio/docker-compose.yml up -d --force-recreate portfolio-app
+

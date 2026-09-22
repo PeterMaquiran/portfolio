@@ -1,6 +1,8 @@
 .git
 .next
 node_modules
+.env
+.env.*
 *.md
 .vscode
 .codesandbox

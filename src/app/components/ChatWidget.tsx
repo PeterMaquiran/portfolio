@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { acquireBrowserSocket, releaseBrowserSocket } from '@/lib/browserSocket'
 import { saveMessages, visitorChatDb } from '@/lib/chatDexie'
 import { getVisitorId, type ChatConversation, type ChatMessage } from '@/lib/chatTypes'
+import { enablePushNotifications } from './NotificationSetup'
 
 export default function ChatWidget() {
   const pathname = usePathname()
@@ -114,6 +115,10 @@ export default function ChatWidget() {
       releaseBrowserSocket()
     }
   }, [hidden, persistIncoming, popupFromAdmin])
+
+  useEffect(() => {
+    if (started) void enablePushNotifications()
+  }, [started])
 
   useEffect(() => {
     if (open) {

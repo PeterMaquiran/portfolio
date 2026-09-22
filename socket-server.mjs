@@ -1,7 +1,7 @@
 import { createServer } from 'node:http'
 import next from 'next'
 import { Server } from 'socket.io'
-import { getDb } from './lib/chat-db.mjs'
+import { getDb, saveFcmToken } from './lib/chat-db.mjs'
 import { handleChatRequest } from './lib/chat-http.mjs'
 import { attachChat } from './lib/chat-io.mjs'
 
@@ -173,6 +173,18 @@ io.on('connection', (socket) => {
       for (const room of rooms) void broadcastRoom(room)
       broadcastPresence()
     })
+  })
+
+  socket.on('fcm:subscribe', (payload, ack) => {
+    const deviceToken = payload?.token
+
+    if (!deviceToken || typeof deviceToken !== 'string') {
+      ack?.({ ok: false, error: 'Missing token' })
+      return
+    }
+
+    saveFcmToken(deviceToken, payload?.visitorId || socket.data.visitorId)
+    ack?.({ ok: true, topic: 'all' })
   })
 })
 

@@ -7,6 +7,7 @@ import { adminChatDb, mergeIps, saveConversation, saveMessages } from '@/lib/cha
 import { acquireBrowserSocket, releaseBrowserSocket } from '@/lib/browserSocket'
 import type { ChatConversation, ChatIp, ChatMessage } from '@/lib/chatTypes'
 import ThemeToggle from '../components/ThemeToggle'
+import { enablePushNotifications } from '../components/NotificationSetup'
 
 type MeResponse = { ok: boolean }
 
@@ -103,6 +104,7 @@ export default function AdminClient() {
 
   useEffect(() => {
     if (!authed) return
+    void enablePushNotifications()
 
     const next = acquireBrowserSocket()
     setSocket(next)

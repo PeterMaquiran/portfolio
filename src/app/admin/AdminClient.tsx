@@ -106,7 +106,7 @@ export default function AdminClient() {
 
   useEffect(() => {
     if (!authed) return
-    void enablePushNotifications()
+    void enablePushNotifications({ asAdmin: true })
 
     const next = acquireBrowserSocket()
     setSocket(next)

@@ -2,6 +2,7 @@ import { createServer } from 'node:http'
 import next from 'next'
 import { Server } from 'socket.io'
 import { getDb, saveFcmToken } from './lib/chat-db.mjs'
+import { ADMIN_TOPIC, subscribeAdminToken } from './lib/chat-notify.mjs'
 import { handleChatRequest } from './lib/chat-http.mjs'
 import { attachChat } from './lib/chat-io.mjs'
 
@@ -175,7 +176,7 @@ io.on('connection', (socket) => {
     })
   })
 
-  socket.on('fcm:subscribe', (payload, ack) => {
+  socket.on('fcm:subscribe', async (payload, ack) => {
     const deviceToken = payload?.token
 
     if (!deviceToken || typeof deviceToken !== 'string') {
@@ -183,8 +184,26 @@ io.on('connection', (socket) => {
       return
     }
 
-    saveFcmToken(deviceToken, payload?.visitorId || socket.data.visitorId)
-    ack?.({ ok: true, topic: 'all' })
+    const role = payload?.role === 'admin' || socket.data.isAdmin ? 'admin' : 'visitor'
+    saveFcmToken(
+      deviceToken,
+      role === 'admin' ? null : payload?.visitorId || socket.data.visitorId,
+      role,
+    )
+
+    if (role === 'admin') {
+      try {
+        await subscribeAdminToken(deviceToken)
+      } catch (error) {
+        console.error('Failed to subscribe admin token:', error)
+        ack?.({ ok: false, error: error.message || 'Topic subscribe failed' })
+        return
+      }
+      ack?.({ ok: true, topic: ADMIN_TOPIC })
+      return
+    }
+
+    ack?.({ ok: true })
   })
 })
 

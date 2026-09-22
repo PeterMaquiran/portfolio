@@ -6,15 +6,16 @@ import { acquireBrowserSocket, releaseBrowserSocket } from '@/lib/browserSocket'
 import { FcmSubscribeAck } from '@/src/type/notirication'
 import { getVisitorId } from '@/lib/chatTypes'
 
-let started = false
+const started = { admin: false, visitor: false }
 let foregroundBound = false
 
-export async function enablePushNotifications() {
+export async function enablePushNotifications(options?: { asAdmin?: boolean }) {
   if (typeof window === 'undefined' || !('Notification' in window) || !('serviceWorker' in navigator)) {
     return
   }
-  if (started) return
-  started = true
+  const role = options?.asAdmin ? 'admin' : 'visitor'
+  if (started[role]) return
+  started[role] = true
 
   const socket = acquireBrowserSocket()
 
@@ -24,7 +25,7 @@ export async function enablePushNotifications() {
       permission = await Notification.requestPermission()
     }
     if (permission !== 'granted') {
-      started = false
+      started[role] = false
       releaseBrowserSocket()
       return
     }
@@ -36,7 +37,7 @@ export async function enablePushNotifications() {
 
     const messaging = await getMessagingInstance()
     if (!messaging) {
-      started = false
+      started[role] = false
       releaseBrowserSocket()
       return
     }
@@ -44,7 +45,7 @@ export async function enablePushNotifications() {
     const vapidKey = process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY
     if (!vapidKey) {
       console.error('Missing NEXT_PUBLIC_FIREBASE_VAPID_KEY')
-      started = false
+      started[role] = false
       releaseBrowserSocket()
       return
     }
@@ -55,13 +56,18 @@ export async function enablePushNotifications() {
     })
 
     if (!token) {
-      started = false
+      started[role] = false
       releaseBrowserSocket()
       return
     }
 
     const subscribe = () => {
-      socket.emit('fcm:subscribe', { token, visitorId: getVisitorId() }, (res: FcmSubscribeAck) => {
+      socket.emit(
+        'fcm:subscribe',
+        role === 'admin'
+          ? { token, role: 'admin' }
+          : { token, role: 'visitor', visitorId: getVisitorId() },
+        (res: FcmSubscribeAck) => {
         if (!res?.ok) {
           console.error('Failed to subscribe for notifications', res?.error)
         }
@@ -83,7 +89,7 @@ export async function enablePushNotifications() {
     }
   } catch (error) {
     console.error('Error setting up notifications:', error)
-    started = false
+    started[role] = false
     releaseBrowserSocket()
   }
 }

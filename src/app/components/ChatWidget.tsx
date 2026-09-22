@@ -90,6 +90,7 @@ export default function ChatWidget() {
         {
           visitorId: id,
           client: readClientDevice(),
+          pageActive: document.visibilityState === 'visible',
         },
         (response: { ok: boolean; conversation?: ChatConversation; inbox?: ChatMessage[] }) => {
           if (!response?.ok || !response.conversation) return
@@ -117,16 +118,26 @@ export default function ChatWidget() {
       popupFromAdmin(1)
     }
 
+    const syncPresence = () => {
+      socket.emit('chat:presence', { active: document.visibilityState === 'visible' })
+    }
+
     if (socket.connected) hello()
     socket.on('connect', hello)
     socket.on('chat:message', onMessage)
     socket.on('chat:started', onStarted)
+    document.addEventListener('visibilitychange', syncPresence)
+    window.addEventListener('focus', syncPresence)
+    window.addEventListener('blur', syncPresence)
 
     return () => {
       cancelled = true
       socket.off('connect', hello)
       socket.off('chat:message', onMessage)
       socket.off('chat:started', onStarted)
+      document.removeEventListener('visibilitychange', syncPresence)
+      window.removeEventListener('focus', syncPresence)
+      window.removeEventListener('blur', syncPresence)
       releaseBrowserSocket()
     }
   }, [hidden, persistIncoming, popupFromAdmin])

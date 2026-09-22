@@ -12,6 +12,8 @@ services:
       HOSTNAME: 0.0.0.0
       SQLITE_PATH: /data/chat.db
       ADMIN_PASSWORD: tabteste@006
+      NOTIFICATION_API_URL: http://172.19.0.35:3000
+      SITE_URL: https://peter.tvone.ao
     volumes:
       - chat-data:/data
     healthcheck:

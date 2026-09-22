@@ -8,6 +8,18 @@ import { saveMessages, visitorChatDb } from '@/lib/chatDexie'
 import { getVisitorId, type ChatConversation, type ChatMessage } from '@/lib/chatTypes'
 import { enablePushNotifications } from './NotificationSetup'
 
+function readClientDevice() {
+  const hints = (navigator as Navigator & {
+    userAgentData?: { platform?: string; mobile?: boolean }
+  }).userAgentData
+
+  return {
+    userAgent: navigator.userAgent,
+    platform: hints?.platform || navigator.platform,
+    mobile: hints?.mobile,
+  }
+}
+
 export default function ChatWidget() {
   const pathname = usePathname()
   const hidden = pathname?.startsWith('/admin')
@@ -75,7 +87,10 @@ export default function ChatWidget() {
     const hello = () => {
       socket.emit(
         'chat:hello',
-        { visitorId: id },
+        {
+          visitorId: id,
+          client: readClientDevice(),
+        },
         (response: { ok: boolean; conversation?: ChatConversation; inbox?: ChatMessage[] }) => {
           if (!response?.ok || !response.conversation) return
           setConversation(response.conversation)

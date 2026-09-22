@@ -54,6 +54,8 @@ export default function AdminClient() {
         ip: next.ip || prev?.ip || '',
         country: next.country || prev?.country || 'Unknown',
         countryCode: next.countryCode || prev?.countryCode || '',
+        device: next.device || prev?.device || '',
+        os: next.os || prev?.os || '',
         ips: mergeIps(prev?.ips, next.ips),
         pending: viewing
           ? 0
@@ -347,7 +349,8 @@ export default function AdminClient() {
                         : ''}
                     </span>
                     <span className="text-[11px] text-fg-faint">
-                      {conversation.startedAt ? 'Open' : 'Not started'}
+                      {deviceLabel(conversation)}
+                      {conversation.startedAt ? ' · Open' : ' · Not started'}
                       {conversation.pending ? ` · ${conversation.pending} waiting` : ''}
                     </span>
                   </button>
@@ -436,6 +439,13 @@ export default function AdminClient() {
       </main>
     </div>
   )
+}
+
+function deviceLabel(conversation: ChatConversation) {
+  const kind = conversation.device === 'mobile' ? 'Mobile' : conversation.device === 'desktop' ? 'Desktop' : ''
+  const os = conversation.os || ''
+  if (kind && os) return `${kind} (${os})`
+  return kind || os || 'Device unknown'
 }
 
 function IpHistory({ ips, currentIp }: { ips?: ChatIp[]; currentIp?: string }) {

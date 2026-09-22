@@ -26,6 +26,8 @@ export type ChatConversation = {
   lastMessageAt: number | null
   pending: number
   ips?: ChatIp[]
+  device?: string
+  os?: string
 }
 
 export const VISITOR_ID_KEY = 'portfolio-visitor-id'

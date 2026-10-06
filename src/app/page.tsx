@@ -51,7 +51,7 @@ export default async function Home() {
           id="about"
           className="scroll-mt-36 grid grid-cols-1 items-center gap-12 md:scroll-mt-28 lg:grid-cols-12"
         >
-          <div className="space-y-6 lg:col-span-8">
+          <div className="space-y-6 lg:col-span-7">
             <h1
               className="bg-clip-text text-4xl sm:text-6xl  leading-[1.05] font-extrabold tracking-tight text-transparent"
               style={{
@@ -68,9 +68,9 @@ export default async function Home() {
             <LiveVisitors labels={dict.liveVisitors} />
           </div>
 
-          <div className="relative flex justify-center lg:col-span-4 lg:justify-end">
+          <div className="relative flex justify-center lg:col-span-5 lg:justify-end">
             <div
-              className="relative w-64 overflow-hidden rounded-[2rem] border border-border-subtle sm:w-72 lg:w-[19rem]"
+              className="relative w-64 overflow-hidden rounded-[2rem] border border-border-subtle sm:w-72 lg:w-[23rem]"
               style={{ boxShadow: 'var(--shadow-card)' }}
             >
               <Image
@@ -79,7 +79,7 @@ export default async function Home() {
                 width={960}
                 height={1024}
                 priority
-                sizes="(min-width: 1024px) 304px, (min-width: 640px) 288px, 256px"
+                sizes="(min-width: 1024px) 368px, (min-width: 640px) 288px, 256px"
                 className="h-auto w-full"
               />
             </div>

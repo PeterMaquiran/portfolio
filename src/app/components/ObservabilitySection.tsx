@@ -13,7 +13,7 @@ interface StackItemProps {
 
 const StackItem: React.FC<StackItemProps> = ({ name, iconSrc, children, className }) => (
   <div
-    className={`flex items-center gap-3 rounded-md border border-border-subtle bg-surface-chip px-5 py-3.5 text-sm font-medium text-fg-secondary backdrop-blur-sm transition-colors duration-200 hover:border-border-strong hover:bg-surface-hover`}
+    className="flex items-center gap-3 rounded-md border border-border-subtle bg-surface-chip px-5 py-3.5 text-sm font-medium text-fg-secondary transition-colors duration-200 hover:border-border-strong hover:bg-surface-hover md:backdrop-blur-sm"
   >
     {iconSrc ? (
       <img src={iconSrc} alt={`${name} logo`} className={`h-6 w-6 shrink-0 object-contain`} />
@@ -275,7 +275,7 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
               <button
                 type="button"
                 onClick={() => setShowMore(!showMore)}
-                className="flex items-center gap-2 rounded-md border border-border-subtle bg-surface-chip px-6 py-2.5 text-sm font-medium text-fg-secondary backdrop-blur-sm transition-all duration-200 hover:border-border-strong hover:bg-surface-hover hover:text-fg"
+                className="flex items-center gap-2 rounded-md border border-border-subtle bg-surface-chip px-6 py-2.5 text-sm font-medium text-fg-secondary transition-all duration-200 hover:border-border-strong hover:bg-surface-hover hover:text-fg md:backdrop-blur-sm"
               >
                 <span>{showMore ? labels.showLess : labels.showMore}</span>
                 <svg

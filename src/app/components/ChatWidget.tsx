@@ -193,7 +193,7 @@ export default function ChatWidget() {
     <div className="fixed right-4 bottom-4 z-40 flex flex-col items-end gap-3">
       {open ? (
         <div
-          className="flex h-[28rem] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border border-border-subtle bg-chat backdrop-blur-3xl"
+          className="flex h-[28rem] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-3xl border border-border-subtle bg-chat md:backdrop-blur-3xl"
           style={{ boxShadow: 'var(--shadow-card)' }}
         >
           <div className="flex items-center gap-3 border-b border-border-subtle px-4 py-3">

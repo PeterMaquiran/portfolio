@@ -187,7 +187,7 @@ export default function ExperienceSection({ experiences, noiseBg, title, eyebrow
                           </p>
                         </div>
                         <span
-                          className="self-start rounded-full border px-3 py-1 text-[10px] font-semibold shadow-inner backdrop-blur-md sm:self-auto"
+                          className="self-start rounded-full border px-3 py-1 text-[10px] font-semibold shadow-inner sm:self-auto md:backdrop-blur-md"
                           style={
                             experience.current
                               ? {

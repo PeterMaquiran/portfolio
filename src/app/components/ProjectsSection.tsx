@@ -203,7 +203,7 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
                       {project.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-md border border-border-subtle bg-surface-chip px-2.5 py-1 text-[10px] text-fg-secondary backdrop-blur-sm"
+                          className="rounded-md border border-border-subtle bg-surface-chip px-2.5 py-1 text-[10px] text-fg-secondary md:backdrop-blur-sm"
                         >
                           {tech}
                         </span>

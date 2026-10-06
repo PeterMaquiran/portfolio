@@ -56,9 +56,9 @@ export const metadata: Metadata = {
   ],
   // Add PNG icons (Favicon & Apple Touch Icon)
   icons: {
-    icon: '/peter.png', // Put icon.png inside the public/ folder
-    shortcut: '/peter.png',
-    apple: '/peter.png', // Optional: separate PNG for iOS home screen
+    icon: '/peter-portrait.jpg', // Put icon.png inside the public/ folder
+    shortcut: '/peter-portrait.jpg',
+    apple: '/peter-portrait.jpg', // Optional: separate PNG for iOS home screen
   },
   openGraph: {
     title: 'Peter Maquiran — Software Developer',
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     // Add PNG image for OpenGraph social sharing
     images: [
       {
-        url: '/peter.png', // Resolves to https://peter.tvone.ao/og-image.png via metadataBase
+        url: '/peter-portrait.jpg', // Resolves to https://peter.tvone.ao/og-image.png via metadataBase
         width: 1200,
         height: 630,
         alt: 'Peter Maquiran',
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
       'Software web and mobile developer specializing in Angular, Vue, Flutter, Docker, and OpenTelemetry.',
     creator: '@PeterMaquiran',
     // Add PNG image for Twitter card
-    images: ['/peter.png'],
+    images: ['/peter-portrait.jpg'],
   },
   alternates: {
     canonical: 'https://peter.tvone.ao',

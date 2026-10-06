@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     title: 'Peter Maquiran — Software Developer',
     description:
       'Discover projects, skills and experience from Peter Maquiran — a Software developer passionate about observability and performance.',
-    url: 'https://petermaquiran.xyz',
+    url: 'https://peter.tvone.ao',
     siteName: 'Peter Maquiran',
     locale: 'en_US',
     type: 'website',

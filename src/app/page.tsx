@@ -68,24 +68,20 @@ export default async function Home() {
             <LiveVisitors labels={dict.liveVisitors} />
           </div>
 
-          {/* Globe Graphic Accent */}
           <div className="relative flex justify-center lg:col-span-4 lg:justify-end">
-            {/* <div className="absolute inset-0 rounded-full blur-3xl" /> */}
-
-            <div className="relative flex items-center justify-center">
-              {/* Outer Glow Halo behind the globe */}
-              {/* <div className="absolute h-72 w-72 rounded-full bg-blue-500/20 blur-3xl sm:h-96 sm:w-96" /> */}
-
-              {/* Outer Ring / Atmospheric Layer */}
-              <div className="relative flex h-70 w-70 items-center justify-center overflow-hidden rounded-full backdrop-blur-3xl sm:h-80 sm:w-80">
-                {/* <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-soft-light" /> */}
-                {/* <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent dark:via-white/[0.03]" /> */}
-
-                {/* Inner Globe Container with dynamic rim glow */}
-                <div className="relative z-10 flex h-[14.4rem] w-[14.4rem] items-center justify-center overflow-hidden rounded-full sm:h-60 sm:w-60">
-                  <Image src="/peter.png" alt="Peter Maquiran" width={500} height={100} />
-                </div>
-              </div>
+            <div
+              className="relative w-64 overflow-hidden rounded-[2rem] border border-border-subtle sm:w-72 lg:w-[19rem]"
+              style={{ boxShadow: 'var(--shadow-card)' }}
+            >
+              <Image
+                src="/peter-portrait.jpg"
+                alt="Peter Maquiran"
+                width={960}
+                height={1024}
+                priority
+                sizes="(min-width: 1024px) 304px, (min-width: 640px) 288px, 256px"
+                className="h-auto w-full"
+              />
             </div>
           </div>
         </section>

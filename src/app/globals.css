@@ -220,24 +220,9 @@ body {
   background: var(--page-bg);
 }
 
-@media (min-width: 768px) {
-  .site-header {
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-  }
-}
-
-@media (max-width: 767px) {
-  :root,
-  html.light {
-    --header-bg: #f5f5f7;
-    --header-mobile: #f5f5f7;
-  }
-
-  html.dark {
-    --header-bg: #161617;
-    --header-mobile: #161617;
-  }
+.site-header {
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 ::selection {

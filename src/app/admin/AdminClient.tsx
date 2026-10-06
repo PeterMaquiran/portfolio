@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } fro
 import type { Socket } from 'socket.io-client'
 import { adminChatDb, mergeIps, saveConversation, saveMessages } from '@/lib/chatDexie'
 import { acquireBrowserSocket, releaseBrowserSocket } from '@/lib/browserSocket'
-import type { ChatConversation, ChatIp, ChatMessage } from '@/lib/chatTypes'
+import { randomId, type ChatConversation, type ChatIp, type ChatMessage } from '@/lib/chatTypes'
 import ThemeToggle from '../components/ThemeToggle'
 import { enablePushNotifications } from '../components/NotificationSetup'
 
@@ -229,7 +229,7 @@ export default function AdminClient() {
     const text = draft.trim()
     if (!text) return
     const message: ChatMessage = {
-      id: crypto.randomUUID(),
+      id: randomId(),
       conversationId: active.id,
       sender: 'admin',
       text,

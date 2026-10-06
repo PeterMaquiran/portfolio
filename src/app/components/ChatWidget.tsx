@@ -5,13 +5,15 @@ import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { acquireBrowserSocket, releaseBrowserSocket } from '@/lib/browserSocket'
 import { saveMessages, visitorChatDb } from '@/lib/chatDexie'
-import { getVisitorId, type ChatConversation, type ChatMessage } from '@/lib/chatTypes'
+import { getVisitorId, randomId, type ChatConversation, type ChatMessage } from '@/lib/chatTypes'
 import { enablePushNotifications } from './NotificationSetup'
 
 function readClientDevice() {
-  const hints = (navigator as Navigator & {
-    userAgentData?: { platform?: string; mobile?: boolean }
-  }).userAgentData
+  const hints = (
+    navigator as Navigator & {
+      userAgentData?: { platform?: string; mobile?: boolean }
+    }
+  ).userAgentData
 
   return {
     userAgent: navigator.userAgent,
@@ -53,13 +55,11 @@ export default function ChatWidget() {
     const mine = incoming.filter((message) => message.conversationId === visitor)
     if (!mine.length) return
     await saveMessages(visitorChatDb, mine)
-    setMessages(
-      (current) => {
-        const map = new Map(current.map((message) => [message.id, message]))
-        for (const message of mine) map.set(message.id, message)
-        return [...map.values()].sort((a, b) => a.createdAt - b.createdAt)
-      },
-    )
+    setMessages((current) => {
+      const map = new Map(current.map((message) => [message.id, message]))
+      for (const message of mine) map.set(message.id, message)
+      return [...map.values()].sort((a, b) => a.createdAt - b.createdAt)
+    })
   }, [])
 
   useEffect(() => {
@@ -160,7 +160,7 @@ export default function ChatWidget() {
     const socket = socketRef.current
     if (!socket) return
     const message: ChatMessage = {
-      id: crypto.randomUUID(),
+      id: randomId(),
       conversationId: visitorId,
       sender: 'visitor',
       text,
@@ -217,7 +217,10 @@ export default function ChatWidget() {
               messages.map((message) => {
                 const mine = message.sender === 'visitor'
                 return (
-                  <div key={message.id} className={`flex ${mine ? 'justify-end' : 'justify-start'}`}>
+                  <div
+                    key={message.id}
+                    className={`flex ${mine ? 'justify-end' : 'justify-start'}`}
+                  >
                     <div
                       className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed ${
                         mine ? 'bg-cta text-cta-fg' : 'bg-chat-bubble text-fg'

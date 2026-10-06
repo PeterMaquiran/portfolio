@@ -19,12 +19,12 @@ export default function Header({ labels }: Props) {
     { href: '#experience', label: labels.experience },
   ] as const
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  // useEffect(() => {
+  //   const onScroll = () => setScrolled(window.scrollY > 8)
+  //   onScroll()
+  //   window.addEventListener('scroll', onScroll, { passive: true })
+  //   return () => window.removeEventListener('scroll', onScroll)
+  // }, [])
 
   return (
     <header
@@ -44,7 +44,7 @@ export default function Header({ labels }: Props) {
           Peter Maquiran
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+        {/* <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -54,7 +54,7 @@ export default function Header({ labels }: Props) {
               {item.label}
             </Link>
           ))}
-        </nav>
+        </nav> */}
 
         <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle className="hover:bg-surface-hover" />

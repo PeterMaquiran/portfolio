@@ -33,13 +33,11 @@ export default async function Home() {
   const noiseBg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E")`
 
   return (
-    <div
-      className="relative min-h-screen overflow-hidden font-sans text-fg antialiased"
-      style={{ background: 'var(--page-bg)' }}
-    >
-      {/* Global Grain Texture Overlay */}
+    <div className="relative min-h-screen overflow-hidden font-sans text-fg antialiased">
+      <div aria-hidden className="page-backdrop pointer-events-none fixed inset-0 z-0" />
+      {/* Grain is a full-viewport blend. That forces a repaint on every scroll frame on phones. */}
       <div
-        className="pointer-events-none fixed inset-0 z-50 mix-blend-overlay"
+        className="pointer-events-none fixed inset-0 z-50 hidden mix-blend-overlay md:block"
         style={{ backgroundImage: noiseBg, opacity: 'var(--noise-opacity)' }}
       />
 
@@ -127,7 +125,7 @@ export default async function Home() {
                   style={{ boxShadow: 'var(--shadow-card)' }}
                 >
                   <div
-                    className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay"
+                    className="pointer-events-none absolute inset-0 hidden opacity-20 mix-blend-overlay md:block"
                     style={{ backgroundImage: noiseBg }}
                   />
                   <p className="relative z-10 text-sm leading-relaxed text-fg-secondary italic">
@@ -156,7 +154,7 @@ export default async function Home() {
 
       {/* Footer */}
       <footer
-        className="border-t py-10 text-center text-sm"
+        className="relative z-10 border-t py-10 text-center text-sm"
         style={{ color: 'var(--footer-fg)', borderColor: 'var(--footer-border)' }}
       >
         <div className="mb-2 flex justify-center gap-4 [&_a]:transition-opacity hover:[&_a]:opacity-70">

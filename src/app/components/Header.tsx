@@ -19,20 +19,18 @@ export default function Header({ labels }: Props) {
     { href: '#experience', label: labels.experience },
   ] as const
 
-  // useEffect(() => {
-  //   const onScroll = () => setScrolled(window.scrollY > 8)
-  //   onScroll()
-  //   window.addEventListener('scroll', onScroll, { passive: true })
-  //   return () => window.removeEventListener('scroll', onScroll)
-  // }, [])
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300"
+      className="site-header fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color] duration-300"
       style={{
         backgroundColor: scrolled ? 'var(--header-bg-scrolled)' : 'var(--header-bg)',
-        backdropFilter: 'saturate(180%) blur(20px)',
-        WebkitBackdropFilter: 'saturate(180%) blur(20px)',
         borderBottom: `1px solid ${scrolled ? 'var(--border-strong)' : 'var(--header-border)'}`,
       }}
     >
@@ -44,7 +42,7 @@ export default function Header({ labels }: Props) {
           Peter Maquiran
         </Link>
 
-        {/* <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -54,7 +52,7 @@ export default function Header({ labels }: Props) {
               {item.label}
             </Link>
           ))}
-        </nav> */}
+        </nav>
 
         <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle className="hover:bg-surface-hover" />

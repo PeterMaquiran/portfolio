@@ -181,7 +181,7 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
                   style={{ boxShadow: 'var(--shadow-card)' }}
                 >
                   <div
-                    className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay"
+                    className="pointer-events-none absolute inset-0 hidden opacity-20 mix-blend-overlay md:block"
                     style={{ backgroundImage: noiseBg }}
                   />
 

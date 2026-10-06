@@ -16,10 +16,10 @@ html.light {
   --foreground: #1d1d1f;
 
   --page-bg:
-    radial-gradient(circle at -10% -10%, rgba(56, 189, 248, 0.16), rgba(0, 0, 0, 0) 50%) fixed,
-    radial-gradient(circle at 110% -10%, rgba(129, 140, 248, 0.12), rgba(0, 0, 0, 0) 50%) fixed,
-    radial-gradient(circle at 50% 120%, rgba(45, 212, 190, 0.1), rgba(0, 0, 0, 0) 50%) fixed,
-    linear-gradient(rgb(245, 245, 247) 0%, rgb(238, 241, 246) 100%) fixed;
+    radial-gradient(circle at -10% -10%, rgba(56, 189, 248, 0.16), rgba(0, 0, 0, 0) 50%),
+    radial-gradient(circle at 110% -10%, rgba(129, 140, 248, 0.12), rgba(0, 0, 0, 0) 50%),
+    radial-gradient(circle at 50% 120%, rgba(45, 212, 190, 0.1), rgba(0, 0, 0, 0) 50%),
+    linear-gradient(rgb(245, 245, 247) 0%, rgb(238, 241, 246) 100%);
 
   --fg: #1d1d1f;
   --fg-secondary: #6e6e73;
@@ -100,11 +100,11 @@ html.dark {
   --foreground: #f5f5f7;
 
   --page-bg:
-    radial-gradient(circle at -10% -10%, rgba(56, 189, 248, 0.1), rgba(0, 0, 0, 0) 55%) fixed,
-    radial-gradient(circle at 110% -10%, rgba(129, 140, 248, 0.12), rgba(0, 0, 0, 0) 55%) fixed,
-    radial-gradient(circle at 50% 40%, rgba(148, 163, 184, 0.18), rgba(0, 0, 0, 0) 60%) fixed,
-    radial-gradient(circle at 50% 120%, rgba(45, 212, 190, 0.14), rgba(0, 0, 0, 0) 55%) fixed,
-    linear-gradient(145deg, rgb(2, 6, 23) 0%, rgb(2, 6, 23) 40%, rgb(15, 23, 42) 100%) fixed;
+    radial-gradient(circle at -10% -10%, rgba(56, 189, 248, 0.1), rgba(0, 0, 0, 0) 55%),
+    radial-gradient(circle at 110% -10%, rgba(129, 140, 248, 0.12), rgba(0, 0, 0, 0) 55%),
+    radial-gradient(circle at 50% 40%, rgba(148, 163, 184, 0.18), rgba(0, 0, 0, 0) 60%),
+    radial-gradient(circle at 50% 120%, rgba(45, 212, 190, 0.14), rgba(0, 0, 0, 0) 55%),
+    linear-gradient(145deg, rgb(2, 6, 23) 0%, rgb(2, 6, 23) 40%, rgb(15, 23, 42) 100%);
 
   --fg: #f5f5f7;
   --fg-secondary: #cbd5e1;
@@ -212,6 +212,32 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Pinned gradient lives on its own layer. background-attachment: fixed
+   repaints the whole page on every scroll frame in mobile Safari. */
+.page-backdrop {
+  background: var(--page-bg);
+}
+
+@media (min-width: 768px) {
+  .site-header {
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+
+@media (max-width: 767px) {
+  :root,
+  html.light {
+    --header-bg: #f5f5f7;
+    --header-mobile: #f5f5f7;
+  }
+
+  html.dark {
+    --header-bg: #161617;
+    --header-mobile: #161617;
+  }
 }
 
 ::selection {

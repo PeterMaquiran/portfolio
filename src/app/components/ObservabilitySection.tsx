@@ -46,7 +46,7 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
         }}
       />
       <div
-        className="relative overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 text-fg backdrop-blur-3xl transition-all duration-300 sm:p-10"
+        className="relative overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 text-fg md:backdrop-blur-3xl transition-all duration-300 sm:p-10"
         style={{ boxShadow: 'var(--shadow-card)' }}
       >
         <div

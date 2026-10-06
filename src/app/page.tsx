@@ -123,7 +123,7 @@ export default async function Home() {
                   }}
                 />
                 <blockquote
-                  className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 backdrop-blur-3xl transition-all duration-300 sm:p-10"
+                  className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 md:backdrop-blur-3xl transition-all duration-300 sm:p-10"
                   style={{ boxShadow: 'var(--shadow-card)' }}
                 >
                   <div

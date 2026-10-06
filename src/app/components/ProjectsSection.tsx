@@ -175,7 +175,7 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
                   type="button"
                   onClick={() => openPreview(index)}
                   disabled={!canPreview}
-                  className={`project-card group relative flex h-full w-full flex-col overflow-hidden rounded-3xl border border-border-subtle bg-surface text-left backdrop-blur-3xl transition-all duration-300 ${
+                  className={`project-card group relative flex h-full w-full flex-col overflow-hidden rounded-3xl border border-border-subtle bg-surface text-left md:backdrop-blur-3xl transition-all duration-300 ${
                     canPreview ? 'cursor-pointer hover:border-border-strong' : 'cursor-default'
                   }`}
                   style={{ boxShadow: 'var(--shadow-card)' }}

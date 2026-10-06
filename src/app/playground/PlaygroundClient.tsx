@@ -217,7 +217,7 @@ export default function PlaygroundClient() {
         </section>
 
         <section
-          className="overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 backdrop-blur-3xl sm:p-8"
+          className="overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 md:backdrop-blur-3xl sm:p-8"
           style={{ boxShadow: 'var(--shadow-card)' }}
         >
           <div className="mb-6 flex flex-wrap items-center gap-3">
@@ -302,7 +302,7 @@ export default function PlaygroundClient() {
         {room ? (
           <>
             <section
-              className="overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 backdrop-blur-3xl sm:p-8"
+              className="overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 md:backdrop-blur-3xl sm:p-8"
               style={{ boxShadow: 'var(--shadow-card)' }}
             >
               <div>
@@ -330,7 +330,7 @@ export default function PlaygroundClient() {
             </section>
 
             <section
-              className="flex flex-col overflow-hidden rounded-3xl border border-border-subtle bg-surface backdrop-blur-3xl"
+              className="flex flex-col overflow-hidden rounded-3xl border border-border-subtle bg-surface md:backdrop-blur-3xl"
               style={{ boxShadow: 'var(--shadow-card)' }}
             >
               <div className="border-b border-border-subtle px-6 py-4 sm:px-8">
@@ -400,7 +400,7 @@ export default function PlaygroundClient() {
 function StatCard({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
     <div
-      className="rounded-2xl border border-border-subtle bg-surface px-4 py-4 backdrop-blur-3xl"
+      className="rounded-2xl border border-border-subtle bg-surface px-4 py-4 md:backdrop-blur-3xl"
       style={{ boxShadow: 'var(--shadow-card)' }}
     >
       <p className="text-[11px] font-semibold tracking-widest text-fg-muted uppercase">{label}</p>

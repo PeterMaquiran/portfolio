@@ -29,7 +29,7 @@ function ContactPanel() {
         }}
       />
       <div
-        className="relative overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 backdrop-blur-3xl sm:p-10"
+        className="relative overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 md:backdrop-blur-3xl sm:p-10"
         style={{ boxShadow: 'var(--shadow-card)' }}
       >
         <div

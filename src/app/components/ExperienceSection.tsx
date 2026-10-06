@@ -152,7 +152,7 @@ export default function ExperienceSection({ experiences, noiseBg, title, eyebrow
                   }}
                 />
                 <div
-                  className={`project-card group relative w-full overflow-hidden rounded-3xl border border-border-subtle bg-surface text-left backdrop-blur-3xl transition-all duration-300 ${
+                  className={`project-card group relative w-full overflow-hidden rounded-3xl border border-border-subtle bg-surface text-left md:backdrop-blur-3xl transition-all duration-300 ${
                     canPreview ? 'hover:border-border-strong' : ''
                   }`}
                   style={{ boxShadow: 'var(--shadow-card)' }}

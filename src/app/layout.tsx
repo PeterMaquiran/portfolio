@@ -32,7 +32,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://peter.tvone.ao'),
-  title: 'Portfolio | Peter Maquiran — Software Developer',
+  title: 'Peter Maquiran — Software Developer',
   description:
     'Software web and mobile developer skilled in Angular, Vue, Flutter, NestJS, Docker, and OpenTelemetry. Explore my portfolio, and self-hosted DevOps projects.',
   keywords: [
@@ -61,11 +61,11 @@ export const metadata: Metadata = {
     apple: '/peter.png', // Optional: separate PNG for iOS home screen
   },
   openGraph: {
-    title: 'Portfolio | Peter Maquiran — Software Developer',
+    title: 'Peter Maquiran — Software Developer',
     description:
       'Discover projects, skills and experience from Peter Maquiran — a Software developer passionate about observability and performance.',
     url: 'https://petermaquiran.xyz',
-    siteName: 'Peter Maquiran Portfolio',
+    siteName: 'Peter Maquiran',
     locale: 'en_US',
     type: 'website',
     // Add PNG image for OpenGraph social sharing
@@ -74,13 +74,13 @@ export const metadata: Metadata = {
         url: '/peter.png', // Resolves to https://peter.tvone.ao/og-image.png via metadataBase
         width: 1200,
         height: 630,
-        alt: 'Peter Maquiran — Portfolio',
+        alt: 'Peter Maquiran',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Peter Maquiran — Portfolio',
+    title: 'Peter Maquiran',
     description:
       'Software web and mobile developer specializing in Angular, Vue, Flutter, Docker, and OpenTelemetry.',
     creator: '@PeterMaquiran',

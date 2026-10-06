@@ -16,11 +16,10 @@ html.light {
   --foreground: #1d1d1f;
 
   --page-bg:
-    radial-gradient(circle at -10% -10%, rgba(0, 113, 227, 0.07), transparent 55%),
-    radial-gradient(circle at 110% -10%, rgba(94, 92, 230, 0.06), transparent 55%),
-    radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 0.03), transparent 60%),
-    radial-gradient(circle at 50% 120%, rgba(52, 199, 89, 0.06), transparent 55%),
-    linear-gradient(180deg, #ffffff 0%, #f5f5f7 45%, #eef0f4 100%);
+    radial-gradient(circle at -10% -10%, rgba(56, 189, 248, 0.16), rgba(0, 0, 0, 0) 50%) fixed,
+    radial-gradient(circle at 110% -10%, rgba(129, 140, 248, 0.12), rgba(0, 0, 0, 0) 50%) fixed,
+    radial-gradient(circle at 50% 120%, rgba(45, 212, 190, 0.1), rgba(0, 0, 0, 0) 50%) fixed,
+    linear-gradient(rgb(245, 245, 247) 0%, rgb(238, 241, 246) 100%) fixed;
 
   --fg: #1d1d1f;
   --fg-secondary: #6e6e73;
@@ -101,11 +100,11 @@ html.dark {
   --foreground: #f5f5f7;
 
   --page-bg:
-    radial-gradient(circle at -10% -10%, rgba(56, 189, 248, 0.1), transparent 55%),
-    radial-gradient(circle at 110% -10%, rgba(129, 140, 248, 0.12), transparent 55%),
-    radial-gradient(circle at 50% 40%, rgba(148, 163, 184, 0.18), transparent 60%),
-    radial-gradient(circle at 50% 120%, rgba(45, 212, 190, 0.14), transparent 55%),
-    linear-gradient(145deg, #020617 0%, #020617 40%, #0f172a 100%);
+    radial-gradient(circle at -10% -10%, rgba(56, 189, 248, 0.1), rgba(0, 0, 0, 0) 55%) fixed,
+    radial-gradient(circle at 110% -10%, rgba(129, 140, 248, 0.12), rgba(0, 0, 0, 0) 55%) fixed,
+    radial-gradient(circle at 50% 40%, rgba(148, 163, 184, 0.18), rgba(0, 0, 0, 0) 60%) fixed,
+    radial-gradient(circle at 50% 120%, rgba(45, 212, 190, 0.14), rgba(0, 0, 0, 0) 55%) fixed,
+    linear-gradient(145deg, rgb(2, 6, 23) 0%, rgb(2, 6, 23) 40%, rgb(15, 23, 42) 100%) fixed;
 
   --fg: #f5f5f7;
   --fg-secondary: #cbd5e1;

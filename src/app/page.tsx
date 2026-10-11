@@ -5,6 +5,7 @@ import { ObservabilitySection } from './components/ObservabilitySection'
 import EarthBackground from './components/EarthBackgroundLazy'
 import ProjectsSection from './components/ProjectsSection'
 import ExperienceSection from './components/ExperienceSection'
+import CertificatesSection from './components/CertificatesSection'
 import ContactButton, { LINKEDIN_URL, WHATSAPP_URL } from './components/ContactButton'
 import LiveVisitors from './components/LiveVisitors'
 import { getDictionary } from '@/lib/getDictionary'
@@ -97,6 +98,13 @@ export default async function Home() {
           noiseBg={noiseBg}
           title={dict.sectionsTitle.Experience}
           eyebrow={dict.sectionsTitle.ExperienceEyebrow}
+        />
+
+        <CertificatesSection
+          certificates={dict.certificates}
+          noiseBg={noiseBg}
+          title={dict.sectionsTitle.Certificates}
+          eyebrow={dict.sectionsTitle.CertificatesEyebrow}
         />
 
         {/* TESTIMONIALS */}

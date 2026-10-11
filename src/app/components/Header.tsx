@@ -17,6 +17,7 @@ export default function Header({ labels }: Props) {
     { href: '#about', label: labels.about },
     { href: '#projects', label: labels.projects },
     { href: '#experience', label: labels.experience },
+    { href: '#certificates', label: labels.certificates },
   ] as const
 
   useEffect(() => {

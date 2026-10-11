@@ -188,16 +188,31 @@
     "tagline": "Building Systems for Resilience and Performance.",
     "description": "Web, Mobile & Forward Deployed Engineer (FDE) with 9+ years of experience. Focused on building reliable, scalable, and observable systems across full-stack applications."
   },
+  "certificates": [
+    {
+      "name": "AWS Certified Solutions Architect – Associate",
+      "code": "SAA-C03",
+      "issuer": "Amazon Web Services",
+      "status": "In progress",
+      "ongoing": true,
+      "image": "/aws-solutions-architect-associate.png",
+      "imageAlt": "AWS Certified Solutions Architect Associate badge",
+      "description": "Preparing for the exam: secure, resilient, high-performing, and cost-optimized architectures on AWS."
+    }
+  ],
   "sectionsTitle": {
     "Experience": "Experience",
     "ExperienceEyebrow": "Career History",
     "Testimonials": "Testimonials",
-    "Projects": "Projects"
+    "Projects": "Projects",
+    "Certificates": "Certificates",
+    "CertificatesEyebrow": "Credentials"
   },
   "navBar": {
     "about": "About",
     "projects": "Projects",
     "experience": "Experience",
+    "certificates": "Certificates",
     "contact": "Contact"
   },
   "observabilitySection": {

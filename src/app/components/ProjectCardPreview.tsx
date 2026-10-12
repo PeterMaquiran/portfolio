@@ -101,6 +101,21 @@ export default function ProjectCardPreview({
     )
   }
 
+  if (preview.kind === 'logo') {
+    return (
+      <div
+        className="project-preview relative flex h-48 shrink-0 items-center justify-center overflow-hidden px-8 sm:h-52"
+        style={{ animationDelay: `${index * 60}ms` }}
+      >
+        <img
+          src={preview.primary}
+          alt={preview.alt}
+          className="project-preview-media h-24 w-auto max-w-[86%] sm:h-28"
+        />
+      </div>
+    )
+  }
+
   // duo: desktop + phone overlap
   return (
     <div

@@ -41,6 +41,11 @@ const projectCardPreviews: CardPreview[] = [
     secondary: '/orga-habit.png',
     alt: 'Holistic Life Organizer app',
   },
+  {
+    kind: 'logo',
+    primary: '/npm.svg',
+    alt: 'NPM',
+  },
 ]
 
 // —————————————————————————————————————————————
@@ -127,9 +132,14 @@ type Props = {
   title: string
 }
 
+function projectUrl(project: Dictionary['projects'][number]) {
+  return 'url' in project && typeof project.url === 'string' ? project.url : undefined
+}
+
 export default function ProjectsSection({ projects, noiseBg, title }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const [tabs, setTabs] = useState<Tab[]>([])
+  const [previewUrl, setPreviewUrl] = useState<string | undefined>()
 
   function openPreview(index: number) {
     const factory = projectPreviewFactories[index]
@@ -144,6 +154,7 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
         content,
       })),
     )
+    setPreviewUrl(projectUrl(projects[index]))
     setIsOpen(true)
   }
 
@@ -161,6 +172,8 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
           {projects.map((project, index) => {
             const canPreview = index < projectPreviewFactories.length
             const cardPreview = projectCardPreviews[index]
+            const externalUrl = projectUrl(project)
+            const canOpen = canPreview || Boolean(externalUrl)
 
             return (
               <div key={project.title} className="relative z-10 flex h-full">
@@ -173,10 +186,18 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
                 />
                 <button
                   type="button"
-                  onClick={() => openPreview(index)}
-                  disabled={!canPreview}
+                  onClick={() => {
+                    if (canPreview) {
+                      openPreview(index)
+                      return
+                    }
+                    if (externalUrl) {
+                      window.open(externalUrl, '_blank', 'noopener,noreferrer')
+                    }
+                  }}
+                  disabled={!canOpen}
                   className={`project-card group relative flex h-full w-full flex-col overflow-hidden rounded-3xl border border-border-subtle bg-surface text-left md:backdrop-blur-3xl transition-all duration-300 ${
-                    canPreview ? 'cursor-pointer hover:border-border-strong' : 'cursor-default'
+                    canOpen ? 'cursor-pointer hover:border-border-strong' : 'cursor-default'
                   }`}
                   style={{ boxShadow: 'var(--shadow-card)' }}
                 >
@@ -192,7 +213,7 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
                       <h3 className="text-xl font-bold text-fg">{project.title}</h3>
                       <ArrowUpRight
                         className={`mt-1 h-5 w-5 shrink-0 text-fg-muted transition-colors ${
-                          canPreview ? 'group-hover:text-icon-hover' : ''
+                          canOpen ? 'group-hover:text-icon-hover' : ''
                         }`}
                       />
                     </div>
@@ -217,7 +238,12 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
         </div>
       </section>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} tabs={tabs} />
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        tabs={tabs}
+        href={previewUrl}
+      />
     </>
   )
 }

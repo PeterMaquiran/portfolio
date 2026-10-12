@@ -8,7 +8,8 @@
         "Atualizações blue/green sem tempo de inatividade",
         "Pipelines Gitea + Drone CI para compilar e implementar",
         "Registos e dashboards centralizados"
-      ]
+      ],
+      "url": "https://grafana.tvone.ao/?orgId=1&from=now-6h&to=now&timezone=browser"
     },
     {
       "title": "Website de Portfólio Reativo",
@@ -18,7 +19,8 @@
         "Cards de vidro com blur fosco e profundidade suave",
         "Layout, tipografia e movimento inspirados na Apple",
         "Cenas 3D interativas e templates multilíngua"
-      ]
+      ],
+      "url": "https://peter.tvone.ao"
     },
     {
       "title": "Portal de Notícias TVOne",
@@ -28,7 +30,8 @@
         "API e fluxos editoriais com NestJS",
         "Cache com Redis para entrega rápida de artigos",
         "Filas RabbitMQ para publicação e notificações"
-      ]
+      ],
+      "url": "https://tvone.ao/"
     },
     {
       "title": "Plataforma de E-Commerce",
@@ -39,7 +42,8 @@
         "Checkout e integração de pagamentos",
         "Gestão e acompanhamento de pedidos",
         "Painel administrativo para gerir produtos e utilizadores"
-      ]
+      ],
+      "url": "https://github.com/PeterMaquiran/AWS-Examples"
     },
     {
       "title": "Organizador de Vida Holístico",
@@ -50,7 +54,19 @@
         "Ferramentas personalizadas de acompanhamento de hábitos e reflexão",
         "Calendário integrado para planeamento consciente",
         "Dashboard holístico de progresso e insights"
-      ]
+      ],
+      "url": "https://github.com/PeterMaquiran/orga1"
+    },
+    {
+      "title": "ZenTrace",
+      "blurb": "Biblioteca de tracing em TypeScript que mostra o caminho por trás de um stack trace: quais funções executaram, como o fluxo assíncrono avançou e os logs e chamadas HTTP correlacionados de cada passo, num painel do Chrome DevTools.",
+      "stack": ["TypeScript", "Chrome DevTools", "Zipkin", "Loki"],
+      "highlights": [
+        "Rastreio de métodos com @trace() e de funções com traceFn()",
+        "Árvore de spans, linha do tempo e inspector de argumentos e retornos",
+        "console e fetch ligados aos spans, com exportação para Zipkin e Loki"
+      ],
+      "url": "https://www.npmjs.com/package/zentrace"
     }
   ],
 

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export type PreviewKind = 'desktop' | 'mobile' | 'duo' | 'phones'
+export type PreviewKind = 'desktop' | 'mobile' | 'duo' | 'phones' | 'logo'
 
 export type CardPreview = {
   kind: PreviewKind
@@ -89,6 +89,17 @@ export default function CardPreviewVisual({
             />
           </div>
         )}
+      </div>
+    )
+  }
+
+  if (preview.kind === 'logo') {
+    return (
+      <div
+        className="project-preview relative flex items-center justify-center overflow-hidden p-8"
+        style={{ animationDelay: `${index * 60}ms` }}
+      >
+        <img src={preview.primary} alt={preview.alt} className="project-preview-media h-16 w-auto" />
       </div>
     )
   }

@@ -81,7 +81,8 @@
         "Blue/green style updates for zero-downtime",
         "Gitea + Drone CI pipelines to build & deploy",
         "Centralized logs and dashboards"
-      ]
+      ],
+      "url": "https://grafana.tvone.ao/?orgId=1&from=now-6h&to=now&timezone=browser"
     },
     {
       "title": "Reactive Portfolio Website",
@@ -91,7 +92,8 @@
         "Glass cards with frosted blur and soft depth",
         "Apple-inspired layout, typography, and motion",
         "Interactive 3D scenes and multilingual templates"
-      ]
+      ],
+      "url": "https://peter.tvone.ao"
     },
     {
       "title": "TVOne News Portal",
@@ -101,7 +103,8 @@
         "API and editorial workflows powered by NestJS",
         "Redis-backed caching for fast article delivery",
         "RabbitMQ queues for publish and notification jobs"
-      ]
+      ],
+      "url": "https://tvone.ao/"
     },
     {
       "title": "E-Commerce Platform",
@@ -112,7 +115,8 @@
         "Checkout and payment integration",
         "Order management and tracking",
         "Admin panel for managing products and users"
-      ]
+      ],
+      "url": "https://github.com/PeterMaquiran/AWS-Examples"
     },
     {
       "title": "Holistic Life Organizer",
@@ -123,7 +127,19 @@
         "Personalized habit tracking and reflection tools",
         "Integrated calendar for mindful scheduling",
         "Holistic progress dashboard and insights"
-      ]
+      ],
+      "url": "https://github.com/PeterMaquiran/orga1"
+    },
+    {
+      "title": "ZenTrace",
+      "blurb": "TypeScript tracing library that shows the path behind a stack trace: which functions ran, how the async flow moved, and the correlated logs and HTTP calls for each step, in a Chrome DevTools panel.",
+      "stack": ["TypeScript", "Chrome DevTools", "Zipkin", "Loki"],
+      "highlights": [
+        "Trace class methods with @trace() and plain functions with traceFn()",
+        "Span tree, timeline, and inspector for arguments and return values",
+        "console and fetch linked to spans, exported to Zipkin and Loki"
+      ],
+      "url": "https://www.npmjs.com/package/zentrace"
     }
   ],
 

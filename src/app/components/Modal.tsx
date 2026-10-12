@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect, useState, type CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
+import { ArrowUpRight } from 'lucide-react'
 
 interface Tab {
   label: string
@@ -13,6 +14,21 @@ interface ModalProps {
   onClose: () => void
   tabs: Tab[]
   background?: string
+  href?: string
+}
+
+function linkLabel(href: string) {
+  try {
+    const url = new URL(href)
+    const host = url.hostname.replace(/^www\./, '')
+    if (host === 'github.com') {
+      const repo = url.pathname.split('/').filter(Boolean)[1]
+      return repo ? `${host}/${repo}` : host
+    }
+    return host
+  } catch {
+    return href
+  }
 }
 
 const OVERLAY_STYLE: CSSProperties = {
@@ -30,7 +46,7 @@ const OVERLAY_STYLE: CSSProperties = {
   WebkitBackdropFilter: 'blur(12px)',
 }
 
-export default function Modal({ isOpen, onClose, tabs, background }: ModalProps) {
+export default function Modal({ isOpen, onClose, tabs, background, href }: ModalProps) {
   const [activeTab, setActiveTab] = useState(0)
   const [mounted, setMounted] = useState(false)
 
@@ -104,6 +120,27 @@ export default function Modal({ isOpen, onClose, tabs, background }: ModalProps)
             </button>
           ))}
         </div>
+      )}
+
+      {href && (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium backdrop-blur-md"
+          style={{
+            position: 'fixed',
+            bottom: 24,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 2147483647,
+            background: 'var(--modal-tab-active)',
+            color: 'var(--cta-fg)',
+          }}
+        >
+          {linkLabel(href)}
+          <ArrowUpRight className="h-4 w-4" aria-hidden />
+        </a>
       )}
 
       <button

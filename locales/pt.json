@@ -148,7 +148,7 @@
       "mark": "CWNA",
       "image": "/badge-cwna.png",
       "imageAlt": "Distintivo CWNA",
-      "description": "RF, antenas e espetro. A profundidade de rádio por trás de 5G NR, 5G privado e rádio definido por software."
+      "description": "RF, antenas e espetro. A física de rádio por baixo da bancada: como um sinal se propaga, e como a interferência aparece numa captura."
     },
     {
       "name": "CCNA Automation",
@@ -165,7 +165,7 @@
       "name": "Certified Kubernetes Administrator",
       "code": "CKA",
       "issuer": "CNCF",
-      "status": "A seguir",
+      "status": "Depois",
       "tone": "next",
       "mark": "CKA",
       "image": "/badge-cka.png",
@@ -206,7 +206,7 @@
     "ProjectsIntro": "Quatro paragens numa só rede. Um recrutador começa no rádio e acaba num dashboard que já está a correr.",
     "Certificates": "Certificados",
     "CertificatesEyebrow": "Credenciais",
-    "CertificatesIntro": "O CCNA 200-301 é a credencial na mão: IP, switching, routing, e TCP e UDP numa rede real. AWS Solutions Architect está em curso, para a cloud onde corre um core virtualizado. Seguem-se CWNA, DevNet Associate e CKA — rádio, redes programáveis e Kubernetes — as três profundidades que este trabalho ainda pede."
+    "CertificatesIntro": "O CCNA 200-301 é a credencial na mão: IP, switching, routing, e TCP e UDP numa rede real. AWS Solutions Architect está em curso, para a cloud onde corre um core virtualizado. O CWNA é o seguinte, para o rádio. O CKA vem depois, para o runtime Kubernetes onde assenta um core cloud-native."
   },
   "navBar": {
     "about": "Sobre",

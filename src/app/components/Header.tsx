@@ -15,8 +15,8 @@ export default function Header({ labels }: Props) {
 
   const navItems = [
     { href: '#about', label: labels.about },
+    { href: '#telecom', label: labels.telecom },
     { href: '#projects', label: labels.projects },
-    { href: '#experience', label: labels.experience },
     { href: '#certificates', label: labels.certificates },
   ] as const
 
@@ -75,7 +75,7 @@ export default function Header({ labels }: Props) {
         style={{ backgroundColor: 'var(--header-mobile)' }}
       >
         <div className="min-h-0">
-          <div className="flex items-center justify-center gap-5 px-4 py-2.5">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 px-4 py-2.5">
             {navItems.map((item) => (
               <Link
                 key={item.href}

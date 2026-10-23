@@ -102,9 +102,10 @@ type Props = {
   noiseBg: string
   title: string
   eyebrow: string
+  intro?: string
 }
 
-export default function ExperienceSection({ experiences, noiseBg, title, eyebrow }: Props) {
+export default function ExperienceSection({ experiences, noiseBg, title, eyebrow, intro }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const [tabs, setTabs] = useState<Tab[]>([])
 
@@ -132,6 +133,9 @@ export default function ExperienceSection({ experiences, noiseBg, title, eyebrow
             {eyebrow}
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-fg sm:text-4xl">{title}</h2>
+          {intro ? (
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-fg-secondary">{intro}</p>
+          ) : null}
         </div>
 
         <div className="flex flex-col gap-6">

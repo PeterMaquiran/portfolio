@@ -70,6 +70,10 @@ html.light {
   --badge-current-border: rgba(52, 199, 89, 0.28);
   --badge-current-fg: #248a3d;
 
+  --badge-next-bg: rgba(0, 113, 227, 0.1);
+  --badge-next-border: rgba(0, 113, 227, 0.28);
+  --badge-next-fg: #0071e3;
+
   --overlay: rgba(245, 245, 247, 0.72);
   --modal-tab-active: rgba(29, 29, 31, 0.92);
   --modal-tab-idle: rgba(0, 0, 0, 0.06);
@@ -154,6 +158,10 @@ html.dark {
   --badge-current-bg: rgba(16, 185, 129, 0.1);
   --badge-current-border: rgba(16, 185, 129, 0.2);
   --badge-current-fg: #34d399;
+
+  --badge-next-bg: rgba(56, 189, 248, 0.1);
+  --badge-next-border: rgba(56, 189, 248, 0.28);
+  --badge-next-fg: #7dd3fc;
 
   --overlay: lab(8 -4.04 -6.43 / 0.5);
   --modal-tab-active: lab(83 -18.93 -28.32 / 0.7);

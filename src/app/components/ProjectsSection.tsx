@@ -9,120 +9,27 @@ import type { CardPreview } from './CardPreviewVisual'
 import type { Dictionary } from '@/lib/getDictionary'
 
 const Monitor = dynamic(() => import('./Monitor'), { ssr: false })
-const Phone = dynamic(() => import('./Phone'), { ssr: false })
 
-const projectCardPreviews: CardPreview[] = [
-  {
+const projectCardPreviews: Record<string, CardPreview> = {
+  grafana: {
     kind: 'desktop',
     primary: '/grafana-monitoring.jpeg',
     alt: 'Grafana monitoring dashboard',
   },
-  {
-    kind: 'duo',
-    secondary: '/mobile-portfolio.png',
-    primary: '/desktop-porfolio.png',
-    alt: 'Portfolio mobile UI',
-  },
-  {
-    kind: 'duo',
-    primary: '/tvone.png',
-    secondary: '/tvone-mobile.png',
-    alt: 'TVOne news portal',
-  },
-  {
-    kind: 'duo',
-    primary: '/ponto-fresco-desktop.png',
-    secondary: '/pontrofrescho-mobile.png',
-    alt: 'E-commerce platform UI',
-  },
-  {
-    kind: 'phones',
-    primary: '/orga-login.png',
-    secondary: '/orga-habit.png',
-    alt: 'Holistic Life Organizer app',
-  },
-  {
-    kind: 'logo',
-    primary: '/npm.svg',
-    alt: 'NPM',
-  },
-]
+}
 
 // —————————————————————————————————————————————
 // Full 3D previews (modal)
 // —————————————————————————————————————————————
-const projectPreviewFactories: Array<() => JSX.Element[]> = [
-  () => [
+const projectPreviewFactories: Record<string, () => JSX.Element[]> = {
+  grafana: () => [
     <Monitor
       key="monitor"
       screenSource="/grafana-monitoring.jpeg"
       cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
     />,
   ],
-  () => [
-    <Phone
-      key="phone"
-      screenSource="/mobile-portfolio.png"
-      enableZoom
-      enablePan
-      cameraStepBack={10}
-      targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
-    />,
-    <Monitor
-      key="monitor"
-      screenSource="/desktop-porfolio.png"
-      cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
-    />,
-  ],
-  () => [
-    <Monitor
-      key="monitor"
-      screenSource="/tvone.png"
-      cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
-    />,
-    <Phone
-      key="phone"
-      screenSource="/tvone-mobile.png"
-      enableZoom
-      enablePan
-      cameraStepBack={10}
-      targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
-    />,
-  ],
-  () => [
-    <Phone
-      key="phone"
-      screenSource="/pontrofrescho-mobile.png"
-      enableZoom
-      enablePan
-      cameraStepBack={10}
-      targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
-    />,
-    <Monitor
-      key="monitor"
-      screenSource="/ponto-fresco-desktop.png"
-      cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
-    />,
-  ],
-  () => [
-    <Phone
-      key="phone"
-      screenSource="/orga-login.png"
-      enableZoom
-      enablePan
-      cameraStepBack={10}
-      targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
-    />,
-    <Phone
-      key="phone-habit"
-      screenSource="/orga-habit.png"
-      enableZoom
-      enablePan
-      cameraStepBack={10}
-      targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
-    />,
-  ],
-]
+}
 
 type Tab = { label: string; content: ReactNode }
 
@@ -130,19 +37,25 @@ type Props = {
   projects: Dictionary['projects']
   noiseBg: string
   title: string
+  eyebrow: string
+  intro?: string
 }
 
 function projectUrl(project: Dictionary['projects'][number]) {
   return 'url' in project && typeof project.url === 'string' ? project.url : undefined
 }
 
-export default function ProjectsSection({ projects, noiseBg, title }: Props) {
+function projectPreview(project: Dictionary['projects'][number]) {
+  return 'preview' in project && typeof project.preview === 'string' ? project.preview : undefined
+}
+
+export default function ProjectsSection({ projects, noiseBg, title, eyebrow, intro }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const [tabs, setTabs] = useState<Tab[]>([])
   const [previewUrl, setPreviewUrl] = useState<string | undefined>()
 
-  function openPreview(index: number) {
-    const factory = projectPreviewFactories[index]
+  function openPreview(id: string) {
+    const factory = projectPreviewFactories[id]
     if (!factory) return
 
     const previews = factory()
@@ -154,7 +67,8 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
         content,
       })),
     )
-    setPreviewUrl(projectUrl(projects[index]))
+    const project = projects.find((item) => projectPreview(item) === id)
+    setPreviewUrl(project ? projectUrl(project) : undefined)
     setIsOpen(true)
   }
 
@@ -163,15 +77,19 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
       <section id="projects" className="scroll-mt-36 space-y-8 md:scroll-mt-28">
         <div>
           <p className="mb-2 text-xs font-semibold tracking-widest text-fg-muted uppercase">
-            Showcase
+            {eyebrow}
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-fg sm:text-4xl">{title}</h2>
+          {intro ? (
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-fg-secondary">{intro}</p>
+          ) : null}
         </div>
 
-        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2">
           {projects.map((project, index) => {
-            const canPreview = index < projectPreviewFactories.length
-            const cardPreview = projectCardPreviews[index]
+            const previewId = projectPreview(project)
+            const canPreview = Boolean(previewId && projectPreviewFactories[previewId])
+            const cardPreview = previewId ? projectCardPreviews[previewId] : undefined
             const externalUrl = projectUrl(project)
             const canOpen = canPreview || Boolean(externalUrl)
 
@@ -184,20 +102,9 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
                       'radial-gradient(ellipse 100% 100% at 50% 12%, var(--card-glow) 0%, transparent 55%)',
                   }}
                 />
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (canPreview) {
-                      openPreview(index)
-                      return
-                    }
-                    if (externalUrl) {
-                      window.open(externalUrl, '_blank', 'noopener,noreferrer')
-                    }
-                  }}
-                  disabled={!canOpen}
+                <article
                   className={`project-card group relative flex h-full w-full flex-col overflow-hidden rounded-3xl border border-border-subtle bg-surface text-left md:backdrop-blur-3xl transition-all duration-300 ${
-                    canOpen ? 'cursor-pointer hover:border-border-strong' : 'cursor-default'
+                    canOpen ? 'hover:border-border-strong' : ''
                   }`}
                   style={{ boxShadow: 'var(--shadow-card)' }}
                 >
@@ -210,16 +117,37 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
 
                   <div className="relative z-10 flex flex-1 flex-col p-6 pt-4 sm:p-8 sm:pt-5">
                     <div className="mb-3 flex items-start justify-between gap-3">
-                      <h3 className="text-xl font-bold text-fg">{project.title}</h3>
-                      <ArrowUpRight
-                        className={`mt-1 h-5 w-5 shrink-0 text-fg-muted transition-colors ${
-                          canOpen ? 'group-hover:text-icon-hover' : ''
-                        }`}
-                      />
+                      <div className="min-w-0">
+                        <span
+                          className="mb-2 inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase"
+                          style={
+                            project.live
+                              ? {
+                                  borderColor: 'var(--badge-current-border)',
+                                  backgroundColor: 'var(--badge-current-bg)',
+                                  color: 'var(--badge-current-fg)',
+                                }
+                              : {
+                                  borderColor: 'var(--badge-next-border)',
+                                  backgroundColor: 'var(--badge-next-bg)',
+                                  color: 'var(--badge-next-fg)',
+                                }
+                          }
+                        >
+                          {project.status}
+                        </span>
+                        <h3 className="text-xl font-bold text-fg">{project.title}</h3>
+                      </div>
+                      {canOpen ? (
+                        <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-fg-muted transition-colors group-hover:text-icon-hover" />
+                      ) : null}
                     </div>
-                    <p className="mb-6 flex-1 text-xs leading-relaxed text-fg-secondary">
-                      {project.blurb}
-                    </p>
+                    <p className="mb-4 text-sm leading-relaxed text-fg-secondary">{project.blurb}</p>
+                    <ul className="mb-6 flex-1 list-disc space-y-2 pl-4 text-xs leading-relaxed text-fg-secondary marker:text-fg-faint">
+                      {project.highlights.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
                     <div className="mt-auto flex flex-wrap gap-1.5 border-t border-border-subtle pt-5">
                       {project.stack.map((tech) => (
                         <span
@@ -231,7 +159,23 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
                       ))}
                     </div>
                   </div>
-                </button>
+                  {canOpen ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (canPreview && previewId) {
+                          openPreview(previewId)
+                          return
+                        }
+                        if (externalUrl) {
+                          window.open(externalUrl, '_blank', 'noopener,noreferrer')
+                        }
+                      }}
+                      className="absolute inset-0 z-30 cursor-pointer"
+                      aria-label={`Open ${project.title}`}
+                    />
+                  ) : null}
+                </article>
               </div>
             )
           })}

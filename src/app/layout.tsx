@@ -32,27 +32,24 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://peter.tvone.ao'),
-  title: 'Peter Maquiran — Software Developer',
+  title: 'Peter Maquiran — Telecom Systems Engineer',
   description:
-    'Software web and mobile developer skilled in Angular, Vue, Flutter, NestJS, Docker, and OpenTelemetry. Explore my portfolio, and self-hosted DevOps projects.',
+    'Private 5G, Open RAN, IP networking, MQTT and CoAP, and software-defined radio. CCNA 200-301.',
   keywords: [
     'Peter Maquiran',
-    'Full Stack Developer',
-    'Software Engineer',
-    'Angular Developer',
-    'Vue Developer',
-    'NestJS',
-    'Node.js',
-    'Docker',
-    'Nginx',
-    'OpenTelemetry',
+    'Telecommunications',
+    '5G NR',
+    'Private 5G',
+    'Open RAN',
+    'Software Defined Radio',
+    'CCNA',
+    'MQTT',
+    'CoAP',
+    'Kubernetes',
+    'Observability',
     'Prometheus',
     'Grafana',
-    'Next.js Portfolio',
-    'Web Developer',
-    'Mobile Developer',
-    'Ionic',
-    'Flutter',
+    'Edge Computing',
   ],
   // Add PNG icons (Favicon & Apple Touch Icon)
   icons: {
@@ -61,9 +58,9 @@ export const metadata: Metadata = {
     apple: '/peter-portrait.jpg', // Optional: separate PNG for iOS home screen
   },
   openGraph: {
-    title: 'Peter Maquiran — Software Developer',
+    title: 'Peter Maquiran — Telecom Systems Engineer',
     description:
-      'Discover projects, skills and experience from Peter Maquiran — a Software developer passionate about observability and performance.',
+      'Private 5G and Open RAN, built on IP. 5G NR, TCP and UDP, MQTT and CoAP, and software-defined radio.',
     url: 'https://peter.tvone.ao',
     siteName: 'Peter Maquiran',
     locale: 'en_US',
@@ -82,7 +79,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Peter Maquiran',
     description:
-      'Software web and mobile developer specializing in Angular, Vue, Flutter, Docker, and OpenTelemetry.',
+      'Telecom systems: private 5G, Open RAN, IP networking, MQTT, CoAP, and software-defined radio.',
     creator: '@PeterMaquiran',
     // Add PNG image for Twitter card
     images: ['/peter-portrait.jpg'],

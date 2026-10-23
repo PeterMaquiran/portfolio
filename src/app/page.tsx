@@ -1,13 +1,9 @@
-import Link from 'next/link'
 import { MessageCircle } from 'lucide-react'
 import Header from './components/Header'
-import { ObservabilitySection } from './components/ObservabilitySection'
-import EarthBackground from './components/EarthBackgroundLazy'
 import ProjectsSection from './components/ProjectsSection'
-import ExperienceSection from './components/ExperienceSection'
+import TelecomSection from './components/TelecomSection'
 import CertificatesSection from './components/CertificatesSection'
-import ContactButton, { LINKEDIN_URL, WHATSAPP_URL } from './components/ContactButton'
-import LiveVisitors from './components/LiveVisitors'
+import { LINKEDIN_URL, WHATSAPP_URL } from './components/ContactButton'
 import { getDictionary } from '@/lib/getDictionary'
 import Image from 'next/image'
 
@@ -64,7 +60,16 @@ export default async function Home() {
             <p className="max-w-2xl text-lg leading-relaxed font-normal text-fg-secondary sm:text-xl">
               {dict.hero.description}
             </p>
-            <LiveVisitors labels={dict.liveVisitors} />
+            <ul className="flex max-w-2xl flex-wrap gap-2">
+              {dict.hero.focus.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-full border border-border-subtle bg-surface-chip px-3 py-1 text-[11px] font-medium text-fg-secondary"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="relative flex justify-center lg:col-span-5 lg:justify-end">
@@ -85,19 +90,14 @@ export default async function Home() {
           </div>
         </section>
 
-        <ObservabilitySection labels={dict.observabilitySection} />
+        <TelecomSection telecom={dict.telecom} noiseBg={noiseBg} />
 
         <ProjectsSection
           projects={dict.projects}
           noiseBg={noiseBg}
           title={dict.sectionsTitle.Projects}
-        />
-
-        <ExperienceSection
-          experiences={dict.experiences}
-          noiseBg={noiseBg}
-          title={dict.sectionsTitle.Experience}
-          eyebrow={dict.sectionsTitle.ExperienceEyebrow}
+          eyebrow={dict.sectionsTitle.ProjectsEyebrow}
+          intro={dict.sectionsTitle.ProjectsIntro}
         />
 
         <CertificatesSection
@@ -105,59 +105,8 @@ export default async function Home() {
           noiseBg={noiseBg}
           title={dict.sectionsTitle.Certificates}
           eyebrow={dict.sectionsTitle.CertificatesEyebrow}
+          intro={dict.sectionsTitle.CertificatesIntro}
         />
-
-        {/* TESTIMONIALS */}
-        <section className="space-y-8">
-          <div>
-            <p className="mb-2 text-xs font-semibold tracking-widest text-fg-muted uppercase">
-              Feedback
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight text-fg sm:text-4xl">
-              {dict.sectionsTitle.Testimonials}
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2">
-            {dict.testimonials.map((testimonial) => (
-              <div key={testimonial.author} className="relative z-10 flex h-full">
-                <div
-                  className="absolute inset-0 -z-10"
-                  style={{
-                    background:
-                      'radial-gradient(ellipse 100% 100% at 50% 12%, var(--card-glow) 0%, transparent 55%)',
-                  }}
-                />
-                <blockquote
-                  className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-3xl border border-border-subtle bg-surface p-6 md:backdrop-blur-3xl transition-all duration-300 sm:p-10"
-                  style={{ boxShadow: 'var(--shadow-card)' }}
-                >
-                  <div
-                    className="pointer-events-none absolute inset-0 hidden opacity-20 mix-blend-overlay md:block"
-                    style={{ backgroundImage: noiseBg }}
-                  />
-                  <p className="relative z-10 text-sm leading-relaxed text-fg-secondary italic">
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </p>
-                  <footer className="relative z-10 mt-6 border-t border-border-subtle pt-4 text-xs font-medium text-fg-muted">
-                    {testimonial.link ? (
-                      <a
-                        href={testimonial.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="transition-colors hover:text-fg"
-                      >
-                        — {testimonial.author}
-                      </a>
-                    ) : (
-                      <>— {testimonial.author}</>
-                    )}
-                  </footer>
-                </blockquote>
-              </div>
-            ))}
-          </div>
-        </section>
       </main>
 
       {/* Footer */}

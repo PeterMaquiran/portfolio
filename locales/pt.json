@@ -1,72 +1,54 @@
 {
   "projects": [
     {
-      "title": "Stack DevOps Auto-Hospedada",
-      "blurb": "Cluster Docker Swarm com Nginx reverse proxy, TLS via Certbot, registry privado, repository privado, Drone CI e pipeline de métricas/registos/rastreios. Tudo auto-hospedado.",
-      "stack": ["Docker", "Grafana", "Drone CI", "Gitea"],
+      "title": "5G Privado num Campus",
+      "blurb": "Arquitetura de referência para uma rede 5G privada: o rádio, o core e a rede IP empresarial onde ela liga.",
+      "stack": ["5G NR", "5G privado", "Open RAN", "Kubernetes"],
+      "status": "RAN",
+      "live": false,
       "highlights": [
-        "Atualizações blue/green sem tempo de inatividade",
-        "Pipelines Gitea + Drone CI para compilar e implementar",
-        "Registos e dashboards centralizados"
+        "5G NR do dispositivo ao core, com uma fatia de campus e uma fatia de operações",
+        "Open RAN separado em RU, DU e CU, e que interface leva o quê",
+        "Plano de controlo e plano de utilizador como funções cloud-native em Kubernetes"
+      ]
+    },
+    {
+      "title": "Rádio Definido por Software",
+      "blurb": "RTL-SDR e GNU Radio para capturar, identificar e desmodular sinais reais, para a arquitetura de RAN ser verificada contra um espetro verdadeiro.",
+      "stack": ["GNU Radio", "RTL-SDR", "Python", "DSP"],
+      "status": "Rádio",
+      "live": false,
+      "highlights": [
+        "Uma cadeia documentada, das amostras IQ até um sinal descodificado",
+        "Identificação de sinal numa bancada só de receção",
+        "Experiências de transmissão à espera de licença de radioamador"
+      ]
+    },
+    {
+      "title": "Protocolos na Edge",
+      "blurb": "Os dispositivos falam MQTT e CoAP para a rede privada. O protocolo escolhe-se pela latência medida, e cada um deixa explícito o TCP ou UDP por baixo.",
+      "stack": ["MQTT", "CoAP", "TCP/UDP", "ESP32"],
+      "status": "Edge",
+      "live": false,
+      "highlights": [
+        "O mesmo payload de telemetria em MQTT e em CoAP, com a latência escrita",
+        "Onde cada protocolo assenta em TCP ou UDP",
+        "ESP32 na edge, broker e consumidor em contentores"
+      ]
+    },
+    {
+      "title": "Operação da Rede",
+      "blurb": "Como a rede se opera depois de desenhada. Métricas, registos e traces de produção para serviços distribuídos, incluindo um plano de utilizador cloud-native.",
+      "stack": ["Prometheus", "Grafana", "Tracing", "IP"],
+      "status": "No ar",
+      "live": true,
+      "preview": "grafana",
+      "highlights": [
+        "Métricas, registos e traces ao vivo num cluster auto-hospedado",
+        "A vista operacional usada para correr funções de rede cloud-native",
+        "Abrir o dashboard e ver o pipeline, não um mock"
       ],
       "url": "https://grafana.tvone.ao/?orgId=1&from=now-6h&to=now&timezone=browser"
-    },
-    {
-      "title": "Website de Portfólio Reativo",
-      "blurb": "Portfólio Next.js responsivo com cards glassmorphism, profundidade e blur inspirados na Apple, animações suaves, detalhes 3D e templates EN/PT.",
-      "stack": ["Next.js", "Tailwind", "Three.js", "Socket.io"],
-      "highlights": [
-        "Cards de vidro com blur fosco e profundidade suave",
-        "Layout, tipografia e movimento inspirados na Apple",
-        "Cenas 3D interativas e templates multilíngua"
-      ],
-      "url": "https://peter.tvone.ao"
-    },
-    {
-      "title": "Portal de Notícias TVOne",
-      "blurb": "Portal de notícias feito com NestJS e Next.js, com Redis para cache e RabbitMQ para pipelines assíncronos de conteúdo e publicação em tempo real.",
-      "stack": ["NestJS", "Next.js", "Redis", "RabbitMQ"],
-      "highlights": [
-        "API e fluxos editoriais com NestJS",
-        "Cache com Redis para entrega rápida de artigos",
-        "Filas RabbitMQ para publicação e notificações"
-      ],
-      "url": "https://tvone.ao/"
-    },
-    {
-      "title": "Plataforma de E-Commerce",
-      "blurb": "Plataforma de e-commerce full-stack com pagamentos seguros, processamento de pedidos em tempo real e uma infraestrutura resiliente projetada para alta disponibilidade e desempenho.",
-      "stack": ["Nuxt.js", "Laravel", "MySQL"],
-      "highlights": [
-        "Listagem de produtos e funcionalidade de carrinho de compras",
-        "Checkout e integração de pagamentos",
-        "Gestão e acompanhamento de pedidos",
-        "Painel administrativo para gerir produtos e utilizadores"
-      ],
-      "url": "https://github.com/PeterMaquiran/AWS-Examples"
-    },
-    {
-      "title": "Organizador de Vida Holístico",
-      "blurb": "Promovendo o bem-estar através do acompanhamento intencional de hábitos, planeamento consciente e um planeador de jardim orgânico integrado, tudo dentro de uma suite de gestão pessoal.",
-      "stack": ["Flutter", "NestJs", "Keycloak", "PostgreSQL"],
-      "highlights": [
-        "Planeador interativo de jardim orgânico e calendário",
-        "Ferramentas personalizadas de acompanhamento de hábitos e reflexão",
-        "Calendário integrado para planeamento consciente",
-        "Dashboard holístico de progresso e insights"
-      ],
-      "url": "https://github.com/PeterMaquiran/orga1"
-    },
-    {
-      "title": "ZenTrace",
-      "blurb": "Biblioteca de tracing em TypeScript que mostra o caminho por trás de um stack trace: quais funções executaram, como o fluxo assíncrono avançou e os logs e chamadas HTTP correlacionados de cada passo, num painel do Chrome DevTools.",
-      "stack": ["TypeScript", "Chrome DevTools", "Zipkin", "Loki"],
-      "highlights": [
-        "Rastreio de métodos com @trace() e de funções com traceFn()",
-        "Árvore de spans, linha do tempo e inspector de argumentos e retornos",
-        "console e fetch ligados aos spans, com exportação para Zipkin e Loki"
-      ],
-      "url": "https://www.npmjs.com/package/zentrace"
     }
   ],
 
@@ -128,32 +110,108 @@
   ],
   "hero": {
     "name": "PETER MAQUIRAN.",
-    "tagline": "A Construir Sistemas para Resiliência e Performance.",
-    "description": "Web, Mobile & Forward Deployed Engineer (FDE) com mais de 9 anos de experiência. Focado em construir sistemas fiáveis, escaláveis e observáveis em aplicações full-stack."
+    "tagline": "Engenheiro de Sistemas de Telecomunicações.",
+    "description": "5G privado e Open RAN, assentes em IP. Levo um sistema do rádio e do dispositivo até à cloud: 5G NR, TCP e UDP, MQTT e CoAP, e rádio definido por software.",
+    "focus": ["5G NR", "5G privado", "Open RAN", "Redes IP", "TCP/UDP", "MQTT/CoAP", "SDR"]
   },
   "certificates": [
+    {
+      "name": "Cisco Certified Network Associate",
+      "code": "200-301",
+      "issuer": "Cisco",
+      "status": "Associate",
+      "tone": "progress",
+      "mark": "CCNA",
+      "featured": true,
+      "image": "/badge-ccna.png",
+      "imageAlt": "Distintivo CCNA 200-301",
+      "description": "Redes IP, switching, routing, wireless, segurança e automação. TCP e UDP como se comportam numa rede real. É a credencial por baixo do trabalho de rádio."
+    },
     {
       "name": "AWS Certified Solutions Architect – Associate",
       "code": "SAA-C03",
       "issuer": "Amazon Web Services",
       "status": "Em curso",
+      "tone": "next",
       "ongoing": true,
       "image": "/aws-solutions-architect-associate.png",
       "imageAlt": "Distintivo AWS Certified Solutions Architect Associate",
-      "description": "A preparar o exame: arquiteturas seguras, resilientes, de alto desempenho e otimizadas em custo na AWS."
+      "mark": "AWS",
+      "description": "A cloud onde correm um core 5G virtualizado e um gateway na edge: resiliente, segura e consciente do custo."
+    },
+    {
+      "name": "Certified Wireless Network Administrator",
+      "code": "CWNA",
+      "issuer": "CWNP",
+      "status": "A seguir",
+      "tone": "next",
+      "mark": "CWNA",
+      "image": "/badge-cwna.png",
+      "imageAlt": "Distintivo CWNA",
+      "description": "RF, antenas e espetro. A profundidade de rádio por trás de 5G NR, 5G privado e rádio definido por software."
+    },
+    {
+      "name": "CCNA Automation",
+      "code": "200-901",
+      "issuer": "Cisco",
+      "status": "A seguir",
+      "tone": "next",
+      "mark": "DevNet",
+      "image": "/badge-devnet.png",
+      "imageAlt": "Distintivo Cisco CCNA Automation",
+      "description": "A certificação DevNet Associate. Redes programáveis: APIs e configuração orientada a modelos, para a rede IP ser operada como software."
+    },
+    {
+      "name": "Certified Kubernetes Administrator",
+      "code": "CKA",
+      "issuer": "CNCF",
+      "status": "A seguir",
+      "tone": "next",
+      "mark": "CKA",
+      "image": "/badge-cka.png",
+      "imageAlt": "Distintivo Certified Kubernetes Administrator",
+      "description": "O runtime do Open RAN e de um core cloud-native. CU, DU e funções do plano de utilizador correm como workloads."
     }
   ],
+  "telecom": {
+    "eyebrow": "Competências",
+    "title": "Rádio, IP e a edge.",
+    "description": "O âmbito do trabalho: uma rede privada da interface rádio ao dispositivo, com o transporte e a operação no meio.",
+    "groups": [
+      {
+        "title": "RAN",
+        "items": ["Arquitetura 5G NR", "5G privado", "Open RAN", "RU / DU / CU", "Funções de rede cloud-native"]
+      },
+      {
+        "title": "IP e transporte",
+        "items": ["Redes IP", "TCP/UDP", "Switching e routing", "QoS", "Latência determinística"]
+      },
+      {
+        "title": "Rádio",
+        "items": ["Rádio definido por software", "GNU Radio", "Captura de espetro", "Fundamentos de RF"]
+      },
+      {
+        "title": "Edge",
+        "items": ["MQTT", "CoAP", "ESP32", "Telemetria edge-cloud", "Kubernetes"]
+      }
+    ]
+  },
   "sectionsTitle": {
     "Experience": "Experiência Profissional",
     "ExperienceEyebrow": "Carreira",
+    "ExperienceIntro": "A carreira de software em que este portfólio assenta.",
     "Testimonials": "Testemunhos",
-    "Projects": "Projetos",
+    "Projects": "Trabalho selecionado",
+    "ProjectsEyebrow": "Telecomunicações",
+    "ProjectsIntro": "Quatro peças que um recrutador consegue percorrer: a RAN, o rádio, os protocolos do dispositivo e a operação ao vivo.",
     "Certificates": "Certificados",
-    "CertificatesEyebrow": "Credenciais"
+    "CertificatesEyebrow": "Credenciais",
+    "CertificatesIntro": "O CCNA 200-301 é a credencial de redes. AWS Solutions Architect está em curso, para a cloud onde corre um core virtualizado. Seguem-se CWNA, DevNet Associate e CKA. Depois do CCNA: CCNP Enterprise para profundidade de desenho, e Security+ para segurança de 5G privado."
   },
   "navBar": {
     "about": "Sobre",
-    "projects": "Projetos",
+    "telecom": "Competências",
+    "projects": "Trabalho",
     "experience": "Experiência",
     "certificates": "Certificados",
     "contact": "Contacto"

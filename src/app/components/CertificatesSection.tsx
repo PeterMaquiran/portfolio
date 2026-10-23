@@ -75,17 +75,22 @@ export default function CertificatesSection({
                 style={{ backgroundImage: noiseBg }}
               />
 
-              <div className="relative z-10 flex flex-col items-start gap-4 p-6 sm:flex-row sm:items-center sm:gap-5 sm:p-7">
+              <div className="relative z-10 flex flex-col items-start gap-5 p-6 sm:flex-row sm:items-center sm:gap-6 sm:p-7">
                 {'image' in certificate && certificate.image ? (
                   <Image
                     src={certificate.image}
                     alt={certificate.imageAlt}
-                    width={160}
-                    height={160}
-                    className="h-16 w-16 shrink-0 self-center rounded-xl bg-white object-contain p-1 sm:h-[4.5rem] sm:w-[4.5rem]"
+                    width={320}
+                    height={320}
+                    sizes="(min-width: 640px) 160px, 128px"
+                    className={`shrink-0 self-center rounded-2xl bg-white object-contain p-2 ${
+                      'featured' in certificate && certificate.featured
+                        ? 'h-32 w-32 sm:h-40 sm:w-40'
+                        : 'h-28 w-28 sm:h-32 sm:w-32'
+                    }`}
                   />
                 ) : (
-                  <div className="flex h-28 w-24 shrink-0 items-center justify-center self-center rounded-2xl border border-border-subtle bg-surface-chip sm:self-auto">
+                  <div className="flex h-28 w-28 shrink-0 items-center justify-center self-center rounded-2xl border border-border-subtle bg-surface-chip sm:h-32 sm:w-32 sm:self-auto">
                     <span className="text-sm font-bold tracking-tight text-fg">{certificate.mark}</span>
                   </div>
                 )}

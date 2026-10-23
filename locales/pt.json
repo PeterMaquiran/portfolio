@@ -2,50 +2,50 @@
   "projects": [
     {
       "title": "5G Privado num Campus",
-      "blurb": "Arquitetura de referência para uma rede 5G privada: o rádio, o core e a rede IP empresarial onde ela liga.",
+      "blurb": "Um campus 5G privado escrito para outro engenheiro o rever: o rádio, o core e a rede IP empresarial onde liga.",
       "stack": ["5G NR", "5G privado", "Open RAN", "Kubernetes"],
-      "status": "RAN",
+      "status": "Desenho",
       "live": false,
       "highlights": [
-        "5G NR do dispositivo ao core, com uma fatia de campus e uma fatia de operações",
-        "Open RAN separado em RU, DU e CU, e que interface leva o quê",
-        "Plano de controlo e plano de utilizador como funções cloud-native em Kubernetes"
+        "Duas fatias, dois trabalhos: tráfego de campus, e o tráfego que opera a rede",
+        "RU, DU e CU separados, com a interface de cada salto nomeada",
+        "Plano de controlo e plano de utilizador como funções distintas em Kubernetes"
       ]
     },
     {
       "title": "Rádio Definido por Software",
-      "blurb": "RTL-SDR e GNU Radio para capturar, identificar e desmodular sinais reais, para a arquitetura de RAN ser verificada contra um espetro verdadeiro.",
+      "blurb": "O desenho é verificado contra um espetro que eu capturo. RTL-SDR e GNU Radio, só receção, até uma licença permitir transmitir.",
       "stack": ["GNU Radio", "RTL-SDR", "Python", "DSP"],
-      "status": "Rádio",
+      "status": "Bancada",
       "live": false,
       "highlights": [
-        "Uma cadeia documentada, das amostras IQ até um sinal descodificado",
-        "Identificação de sinal numa bancada só de receção",
-        "Experiências de transmissão à espera de licença de radioamador"
+        "Uma cadeia escrita, das amostras IQ até um sinal descodificado",
+        "Sinais identificados na bancada, não num diagrama",
+        "A transmissão fica desligada até a licença de radioamador estar na mão"
       ]
     },
     {
       "title": "Protocolos na Edge",
-      "blurb": "Os dispositivos falam MQTT e CoAP para a rede privada. O protocolo escolhe-se pela latência medida, e cada um deixa explícito o TCP ou UDP por baixo.",
+      "blurb": "O protocolo é um resultado, não uma preferência. A mesma telemetria em MQTT e em CoAP, a latência escrita, TCP ou UDP nomeados por baixo.",
       "stack": ["MQTT", "CoAP", "TCP/UDP", "ESP32"],
-      "status": "Edge",
+      "status": "Medido",
       "live": false,
       "highlights": [
-        "O mesmo payload de telemetria em MQTT e em CoAP, com a latência escrita",
-        "Onde cada protocolo assenta em TCP ou UDP",
-        "ESP32 na edge, broker e consumidor em contentores"
+        "Um payload, dois protocolos, o mais lento visível nos números",
+        "Onde cada um assenta em TCP ou UDP, dito, não assumido",
+        "ESP32 no dispositivo, broker e consumidor em contentores"
       ]
     },
     {
       "title": "Operação da Rede",
-      "blurb": "Como a rede se opera depois de desenhada. Métricas, registos e traces de produção para serviços distribuídos, incluindo um plano de utilizador cloud-native.",
+      "blurb": "A parte que já está em produção. Métricas, registos e traces num cluster que eu opero — a vista com que se observa um plano de utilizador cloud-native.",
       "stack": ["Prometheus", "Grafana", "Tracing", "IP"],
       "status": "No ar",
       "live": true,
       "preview": "grafana",
       "highlights": [
-        "Métricas, registos e traces ao vivo num cluster auto-hospedado",
-        "A vista operacional usada para correr funções de rede cloud-native",
+        "Métricas, registos e traces ao vivo num cluster que eu corro",
+        "O mesmo hábito operacional que um plano de utilizador cloud-native exige",
         "Abrir o dashboard e ver o pipeline, não um mock"
       ],
       "url": "https://grafana.tvone.ao/?orgId=1&from=now-6h&to=now&timezone=browser"
@@ -111,8 +111,8 @@
   "hero": {
     "name": "PETER MAQUIRAN.",
     "tagline": "Engenheiro de Sistemas de Telecomunicações.",
-    "description": "5G privado e Open RAN, assentes em IP. Levo um sistema do rádio e do dispositivo até à cloud: 5G NR, TCP e UDP, MQTT e CoAP, e rádio definido por software.",
-    "focus": ["5G NR", "5G privado", "Open RAN", "Redes IP", "TCP/UDP", "MQTT/CoAP", "SDR"]
+    "description": "Seguro uma rede privada como um único sistema. 5G NR e Open RAN sobre IP, um espetro que consigo capturar, um protocolo de dispositivo escolhido por uma latência medida, e uma vista de operação que já está no ar.",
+    "focus": ["5G privado", "Open RAN", "Transporte IP", "Espetro real", "Latência medida"]
   },
   "certificates": [
     {
@@ -125,7 +125,7 @@
       "featured": true,
       "image": "/badge-ccna.png",
       "imageAlt": "Distintivo CCNA 200-301",
-      "description": "Redes IP, switching, routing, wireless, segurança e automação. TCP e UDP como se comportam numa rede real. É a credencial por baixo do trabalho de rádio."
+      "description": "A credencial na mão. Switching, routing, wireless, segurança e automação, e TCP e UDP como se comportam numa rede real. É o chão por baixo do trabalho de rádio."
     },
     {
       "name": "AWS Certified Solutions Architect – Associate",
@@ -175,24 +175,24 @@
   ],
   "telecom": {
     "eyebrow": "Competências",
-    "title": "Rádio, IP e a edge.",
-    "description": "O âmbito do trabalho: uma rede privada da interface rádio ao dispositivo, com o transporte e a operação no meio.",
+    "title": "Bom na junção.",
+    "description": "Uma rede privada falha numa junção: o rádio no IP, o IP no dispositivo, o dispositivo no dashboard. Trabalho até poder dizer o que esse salto transporta, o que custa, e como o veria falhar.",
     "groups": [
       {
         "title": "RAN",
-        "items": ["Arquitetura 5G NR", "5G privado", "Open RAN", "RU / DU / CU", "Funções de rede cloud-native"]
+        "items": ["5G NR do dispositivo ao core", "Uma fatia de campus e uma de operações", "Open RAN separado em RU, DU e CU", "A interface de cada salto, nomeada", "Plano de controlo e de utilizador separados"]
       },
       {
         "title": "IP e transporte",
-        "items": ["Redes IP", "TCP/UDP", "Switching e routing", "QoS", "Latência determinística"]
+        "items": ["A rede onde a RAN liga", "TCP e UDP como se comportam de facto", "Switching e routing desse caminho", "QoS para o tráfego que não pode esperar", "Latência contabilizada, não assumida"]
       },
       {
         "title": "Rádio",
-        "items": ["Rádio definido por software", "GNU Radio", "Captura de espetro", "Fundamentos de RF"]
+        "items": ["Uma cadeia de receção num espetro real", "Amostras IQ até um sinal descodificado", "GNU Radio e RTL-SDR na bancada", "RF julgada pela captura, não pelo diagrama"]
       },
       {
         "title": "Edge",
-        "items": ["MQTT", "CoAP", "ESP32", "Telemetria edge-cloud", "Kubernetes"]
+        "items": ["MQTT ou CoAP, escolhido pela medição", "Um payload, dois protocolos, um número", "ESP32 no dispositivo", "Broker e consumidor em contentores"]
       }
     ]
   },
@@ -203,10 +203,10 @@
     "Testimonials": "Testemunhos",
     "Projects": "Trabalho selecionado",
     "ProjectsEyebrow": "Telecomunicações",
-    "ProjectsIntro": "Quatro peças que um recrutador consegue percorrer: a RAN, o rádio, os protocolos do dispositivo e a operação ao vivo.",
+    "ProjectsIntro": "Quatro paragens numa só rede. Um recrutador começa no rádio e acaba num dashboard que já está a correr.",
     "Certificates": "Certificados",
     "CertificatesEyebrow": "Credenciais",
-    "CertificatesIntro": "O CCNA 200-301 é a credencial de redes. AWS Solutions Architect está em curso, para a cloud onde corre um core virtualizado. Seguem-se CWNA, DevNet Associate e CKA. Depois do CCNA: CCNP Enterprise para profundidade de desenho, e Security+ para segurança de 5G privado."
+    "CertificatesIntro": "O CCNA 200-301 é a credencial na mão: IP, switching, routing, e TCP e UDP numa rede real. AWS Solutions Architect está em curso, para a cloud onde corre um core virtualizado. Seguem-se CWNA, DevNet Associate e CKA — rádio, redes programáveis e Kubernetes — as três profundidades que este trabalho ainda pede."
   },
   "navBar": {
     "about": "Sobre",

@@ -75,50 +75,50 @@
   "projects": [
     {
       "title": "Private 5G Campus",
-      "blurb": "Reference architecture for a private 5G network: the radio, the core, and the enterprise IP network it lands on.",
+      "blurb": "A private 5G campus written so another engineer can review it: the radio, the core, and the enterprise IP it lands on.",
       "stack": ["5G NR", "Private 5G", "Open RAN", "Kubernetes"],
-      "status": "RAN",
+      "status": "Design",
       "live": false,
       "highlights": [
-        "5G NR from the device to the core, with a campus slice and an operations slice",
-        "Open RAN split across RU, DU, and CU, and which interface carries what",
-        "Control plane and user plane as cloud-native functions on Kubernetes"
+        "Two slices, two jobs: campus traffic, and the traffic that runs the network",
+        "RU, DU, and CU drawn apart, with the interface on each hop named",
+        "Control plane and user plane kept as separate functions on Kubernetes"
       ]
     },
     {
       "title": "Software-Defined Radio",
-      "blurb": "RTL-SDR and GNU Radio used to capture, identify, and demodulate live signals, so the RAN design is checked against a real spectrum.",
+      "blurb": "The design is checked against a spectrum I capture. RTL-SDR and GNU Radio, receive only, until a license allows transmit.",
       "stack": ["GNU Radio", "RTL-SDR", "Python", "DSP"],
-      "status": "Radio",
+      "status": "Bench",
       "live": false,
       "highlights": [
-        "A documented chain from IQ samples to a decoded signal",
-        "Signal identification on a receive-only bench",
-        "Transmit experiments wait on an amateur radio license"
+        "A written chain from IQ samples to a decoded signal",
+        "Signals identified on the bench, not from a diagram",
+        "Transmit stays off until the amateur license is in hand"
       ]
     },
     {
       "title": "Edge Protocols",
-      "blurb": "Devices speak MQTT and CoAP into the private network. The protocol is chosen from measured latency, and each one is explicit about TCP or UDP underneath.",
+      "blurb": "The protocol is a result, not a preference. The same telemetry on MQTT and on CoAP, the latency written down, TCP or UDP named underneath.",
       "stack": ["MQTT", "CoAP", "TCP/UDP", "ESP32"],
-      "status": "Edge",
+      "status": "Measured",
       "live": false,
       "highlights": [
-        "One telemetry payload on MQTT and on CoAP, with the latency written down",
-        "Where each protocol sits on TCP or UDP",
-        "ESP32 at the edge, broker and consumer in containers"
+        "One payload, two protocols, the slower one visible in the numbers",
+        "Where each one sits on TCP or UDP, stated, not assumed",
+        "ESP32 at the device, broker and consumer in containers"
       ]
     },
     {
       "title": "Network Operations",
-      "blurb": "How the network is run after it is designed. Production metrics, logs, and traces for distributed services, including a cloud-native user plane.",
+      "blurb": "The part already in production. Metrics, logs, and traces on a cluster I operate — the view a cloud-native user plane is watched with.",
       "stack": ["Prometheus", "Grafana", "Tracing", "IP"],
       "status": "Live",
       "live": true,
       "preview": "grafana",
       "highlights": [
-        "Live metrics, logs, and traces on a self-hosted cluster",
-        "The operational view used to run cloud-native network functions",
+        "Live metrics, logs, and traces on a cluster I run",
+        "The same operational habit a cloud-native user plane needs",
         "Open the dashboard and see the pipeline, not a mock"
       ],
       "url": "https://grafana.tvone.ao/?orgId=1&from=now-6h&to=now&timezone=browser"
@@ -184,8 +184,8 @@
   "hero": {
     "name": "PETER MAQUIRAN.",
     "tagline": "Telecom Systems Engineer.",
-    "description": "Private 5G and Open RAN, built on IP. I take a system from the radio and the device to the cloud: 5G NR, TCP and UDP, MQTT and CoAP, and software-defined radio.",
-    "focus": ["5G NR", "Private 5G", "Open RAN", "IP Networking", "TCP/UDP", "MQTT/CoAP", "SDR"]
+    "description": "I hold a private network as one system. 5G NR and Open RAN on IP, a spectrum I can capture, a device protocol chosen from a measured latency, and an operations view that is already live.",
+    "focus": ["Private 5G", "Open RAN", "IP transport", "Live spectrum", "Measured latency"]
   },
   "certificates": [
     {
@@ -198,7 +198,7 @@
       "featured": true,
       "image": "/badge-ccna.png",
       "imageAlt": "CCNA 200-301 badge",
-      "description": "IP networking, switching, routing, wireless, security, and automation. TCP and UDP as they behave on a live network. This is the credential under the radio work."
+      "description": "The credential in hand. Switching, routing, wireless, security, and automation, and TCP and UDP as they behave on a live network. That is the floor under the radio work."
     },
     {
       "name": "AWS Certified Solutions Architect – Associate",
@@ -248,24 +248,24 @@
   ],
   "telecom": {
     "eyebrow": "Expertise",
-    "title": "Radio, IP, and the edge.",
-    "description": "The scope of the work: a private network from the air interface to the device, with the transport and the operations in between.",
+    "title": "Good at the join.",
+    "description": "A private network fails at one join: radio into IP, IP into the device, the device into the dashboard. I work until I can say what that hop carries, what it costs, and how I would see it fail.",
     "groups": [
       {
         "title": "RAN",
-        "items": ["5G NR architecture", "Private 5G", "Open RAN", "RU / DU / CU", "Cloud-native network functions"]
+        "items": ["5G NR from the device to the core", "A campus slice and an operations slice", "Open RAN split into RU, DU, and CU", "The interface on each hop, named", "Control plane and user plane kept apart"]
       },
       {
         "title": "IP and transport",
-        "items": ["IP networking", "TCP/UDP", "Switching and routing", "QoS", "Deterministic latency"]
+        "items": ["The network the RAN lands on", "TCP and UDP as they actually behave", "Switching and routing for that path", "QoS for the traffic that cannot wait", "Latency accounted for, not assumed"]
       },
       {
         "title": "Radio",
-        "items": ["Software-defined radio", "GNU Radio", "Spectrum capture", "RF fundamentals"]
+        "items": ["A receive chain on a live spectrum", "IQ samples to a decoded signal", "GNU Radio and RTL-SDR on the bench", "RF judged by the capture, not the diagram"]
       },
       {
         "title": "Edge",
-        "items": ["MQTT", "CoAP", "ESP32", "Edge-to-cloud telemetry", "Kubernetes"]
+        "items": ["MQTT or CoAP, chosen by measurement", "One payload, two protocols, one number", "ESP32 at the device", "Broker and consumer in containers"]
       }
     ]
   },
@@ -276,10 +276,10 @@
     "Testimonials": "Testimonials",
     "Projects": "Selected work",
     "ProjectsEyebrow": "Telecommunications",
-    "ProjectsIntro": "Four pieces a hiring manager can walk through: the RAN, the radio, the device protocols, and live operations.",
+    "ProjectsIntro": "Four stops on one network. A recruiter can start at the radio and finish on a dashboard that is already running.",
     "Certificates": "Certificates",
     "CertificatesEyebrow": "Credentials",
-    "CertificatesIntro": "CCNA 200-301 is the network credential. AWS Solutions Architect is in progress, for the cloud a virtualized core runs on. CWNA, DevNet Associate, and CKA follow. After CCNA: CCNP Enterprise for design depth, and Security+ for private 5G security."
+    "CertificatesIntro": "CCNA 200-301 is the credential in hand: IP, switching, routing, and TCP and UDP on a real network. AWS Solutions Architect is in progress, for the cloud a virtualized core runs on. CWNA, DevNet Associate, and CKA are next — radio, programmable networks, and Kubernetes — the three depths this work still asks for."
   },
   "navBar": {
     "about": "About",

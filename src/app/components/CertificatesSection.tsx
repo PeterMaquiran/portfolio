@@ -75,14 +75,14 @@ export default function CertificatesSection({
                 style={{ backgroundImage: noiseBg }}
               />
 
-              <div className="relative z-10 flex flex-col items-start gap-5 p-6 sm:flex-row sm:items-start sm:gap-6 sm:p-7">
+              <div className="relative z-10 flex flex-col items-start gap-4 p-6 sm:flex-row sm:items-center sm:gap-5 sm:p-7">
                 {'image' in certificate && certificate.image ? (
                   <Image
                     src={certificate.image}
                     alt={certificate.imageAlt}
-                    width={520}
-                    height={600}
-                    className="h-28 w-28 shrink-0 self-center rounded-2xl bg-white object-contain p-2 sm:h-32 sm:w-32"
+                    width={160}
+                    height={160}
+                    className="h-16 w-16 shrink-0 self-center rounded-xl bg-white object-contain p-1 sm:h-[4.5rem] sm:w-[4.5rem]"
                   />
                 ) : (
                   <div className="flex h-28 w-24 shrink-0 items-center justify-center self-center rounded-2xl border border-border-subtle bg-surface-chip sm:self-auto">

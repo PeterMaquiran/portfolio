@@ -140,7 +140,45 @@
       "ongoing": true,
       "image": "/aws-solutions-architect-associate.png",
       "imageAlt": "Distintivo AWS Certified Solutions Architect Associate",
+      "width": 520,
+      "height": 600,
       "description": "A preparar o exame: arquiteturas seguras, resilientes, de alto desempenho e otimizadas em custo na AWS."
+    },
+    {
+      "name": "Certified Kubernetes Administrator",
+      "code": "CKA",
+      "issuer": "The Linux Foundation",
+      "status": "A seguir",
+      "ongoing": false,
+      "image": "/cka.png",
+      "imageAlt": "Distintivo Certified Kubernetes Administrator",
+      "width": 1800,
+      "height": 1800,
+      "description": "A seguir: administração de Kubernetes em produção, de workloads e rede a armazenamento, segurança e resolução de problemas."
+    },
+    {
+      "name": "HashiCorp Certified: Terraform Associate",
+      "code": "HCTA0-004",
+      "issuer": "HashiCorp",
+      "status": "A seguir",
+      "ongoing": false,
+      "image": "/hashicorp-terraform-associate.png",
+      "imageAlt": "Distintivo HashiCorp Certified Terraform Associate",
+      "width": 1242,
+      "height": 1484,
+      "description": "A seguir: infraestrutura como código com Terraform, incluindo fluxo de trabalho, state, módulos e provisionamento multi-cloud."
+    },
+    {
+      "name": "AWS Certified CloudOps Engineer – Associate",
+      "code": "SOA-C03",
+      "issuer": "Amazon Web Services",
+      "status": "A seguir",
+      "ongoing": false,
+      "image": "/aws-cloudops-engineer-associate.png",
+      "imageAlt": "Distintivo AWS Certified CloudOps Engineer Associate",
+      "width": 278,
+      "height": 314,
+      "description": "A seguir: implementar, operar e manter cargas de trabalho na AWS, com monitorização, rede, segurança e controlo de custos."
     }
   ],
   "sectionsTitle": {

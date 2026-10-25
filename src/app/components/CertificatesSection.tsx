@@ -41,9 +41,9 @@ export default function CertificatesSection({ certificates, noiseBg, title, eyeb
                 <Image
                   src={certificate.image}
                   alt={certificate.imageAlt}
-                  width={520}
-                  height={600}
-                  className="h-40 w-auto shrink-0 self-center sm:h-44 sm:self-auto"
+                  width={certificate.width}
+                  height={certificate.height}
+                  className="h-40 w-auto shrink-0 self-center object-contain sm:h-44 sm:self-auto"
                 />
                 <div className="min-w-0 space-y-3">
                   <h3 className="text-xl font-bold tracking-tight text-fg sm:text-2xl">

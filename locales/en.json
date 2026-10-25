@@ -213,7 +213,45 @@
       "ongoing": true,
       "image": "/aws-solutions-architect-associate.png",
       "imageAlt": "AWS Certified Solutions Architect Associate badge",
+      "width": 520,
+      "height": 600,
       "description": "Preparing for the exam: secure, resilient, high-performing, and cost-optimized architectures on AWS."
+    },
+    {
+      "name": "Certified Kubernetes Administrator",
+      "code": "CKA",
+      "issuer": "The Linux Foundation",
+      "status": "Next",
+      "ongoing": false,
+      "image": "/cka.png",
+      "imageAlt": "Certified Kubernetes Administrator badge",
+      "width": 1800,
+      "height": 1800,
+      "description": "Up next: production Kubernetes administration, from workloads and networking to storage, security, and troubleshooting."
+    },
+    {
+      "name": "HashiCorp Certified: Terraform Associate",
+      "code": "HCTA0-004",
+      "issuer": "HashiCorp",
+      "status": "Next",
+      "ongoing": false,
+      "image": "/hashicorp-terraform-associate.png",
+      "imageAlt": "HashiCorp Certified Terraform Associate badge",
+      "width": 1242,
+      "height": 1484,
+      "description": "Up next: infrastructure as code with Terraform, including workflow, state, modules, and multi-cloud provisioning."
+    },
+    {
+      "name": "AWS Certified CloudOps Engineer – Associate",
+      "code": "SOA-C03",
+      "issuer": "Amazon Web Services",
+      "status": "Next",
+      "ongoing": false,
+      "image": "/aws-cloudops-engineer-associate.png",
+      "imageAlt": "AWS Certified CloudOps Engineer Associate badge",
+      "width": 278,
+      "height": 314,
+      "description": "Up next: deploying, operating, and maintaining workloads on AWS, with monitoring, networking, security, and cost control."
     }
   ],
   "sectionsTitle": {

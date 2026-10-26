@@ -192,10 +192,15 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
             </div>
           </div>
 
-          {/* Full width: Other — hidden until Show More */}
+          {/* Full width: Other. Always mounted so a static HTML fetch includes it; the toggle only clips it. */}
           <div className="md:col-span-3">
-            {showMore && (
-              <>
+            <div
+              id="observability-other"
+              className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                showMore ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+              }`}
+            >
+              <div className="min-h-0 overflow-hidden">
                 <h3 className="mb-5 text-lg font-medium text-fg">Other</h3>
 
                 <div className="flex flex-wrap gap-3">
@@ -268,12 +273,14 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
                     iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/espressif.svg"
                   /> */}
                 </div>
-              </>
-            )}
+              </div>
+            </div>
 
             <div className={`flex justify-center ${showMore ? 'mt-6' : ''}`}>
               <button
                 type="button"
+                aria-expanded={showMore}
+                aria-controls="observability-other"
                 onClick={() => setShowMore(!showMore)}
                 className="flex items-center gap-2 rounded-md border border-border-subtle bg-surface-chip px-6 py-2.5 text-sm font-medium text-fg-secondary transition-all duration-200 hover:border-border-strong hover:bg-surface-hover hover:text-fg md:backdrop-blur-sm"
               >

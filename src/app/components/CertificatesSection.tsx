@@ -9,6 +9,8 @@ type Props = {
 }
 
 export default function CertificatesSection({ certificates, noiseBg, title, eyebrow }: Props) {
+  const visibleCertificates = certificates.filter((certificate) => certificate.code === 'SAA-C03')
+
   return (
     <section id="certificates" className="scroll-mt-36 space-y-8 md:scroll-mt-28">
       <div>
@@ -19,7 +21,7 @@ export default function CertificatesSection({ certificates, noiseBg, title, eyeb
       </div>
 
       <div className="grid grid-cols-1 gap-6">
-        {certificates.map((certificate) => (
+        {visibleCertificates.map((certificate) => (
           <div key={certificate.code} className="relative z-10 flex">
             <div
               className="absolute inset-0 -z-10"

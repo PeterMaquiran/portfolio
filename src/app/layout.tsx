@@ -32,27 +32,26 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://peter.tvone.ao'),
-  title: 'Peter Maquiran — Software Developer',
+  title: 'Peter Maquiran — Platform & Reliability Engineer',
   description:
-    'Software web and mobile developer skilled in Angular, Vue, Flutter, NestJS, Docker, and OpenTelemetry. Explore my portfolio, and self-hosted DevOps projects.',
+    'Platform and reliability engineer. Production architecture, observability, and security across fintech integrations and self-hosted infrastructure.',
   keywords: [
     'Peter Maquiran',
-    'Full Stack Developer',
-    'Software Engineer',
-    'Angular Developer',
-    'Vue Developer',
-    'NestJS',
-    'Node.js',
+    'Platform Engineer',
+    'Solutions Architect',
+    'Platform Architect',
+    'Site Reliability Engineer',
+    'Reliability',
+    'Observability',
+    'Security',
     'Docker',
-    'Nginx',
+    'Linux',
     'OpenTelemetry',
     'Prometheus',
     'Grafana',
-    'Next.js Portfolio',
-    'Web Developer',
-    'Mobile Developer',
-    'Ionic',
-    'Flutter',
+    'Keycloak',
+    'Vault',
+    'NestJS',
   ],
   // Add PNG icons (Favicon & Apple Touch Icon)
   icons: {
@@ -61,9 +60,9 @@ export const metadata: Metadata = {
     apple: '/peter-portrait.jpg', // Optional: separate PNG for iOS home screen
   },
   openGraph: {
-    title: 'Peter Maquiran — Software Developer',
+    title: 'Peter Maquiran — Platform & Reliability Engineer',
     description:
-      'Discover projects, skills and experience from Peter Maquiran — a Software developer passionate about observability and performance.',
+      'Platform and reliability engineer. Production architecture, observability, and security across fintech integrations and self-hosted infrastructure.',
     url: 'https://peter.tvone.ao',
     siteName: 'Peter Maquiran',
     locale: 'en_US',
@@ -82,7 +81,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Peter Maquiran',
     description:
-      'Software web and mobile developer specializing in Angular, Vue, Flutter, Docker, and OpenTelemetry.',
+      'Platform and reliability engineer focused on architecture, observability, and security.',
     creator: '@PeterMaquiran',
     // Add PNG image for Twitter card
     images: ['/peter-portrait.jpg'],

@@ -2,29 +2,29 @@
   "projects": [
     {
       "title": "Stack DevOps Auto-Hospedada",
-      "blurb": "Cluster Docker Swarm com Nginx reverse proxy, TLS via Certbot, registry privado, repository privado, Drone CI e pipeline de métricas/registos/rastreios. Tudo auto-hospedado.",
+      "blurb": "Plataforma de produção que opero: Docker Swarm, Nginx com TLS via Certbot, registry e Git privados, Drone CI, e um pipeline de métricas, registos e traces.",
       "stack": ["Docker", "Grafana", "Drone CI", "Gitea"],
       "highlights": [
         "Atualizações blue/green sem tempo de inatividade",
         "Pipelines Gitea + Drone CI para compilar e implementar",
-        "Registos e dashboards centralizados"
+        "Registos, métricas e traces centralizados"
       ],
       "url": "https://grafana.tvone.ao/?orgId=1&from=now-6h&to=now&timezone=browser"
     },
     {
-      "title": "Website de Portfólio Reativo",
-      "blurb": "Portfólio Next.js responsivo com cards glassmorphism, profundidade e blur inspirados na Apple, animações suaves, detalhes 3D e templates EN/PT.",
-      "stack": ["Next.js", "Tailwind", "Three.js", "Socket.io"],
+      "title": "ZenTrace",
+      "blurb": "Biblioteca de tracing em TypeScript para depuração em produção. Regista que funções correram, como o fluxo assíncrono avançou e os logs e chamadas HTTP de cada passo, e mostra esse caminho no Chrome DevTools.",
+      "stack": ["TypeScript", "Chrome DevTools", "Zipkin", "Loki"],
       "highlights": [
-        "Cards de vidro com blur fosco e profundidade suave",
-        "Layout, tipografia e movimento inspirados na Apple",
-        "Cenas 3D interativas e templates multilíngua"
+        "Rastreio de métodos com @trace() e de funções com traceFn()",
+        "Árvore de spans, linha do tempo e inspector de argumentos e retornos",
+        "console e fetch ligados aos spans, com exportação para Zipkin e Loki"
       ],
-      "url": "https://peter.tvone.ao"
+      "url": "https://www.npmjs.com/package/zentrace"
     },
     {
       "title": "Portal de Notícias TVOne",
-      "blurb": "Portal de notícias feito com NestJS e Next.js, com Redis para cache e RabbitMQ para pipelines assíncronos de conteúdo e publicação em tempo real.",
+      "blurb": "Plataforma de notícias em NestJS e Next.js. O Redis faz cache da entrega de artigos. O RabbitMQ tira a publicação e as notificações do caminho do pedido.",
       "stack": ["NestJS", "Next.js", "Redis", "RabbitMQ"],
       "highlights": [
         "API e fluxos editoriais com NestJS",
@@ -34,64 +34,63 @@
       "url": "https://tvone.ao/"
     },
     {
-      "title": "Plataforma de E-Commerce",
-      "blurb": "Plataforma de e-commerce full-stack com pagamentos seguros, processamento de pedidos em tempo real e uma infraestrutura resiliente projetada para alta disponibilidade e desempenho.",
-      "stack": ["Nuxt.js", "Laravel", "MySQL"],
-      "highlights": [
-        "Listagem de produtos e funcionalidade de carrinho de compras",
-        "Checkout e integração de pagamentos",
-        "Gestão e acompanhamento de pedidos",
-        "Painel administrativo para gerir produtos e utilizadores"
-      ],
-      "url": "https://github.com/PeterMaquiran/AWS-Examples"
-    },
-    {
       "title": "Organizador de Vida Holístico",
-      "blurb": "Promovendo o bem-estar através do acompanhamento intencional de hábitos, planeamento consciente e um planeador de jardim orgânico integrado, tudo dentro de uma suite de gestão pessoal.",
-      "stack": ["Flutter", "NestJs", "Keycloak", "PostgreSQL"],
+      "blurb": "Plataforma pessoal com Keycloak para autenticação, API em NestJS, PostgreSQL para o estado, e um cliente Flutter para hábitos, agenda e um planeador de jardim orgânico.",
+      "stack": ["Keycloak", "NestJs", "PostgreSQL", "Flutter"],
       "highlights": [
-        "Planeador interativo de jardim orgânico e calendário",
-        "Ferramentas personalizadas de acompanhamento de hábitos e reflexão",
-        "Calendário integrado para planeamento consciente",
-        "Dashboard holístico de progresso e insights"
+        "Keycloak à frente da API",
+        "Acompanhamento de hábitos e dashboard de progresso",
+        "Calendário para planeamento",
+        "Planeador de jardim orgânico"
       ],
       "url": "https://github.com/PeterMaquiran/orga1"
     },
     {
-      "title": "ZenTrace",
-      "blurb": "Biblioteca de tracing em TypeScript que mostra o caminho por trás de um stack trace: quais funções executaram, como o fluxo assíncrono avançou e os logs e chamadas HTTP correlacionados de cada passo, num painel do Chrome DevTools.",
-      "stack": ["TypeScript", "Chrome DevTools", "Zipkin", "Loki"],
+      "title": "Plataforma de E-Commerce",
+      "blurb": "Loja com pagamentos seguros, processamento de pedidos em tempo real e infraestrutura pensada para se manter disponível sob carga.",
+      "stack": ["Nuxt.js", "Laravel", "MySQL"],
       "highlights": [
-        "Rastreio de métodos com @trace() e de funções com traceFn()",
-        "Árvore de spans, linha do tempo e inspector de argumentos e retornos",
-        "console e fetch ligados aos spans, com exportação para Zipkin e Loki"
+        "Checkout e integração de pagamentos",
+        "Gestão e acompanhamento de pedidos",
+        "Catálogo, carrinho e painel para gerir produtos e utilizadores"
       ],
-      "url": "https://www.npmjs.com/package/zentrace"
+      "url": "https://github.com/PeterMaquiran/AWS-Examples"
+    },
+    {
+      "title": "Website de Portfólio Reativo",
+      "blurb": "Este site. Next.js em inglês e português, com presença de visitantes em tempo real via Socket.io.",
+      "stack": ["Next.js", "Tailwind", "Three.js", "Socket.io"],
+      "highlights": [
+        "Presença de visitantes em tempo real",
+        "Inglês e português",
+        "Layout, movimento e detalhes 3D"
+      ],
+      "url": "https://peter.tvone.ao"
     }
   ],
 
   "experiences": [
     {
-      "role": "Frontend Developer",
+      "role": "Engenheiro de Software",
       "company": "Equilibrium",
       "period": "Junho de 2020 — Presente",
       "current": true,
       "bullets": [
-        "Integração de Sistemas Bancários (Fintech): Desenvolveu técnico de soluções de pagamento em conformidade com as normas da EMIS, implementando fluxos seguros de subscrição de débito direto automático para otimização de cobranças regulares.",
-        "Automação e Geração de Ficheiros Corporativos: Desenvolveu módulos de alta confiabilidade para geração e validação de ficheiros de cobrança bancária padrão (IDD pacs.003), assegurando precisão em transações financeiras e reduzindo erros operacionais.",
-        "Plataforma de Local de Trabalho Digital: Atuou no desenvolvimento e manutenção de sistemas críticos, integrando módulos avançados de calendário institucional, fluxos de trabalho e processos baseados em K2, e canais internos de chat/mensajaria em tempo real para otimizar a comunicação e colaboração das equipas.",
-        "Eficiência e Monitoramento de Infraestrutura: Conectou plataformas corporativas a ferramentas avançadas de auditoria (Logs, Métricas e Rastreamento), melhorando a observabilidade geral do ecossistema de TI e resultando num incremento de 15% na estabilidade global dos sistemas."
+        "Fiabilidade: Ligou plataformas de produção a logs, métricas e tracing, com um aumento de 15% na estabilidade global dos sistemas.",
+        "Pagamentos: Construiu fluxos de pagamento em conformidade com a EMIS, incluindo subscrição de débito direto automático para cobranças recorrentes.",
+        "Correção financeira: Construiu módulos que geram e validam ficheiros de cobrança bancária (IDD pacs.003), reduzindo erros operacionais nas transações.",
+        "Plataforma interna: Entregou calendário institucional, fluxos K2 e mensagens em tempo real como um único local de trabalho digital."
       ]
     },
     {
-      "role": "Desenvolvedor Full-Stack",
+      "role": "Engenheiro de Software",
       "company": "Powercon",
       "period": "Janeiro de 2019 — Junho de 2020",
       "current": false,
       "bullets": [
-        "Otimização de Diagnóstico de Sistemas: Implementou ferramentas modernas de rastreamento distribuído e observabilidade que reduziram o tempo de depuração e resolução de falhas críticas em 40%, minimizando o tempo de inatividade da plataforma.",
-        "Desempenho e Engenharia de Aplicações: Projetou sistemas automatizados e dinâmicos para processamento de tarefas em segundo plano diretamente na interface do utilizador, otimizando drasticamente o tempo de resposta e o consumo de recursos de computação.",
-        "Interfaces Digitais Corporativas: Reestruturação e o desenvolvimento de portais digitais responsivos e sistemas de inventário integrados, alinhando a identidade visual às melhores práticas do mercado internacional."
+        "Diagnóstico de incidentes: Implementou tracing distribuído e observabilidade que reduziram em 40% o tempo de resolução de falhas críticas.",
+        "Carga: Construiu processamento de tarefas em segundo plano na interface, melhorando o tempo de resposta e o uso de computação.",
+        "Entrega: Construiu portais responsivos e sistemas de inventário para equipas de operações."
       ]
     },
     {
@@ -100,7 +99,7 @@
       "period": "Setembro de 2018 — Dezembro de 2018",
       "current": false,
       "bullets": [
-        "Automação de Processos Administrativos: Desenvolveu scripts e rotinas automatizadas para o preenchimento automático de documentação interna, eliminando tarefas repetitivas e aumentando a produtividade da equipe administrativa do hospital."
+        "Automação: Criou scripts que preenchiam documentação interna do hospital, retirando esse trabalho à equipa administrativa."
       ]
     },
     {
@@ -109,8 +108,7 @@
       "period": "Janeiro de 2017 — Março de 2018",
       "current": false,
       "bullets": [
-        "Desenvolvimento de Plataformas de E-Commerce: Construiu da interface de utilizador para portais de comércio eletrónico, aplicando design reativo e garantindo acessibilidade e fluidez na jornada de compra.",
-        "Aprimoramento de Experiência Visual: Implementou temas dinâmicos (modo claro/escuro) e arquiteturas modernas de carregamento rápido, elevando os níveis de retenção e engajamento dos utilizadores."
+        "E-commerce: Construiu a interface do portal, com temas claro e escuro e uma estrutura de carregamento rápido."
       ]
     }
   ],
@@ -129,7 +127,7 @@
   "hero": {
     "name": "PETER MAQUIRAN.",
     "tagline": "A Construir Sistemas para Resiliência e Performance.",
-    "description": "Web, Mobile & Forward Deployed Engineer (FDE) com mais de 9 anos de experiência. Focado em construir sistemas fiáveis, escaláveis e observáveis em aplicações full-stack."
+    "description": "Engenheiro de plataforma e fiabilidade com mais de 9 anos em sistemas de produção. Desenho e opero arquitetura, observabilidade e controlos de segurança — o trabalho de arquitetura de soluções, arquitetura de plataforma, fiabilidade e segurança."
   },
   "certificates": [
     {
@@ -198,7 +196,11 @@
   },
   "observabilitySection": {
     "showMore": "Mostrar mais",
-    "showLess": "Mostrar menos"
+    "showLess": "Mostrar menos",
+    "platform": "Plataforma",
+    "reliability": "Fiabilidade",
+    "security": "Segurança",
+    "applications": "Aplicações"
   },
   "liveVisitors": {
     "checking": "A ver quem está aqui…",

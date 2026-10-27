@@ -1,15 +1,15 @@
 # Peter Maquiran
 
-> Web, Mobile & Forward Deployed Engineer (FDE) with 9+ years of experience. Builds reliable, scalable, and observable systems across full-stack applications. Tagline: Building Systems for Resilience and Performance.
+> Platform and reliability engineer with 9+ years in production systems. Designs and operates architecture, observability, and security controls — the work behind solutions architecture, platform architecture, site reliability, and security. Tagline: Building Systems for Resilience and Performance.
 
-Canonical site: https://peter.tvone.ao. This file is the plain-text version of that single-page portfolio. The homepage collapses an extra tool list behind "Show More"; those tools are included below. Visitors whose browser language is Portuguese receive the same facts in Portuguese. Pages under /admin and /playground are private tools and are not part of this portfolio.
+Canonical site: https://peter.tvone.ao. This file is the plain-text version of that single-page portfolio. The homepage collapses application tools behind "Show More"; those tools are included below. Visitors whose browser language is Portuguese receive the same facts in Portuguese. Pages under /admin and /playground are private tools and are not part of this portfolio.
 
 Stack shown on the page:
 
-- Observability: Prometheus, Zipkin, Loki, Grafana, Grafana Alloy, Uptime Kuma
-- Frontend: React, Vue, Flutter, Tailwind, Offline First, Animations
-- Backend & Services: NestJS, Python, Redis, RabbitMQ, Socket.io, Keycloak
-- Other: Docker, PostgreSQL, MongoDB, Nginx, Linux, MinIO S3, TUS Upload, Gitea, Drone CI, Playwright, Firebase, Cloudflare, WireGuard, NetBird, Vault
+- Platform: Docker, Linux, Nginx, Gitea, Drone CI, MinIO S3
+- Reliability: Prometheus, Zipkin, Loki, Grafana, Grafana Alloy, Uptime Kuma
+- Security: Keycloak, Vault, WireGuard, NetBird, Cloudflare
+- Applications: NestJS, Python, PostgreSQL, Redis, RabbitMQ, MongoDB, React, Vue, Flutter, Tailwind, Socket.io, TUS Upload, Playwright, Firebase
 
 Also used across the work: TypeScript, Angular, Ionic, Capacitor, Node.js, HTML, CSS, Three.js, RxJS, Zod, OpenTelemetry, Sentry, REST, WebSockets, Docker Swarm, Android, and iOS.
 
@@ -23,23 +23,26 @@ Also used across the work: TypeScript, Angular, Ionic, Capacitor, Node.js, HTML,
 
 ## Projects
 
-- [Self-Hosted DevOps Stack](https://grafana.tvone.ao/?orgId=1&from=now-6h&to=now&timezone=browser): Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, private repository, Drone CI, and a metrics, logs, and traces pipeline. All self hosted. Stack: Docker, Grafana, Drone CI, Gitea.
-- [Reactive Portfolio Website](https://peter.tvone.ao): Responsive Next.js portfolio with glassmorphism cards, Apple-inspired depth and blur, smooth animations, 3D accents, and English and Portuguese copy. Stack: Next.js, Tailwind, Three.js, Socket.io.
-- [TVOne News Portal](https://tvone.ao/): News portal built with NestJS and Next.js, using Redis for caching and RabbitMQ for async content pipelines and real-time publishing. Stack: NestJS, Next.js, Redis, RabbitMQ.
-- [E-Commerce Platform](https://github.com/PeterMaquiran/AWS-Examples): Full-stack e-commerce platform with secure payments, real-time order processing, and resilient infrastructure designed for high availability and performance. Stack: Nuxt.js, Laravel, MySQL.
-- [Holistic Life Organizer](https://github.com/PeterMaquiran/orga1): Habit tracking, mindful scheduling, and an organic garden planner in one personal management suite. Stack: Flutter, NestJS, Keycloak, PostgreSQL.
-- [ZenTrace](https://www.npmjs.com/package/zentrace): TypeScript tracing library that shows the path behind a stack trace: which functions ran, how the async flow moved, and the correlated logs and HTTP calls for each step, in a Chrome DevTools panel. Trace class methods with @trace() and plain functions with traceFn(). Stack: TypeScript, Chrome DevTools, Zipkin, Loki.
+- [Self-Hosted DevOps Stack](https://grafana.tvone.ao/?orgId=1&from=now-6h&to=now&timezone=browser): Production platform: Docker Swarm, Nginx with TLS via Certbot, a private registry and Git server, Drone CI, and one pipeline for metrics, logs, and traces. Stack: Docker, Grafana, Drone CI, Gitea.
+- [ZenTrace](https://www.npmjs.com/package/zentrace): TypeScript tracing library for production debugging. It records which functions ran, how the async flow moved, and the logs and HTTP calls on each step, in a Chrome DevTools panel. Trace class methods with @trace() and plain functions with traceFn(). Stack: TypeScript, Chrome DevTools, Zipkin, Loki.
+- [TVOne News Portal](https://tvone.ao/): News platform on NestJS and Next.js. Redis caches article delivery. RabbitMQ carries publish and notification work off the request path. Stack: NestJS, Next.js, Redis, RabbitMQ.
+- [Holistic Life Organizer](https://github.com/PeterMaquiran/orga1): Personal platform with Keycloak for sign-in, a NestJS API, PostgreSQL for state, and a Flutter client for habits, scheduling, and an organic garden planner. Stack: Keycloak, NestJS, PostgreSQL, Flutter.
+- [E-Commerce Platform](https://github.com/PeterMaquiran/AWS-Examples): Storefront with secure payments, real-time order processing, and infrastructure aimed at staying available under load. Stack: Nuxt.js, Laravel, MySQL.
+- [Reactive Portfolio Website](https://peter.tvone.ao): This site. Next.js in English and Portuguese, with live visitor presence over Socket.io. Stack: Next.js, Tailwind, Three.js, Socket.io.
 
 ## Experience
 
-- [Equilibrium](https://peter.tvone.ao/#experience): Frontend Developer, Jun 2020 — Present. Payment solutions compliant with EMIS standards, including automatic direct-debit subscription flows. Modules that generate and validate bank collection files (IDD pacs.003). Digital workplace systems with institutional calendars, K2 workflows, and real-time internal chat. Connected platforms to logs, metrics, and tracing, with a stated 15% increase in system stability.
-- [Powercon](https://peter.tvone.ao/#experience): Full-Stack Developer, Jan 2019 — Jun 2020. Distributed tracing and observability that cut critical failure debugging time by 40%. Background task processing in the interface. Responsive portals and inventory systems.
-- [Clínica Multiperfil](https://peter.tvone.ao/#experience): Backend Developer, Sep 2018 — Dec 2018. Scripts and routines that automated internal hospital documentation.
-- [Theus](https://peter.tvone.ao/#experience): Frontend Developer, Jan 2017 — Mar 2018. E-commerce interfaces, light and dark themes, and fast-loading page architecture.
+- [Equilibrium](https://peter.tvone.ao/#experience): Software Engineer, Jun 2020 — Present. Connected production platforms to logs, metrics, and tracing, with a stated 15% increase in system stability. EMIS-compliant payment flows, including automatic direct-debit subscriptions. Modules that generate and validate bank collection files (IDD pacs.003). Internal platform with institutional calendars, K2 workflows, and real-time messaging.
+- [Powercon](https://peter.tvone.ao/#experience): Software Engineer, Jan 2019 — Jun 2020. Distributed tracing and observability that cut critical failure resolution time by 40%. Background task processing in the interface. Responsive portals and inventory systems.
+- [Clínica Multiperfil](https://peter.tvone.ao/#experience): Backend Developer, Sep 2018 — Dec 2018. Scripts that filled internal hospital documentation.
+- [Theus](https://peter.tvone.ao/#experience): Frontend Developer, Jan 2017 — Mar 2018. E-commerce interface, light and dark themes, and a fast-loading page structure.
 
 ## Credentials
 
-- [AWS Certified Solutions Architect – Associate](https://peter.tvone.ao/#certificates): Amazon Web Services, exam SAA-C03, in progress. Preparing for secure, resilient, high-performing, and cost-optimized architectures on AWS. This is the only credential shown on the site.
+- [AWS Certified Solutions Architect – Associate](https://peter.tvone.ao/#certificates): Amazon Web Services, exam SAA-C03, in progress. Preparing for secure, resilient, high-performing, and cost-optimized architectures on AWS.
+- [Certified Kubernetes Administrator](https://peter.tvone.ao/#certificates): The Linux Foundation, CKA, listed as next. Production Kubernetes administration.
+- [HashiCorp Certified: Terraform Associate](https://peter.tvone.ao/#certificates): HashiCorp, HCTA0-004, listed as next. Infrastructure as code with Terraform.
+- [AWS Certified CloudOps Engineer – Associate](https://peter.tvone.ao/#certificates): Amazon Web Services, SOA-C03, listed as next. Operating workloads on AWS.
 
 ## Testimonials
 

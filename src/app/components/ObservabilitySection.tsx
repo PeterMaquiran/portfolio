@@ -28,6 +28,10 @@ interface ObservabilitySectionProps {
   labels: {
     showMore: string
     showLess: string
+    platform: string
+    reliability: string
+    security: string
+    applications: string
   }
 }
 
@@ -55,9 +59,41 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
         />
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {/* Column 1: Observability */}
           <div>
-            <h3 className="mb-5 text-lg font-medium text-fg">Observability</h3>
+            <h3 className="mb-5 text-lg font-medium text-fg">{labels.platform}</h3>
+
+            <div className="flex flex-col gap-3">
+              <StackItem
+                name="Docker"
+                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+              />
+
+              <StackItem
+                name="Linux"
+                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+              />
+
+              <StackItem
+                name="Nginx"
+                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg"
+              />
+
+              <StackItem
+                name="Gitea"
+                iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/gitea.svg"
+              />
+
+              <StackItem name="Drone CI" iconSrc="/drone-ci.svg" />
+
+              <StackItem
+                name="MinIO S3"
+                iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/minio.svg"
+              />
+            </div>
+          </div>
+
+          <div>
+            <h3 className="mb-5 text-lg font-medium text-fg">{labels.reliability}</h3>
 
             <div className="flex flex-col gap-3">
               <StackItem
@@ -100,94 +136,33 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
             </div>
           </div>
 
-          {/* Column 2: Frontend */}
           <div>
-            <h3 className="mb-5 text-lg font-medium text-fg">Frontend</h3>
+            <h3 className="mb-5 text-lg font-medium text-fg">{labels.security}</h3>
 
             <div className="flex flex-col gap-3">
-              <StackItem
-                name="React"
-                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-              />
-
-              <StackItem
-                name="Vue"
-                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
-              />
-
-              <StackItem
-                name="Flutter"
-                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
-              />
-
-              <StackItem
-                name="Tailwind"
-                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-              />
-
-              <StackItem name="Offline First">
-                <svg
-                  className="h-6 w-6 shrink-0 text-emerald-600 dark:text-emerald-400"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.17-2.39M10.71 5.05A16 16 0 0122.58 9M1.42 9a15.91 15.91 0 014.7-3.21M8.53 16.11a6 6 0 016.95 0M12 20h.01" />
-                </svg>
-              </StackItem>
-
-              <StackItem name="Animations">
-                <svg
-                  className="h-6 w-6 shrink-0 text-violet-600 dark:text-purple-400"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.5-6.5l-2.1 2.1m-8.8 8.8l-2.1 2.1m0-13l2.1 2.1m8.8 8.8l2.1 2.1" />
-                </svg>
-              </StackItem>
-            </div>
-          </div>
-
-          {/* Column 3: Backend */}
-          <div>
-            <h3 className="mb-5 text-lg font-medium text-fg">Backend & Services</h3>
-
-            <div className="flex flex-col gap-3">
-              <StackItem
-                name="NestJS"
-                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg"
-              />
-
-              <StackItem
-                name="Python"
-                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-              />
-
-              <StackItem
-                name="Redis"
-                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg"
-              />
-
-              <StackItem
-                name="RabbitMQ"
-                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg"
-              />
-
-              <StackItem
-                name="Socket.io"
-                iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg"
-              />
-
               <StackItem
                 name="Keycloak"
                 iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/keycloak.svg"
+              />
+
+              <StackItem
+                name="Vault"
+                iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/vault.svg"
+              />
+
+              <StackItem
+                name="WireGuard"
+                iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/wireguard.svg"
+              />
+
+              <StackItem
+                name="NetBird"
+                iconSrc="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/netbird.svg"
+              />
+
+              <StackItem
+                name="Cloudflare"
+                iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/cloudflare.svg"
               />
             </div>
           </div>
@@ -201,12 +176,17 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
               }`}
             >
               <div className="min-h-0 overflow-hidden">
-                <h3 className="mb-5 text-lg font-medium text-fg">Other</h3>
+                <h3 className="mb-5 text-lg font-medium text-fg">{labels.applications}</h3>
 
                 <div className="flex flex-wrap gap-3">
                   <StackItem
-                    name="Docker"
-                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                    name="NestJS"
+                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg"
+                  />
+
+                  <StackItem
+                    name="Python"
+                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                   />
 
                   <StackItem
@@ -215,23 +195,43 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
                   />
 
                   <StackItem
+                    name="Redis"
+                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg"
+                  />
+
+                  <StackItem
+                    name="RabbitMQ"
+                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg"
+                  />
+
+                  <StackItem
                     name="MongoDB"
                     iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
                   />
 
                   <StackItem
-                    name="Nginx"
-                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg"
+                    name="React"
+                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
                   />
 
                   <StackItem
-                    name="Linux"
-                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                    name="Vue"
+                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
                   />
 
                   <StackItem
-                    name="MinIO S3"
-                    iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/minio.svg"
+                    name="Flutter"
+                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
+                  />
+
+                  <StackItem
+                    name="Tailwind"
+                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                  />
+
+                  <StackItem
+                    name="Socket.io"
+                    iconSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg"
                   />
 
                   <StackItem
@@ -240,38 +240,11 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
                     className="bg-white rounded-full"
                   />
 
-                  <StackItem
-                    name="Gitea"
-                    iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/gitea.svg"
-                  />
-
-                  <StackItem name="Drone CI" iconSrc="/drone-ci.svg" />
-
                   <StackItem name="Playwright" iconSrc="/playwright-logo.svg" />
 
                   <StackItem
                     name="Firebase"
                     iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/firebase.svg"
-                  />
-
-                  <StackItem
-                    name="Cloudflare"
-                    iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/cloudflare.svg"
-                  />
-
-                  <StackItem
-                    name="WireGuard"
-                    iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/wireguard.svg"
-                  />
-
-                  <StackItem
-                    name="NetBird"
-                    iconSrc="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/netbird.svg"
-                  />
-
-                  <StackItem
-                    name="Vault"
-                    iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/vault.svg"
                   />
                   {/* <StackItem
                     name="ESP32"

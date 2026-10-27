@@ -18,10 +18,9 @@ const projectCardPreviews: CardPreview[] = [
     alt: 'Grafana monitoring dashboard',
   },
   {
-    kind: 'duo',
-    secondary: '/mobile-portfolio.png',
-    primary: '/desktop-porfolio.png',
-    alt: 'Portfolio mobile UI',
+    kind: 'logo',
+    primary: '/npm.svg',
+    alt: 'NPM',
   },
   {
     kind: 'duo',
@@ -30,28 +29,29 @@ const projectCardPreviews: CardPreview[] = [
     alt: 'TVOne news portal',
   },
   {
-    kind: 'duo',
-    primary: '/ponto-fresco-desktop.png',
-    secondary: '/pontrofrescho-mobile.png',
-    alt: 'E-commerce platform UI',
-  },
-  {
     kind: 'phones',
     primary: '/orga-login.png',
     secondary: '/orga-habit.png',
     alt: 'Holistic Life Organizer app',
   },
   {
-    kind: 'logo',
-    primary: '/npm.svg',
-    alt: 'NPM',
+    kind: 'duo',
+    primary: '/ponto-fresco-desktop.png',
+    secondary: '/pontrofrescho-mobile.png',
+    alt: 'E-commerce platform UI',
+  },
+  {
+    kind: 'duo',
+    secondary: '/mobile-portfolio.png',
+    primary: '/desktop-porfolio.png',
+    alt: 'Portfolio mobile UI',
   },
 ]
 
 // —————————————————————————————————————————————
 // Full 3D previews (modal)
 // —————————————————————————————————————————————
-const projectPreviewFactories: Array<() => JSX.Element[]> = [
+const projectPreviewFactories: Array<(() => JSX.Element[]) | null> = [
   () => [
     <Monitor
       key="monitor"
@@ -59,21 +59,7 @@ const projectPreviewFactories: Array<() => JSX.Element[]> = [
       cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
     />,
   ],
-  () => [
-    <Phone
-      key="phone"
-      screenSource="/mobile-portfolio.png"
-      enableZoom
-      enablePan
-      cameraStepBack={10}
-      targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
-    />,
-    <Monitor
-      key="monitor"
-      screenSource="/desktop-porfolio.png"
-      cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
-    />,
-  ],
+  null,
   () => [
     <Monitor
       key="monitor"
@@ -83,6 +69,24 @@ const projectPreviewFactories: Array<() => JSX.Element[]> = [
     <Phone
       key="phone"
       screenSource="/tvone-mobile.png"
+      enableZoom
+      enablePan
+      cameraStepBack={10}
+      targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
+    />,
+  ],
+  () => [
+    <Phone
+      key="phone"
+      screenSource="/orga-login.png"
+      enableZoom
+      enablePan
+      cameraStepBack={10}
+      targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
+    />,
+    <Phone
+      key="phone-habit"
+      screenSource="/orga-habit.png"
       enableZoom
       enablePan
       cameraStepBack={10}
@@ -107,19 +111,16 @@ const projectPreviewFactories: Array<() => JSX.Element[]> = [
   () => [
     <Phone
       key="phone"
-      screenSource="/orga-login.png"
+      screenSource="/mobile-portfolio.png"
       enableZoom
       enablePan
       cameraStepBack={10}
       targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
     />,
-    <Phone
-      key="phone-habit"
-      screenSource="/orga-habit.png"
-      enableZoom
-      enablePan
-      cameraStepBack={10}
-      targetCameraStepBack={window.innerHeight < 640 ? 7 : window.innerHeight < 880 ? 5.5 : 6.5}
+    <Monitor
+      key="monitor"
+      screenSource="/desktop-porfolio.png"
+      cameraStepBack={window.innerWidth < 640 ? 12 : window.innerWidth < 1024 ? 8 : 6}
     />,
   ],
 ]
@@ -170,7 +171,7 @@ export default function ProjectsSection({ projects, noiseBg, title }: Props) {
 
         <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => {
-            const canPreview = index < projectPreviewFactories.length
+            const canPreview = typeof projectPreviewFactories[index] === 'function'
             const cardPreview = projectCardPreviews[index]
             const externalUrl = projectUrl(project)
             const canOpen = canPreview || Boolean(externalUrl)

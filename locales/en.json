@@ -75,29 +75,29 @@
   "projects": [
     {
       "title": "Self-Hosted DevOps Stack",
-      "blurb": "Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, private repository, Drone CI, and metrics/logs/traces pipeline. All self hosted.",
+      "blurb": "Production platform I operate: Docker Swarm, Nginx with TLS via Certbot, a private registry and Git server, Drone CI, and one pipeline for metrics, logs, and traces.",
       "stack": ["Docker", "Grafana", "Drone CI", "Gitea"],
       "highlights": [
         "Blue/green style updates for zero-downtime",
-        "Gitea + Drone CI pipelines to build & deploy",
-        "Centralized logs and dashboards"
+        "Gitea + Drone CI pipelines to build and deploy",
+        "Centralized logs, metrics, and traces"
       ],
       "url": "https://grafana.tvone.ao/?orgId=1&from=now-6h&to=now&timezone=browser"
     },
     {
-      "title": "Reactive Portfolio Website",
-      "blurb": "Responsive Next.js portfolio with glassmorphism cards, Apple-inspired depth and blur, smooth animations, 3D accents, and EN/PT language templates.",
-      "stack": ["Next.js", "Tailwind", "Three.js", "Socket.io"],
+      "title": "ZenTrace",
+      "blurb": "TypeScript tracing library for production debugging. It records which functions ran, how the async flow moved, and the logs and HTTP calls on each step, then shows that path in Chrome DevTools.",
+      "stack": ["TypeScript", "Chrome DevTools", "Zipkin", "Loki"],
       "highlights": [
-        "Glass cards with frosted blur and soft depth",
-        "Apple-inspired layout, typography, and motion",
-        "Interactive 3D scenes and multilingual templates"
+        "Trace class methods with @trace() and plain functions with traceFn()",
+        "Span tree, timeline, and inspector for arguments and return values",
+        "console and fetch linked to spans, exported to Zipkin and Loki"
       ],
-      "url": "https://peter.tvone.ao"
+      "url": "https://www.npmjs.com/package/zentrace"
     },
     {
       "title": "TVOne News Portal",
-      "blurb": "News portal built with NestJS and Next.js, using Redis for caching and RabbitMQ for async content pipelines and real-time publishing.",
+      "blurb": "News platform on NestJS and Next.js. Redis caches article delivery. RabbitMQ carries publish and notification work off the request path.",
       "stack": ["NestJS", "Next.js", "Redis", "RabbitMQ"],
       "highlights": [
         "API and editorial workflows powered by NestJS",
@@ -107,64 +107,63 @@
       "url": "https://tvone.ao/"
     },
     {
-      "title": "E-Commerce Platform",
-      "blurb": "Full-stack e-commerce platform with secure payments, real-time order processing, and resilient infrastructure designed for high availability and performance.",
-      "stack": ["Nuxt.js", "Laravel", "MySQL"],
-      "highlights": [
-        "Product listing and shopping cart functionality",
-        "Checkout and payment integration",
-        "Order management and tracking",
-        "Admin panel for managing products and users"
-      ],
-      "url": "https://github.com/PeterMaquiran/AWS-Examples"
-    },
-    {
       "title": "Holistic Life Organizer",
-      "blurb": "Cultivating wellbeing through intentional habit tracking, mindful scheduling, and an integrated organic garden planner, all within a personal management suite.",
-      "stack": ["Flutter", "NestJs", "Keycloak", "PostgreSQL"],
+      "blurb": "Personal platform with Keycloak for sign-in, a NestJS API, PostgreSQL for state, and a Flutter client for habits, scheduling, and an organic garden planner.",
+      "stack": ["Keycloak", "NestJs", "PostgreSQL", "Flutter"],
       "highlights": [
-        "Interactive organic garden planner and calendar",
-        "Personalized habit tracking and reflection tools",
-        "Integrated calendar for mindful scheduling",
-        "Holistic progress dashboard and insights"
+        "Keycloak in front of the API",
+        "Habit tracking and a progress dashboard",
+        "Calendar for scheduling",
+        "Organic garden planner"
       ],
       "url": "https://github.com/PeterMaquiran/orga1"
     },
     {
-      "title": "ZenTrace",
-      "blurb": "TypeScript tracing library that shows the path behind a stack trace: which functions ran, how the async flow moved, and the correlated logs and HTTP calls for each step, in a Chrome DevTools panel.",
-      "stack": ["TypeScript", "Chrome DevTools", "Zipkin", "Loki"],
+      "title": "E-Commerce Platform",
+      "blurb": "Storefront with secure payments, real-time order processing, and infrastructure aimed at staying available under load.",
+      "stack": ["Nuxt.js", "Laravel", "MySQL"],
       "highlights": [
-        "Trace class methods with @trace() and plain functions with traceFn()",
-        "Span tree, timeline, and inspector for arguments and return values",
-        "console and fetch linked to spans, exported to Zipkin and Loki"
+        "Checkout and payment integration",
+        "Order management and tracking",
+        "Catalog, cart, and an admin panel for products and users"
       ],
-      "url": "https://www.npmjs.com/package/zentrace"
+      "url": "https://github.com/PeterMaquiran/AWS-Examples"
+    },
+    {
+      "title": "Reactive Portfolio Website",
+      "blurb": "This site. Next.js in English and Portuguese, with live visitor presence over Socket.io.",
+      "stack": ["Next.js", "Tailwind", "Three.js", "Socket.io"],
+      "highlights": [
+        "Live visitor presence",
+        "English and Portuguese",
+        "Layout, motion, and 3D accents"
+      ],
+      "url": "https://peter.tvone.ao"
     }
   ],
 
   "experiences": [
     {
-      "role": "Frontend Developer",
+      "role": "Software Engineer",
       "company": "Equilibrium",
       "period": "Jun 2020 — Present",
       "current": true,
       "bullets": [
-        "Banking Systems Integration (Fintech): Development of payment solutions compliant with EMIS standards, implementing secure automatic direct-debit subscription flows to optimize recurring collections.",
-        "Corporate File Automation & Generation: Built high-reliability modules for generating and validating standard bank collection files (IDD pacs.003), ensuring accuracy in financial transactions and reducing operational errors.",
-        "Digital Workplace Platform: Developed and maintained critical systems integrating advanced institutional calendar modules, K2-based workflows, and real-time internal chat/messaging channels to improve team communication and collaboration.",
-        "Infrastructure Efficiency & Monitoring: Connected corporate platforms to advanced audit tooling (logs, metrics, and tracing), improving overall IT ecosystem observability and delivering a 15% increase in global system stability."
+        "Reliability: Connected production platforms to logs, metrics, and tracing, raising overall system stability by 15%.",
+        "Payments: Built EMIS-compliant payment flows, including automatic direct-debit subscriptions for recurring collections.",
+        "Financial correctness: Built modules that generate and validate bank collection files (IDD pacs.003), reducing operational errors in transactions.",
+        "Internal platform: Delivered institutional calendars, K2 workflows, and real-time messaging as one digital workplace."
       ]
     },
     {
-      "role": "Full-Stack Developer",
+      "role": "Software Engineer",
       "company": "Powercon",
       "period": "Jan 2019 — Jun 2020",
       "current": false,
       "bullets": [
-        "System Diagnostics Optimization: Implemented modern distributed tracing and observability tools that cut critical failure debugging and resolution time by 40%, minimizing platform downtime.",
-        "Application Performance Engineering: Designed automated, dynamic systems for background task processing directly in the user interface, drastically improving response time and compute resource usage.",
-        "Corporate Digital Interfaces: Redesign and development of responsive digital portals and integrated inventory systems, aligning visual identity with international market best practices."
+        "Incident diagnosis: Implemented distributed tracing and observability that cut critical-failure resolution time by 40%.",
+        "Load: Built background task processing in the interface, improving response time and how compute was used.",
+        "Delivery: Built responsive portals and inventory systems for operations teams."
       ]
     },
     {
@@ -173,7 +172,7 @@
       "period": "Sep 2018 — Dec 2018",
       "current": false,
       "bullets": [
-        "Administrative Process Automation: Built scripts and automated routines for filling internal documentation, eliminating repetitive tasks and increasing productivity for the hospital administrative team."
+        "Automation: Built scripts that filled internal hospital documentation, removing repetitive work from the administrative team."
       ]
     },
     {
@@ -182,8 +181,7 @@
       "period": "Jan 2017 — Mar 2018",
       "current": false,
       "bullets": [
-        "E-Commerce Platform Development: Construction of user interfaces for e-commerce portals, applying reactive design and ensuring accessibility and a fluid purchase journey.",
-        "Visual Experience Enhancement: Implemented dynamic themes (light/dark mode) and modern fast-loading architectures, raising user retention and engagement."
+        "E-commerce: Built the portal interface, including light and dark themes and a fast-loading page structure."
       ]
     }
   ],
@@ -202,7 +200,7 @@
   "hero": {
     "name": "PETER MAQUIRAN.",
     "tagline": "Building Systems for Resilience and Performance.",
-    "description": "Web, Mobile & Forward Deployed Engineer (FDE) with 9+ years of experience. Focused on building reliable, scalable, and observable systems across full-stack applications."
+    "description": "Platform and reliability engineer with 9+ years in production systems. I design and operate architecture, observability, and security controls — the work behind solutions architecture, platform architecture, site reliability, and security."
   },
   "certificates": [
     {
@@ -271,7 +269,11 @@
   },
   "observabilitySection": {
     "showMore": "Show More",
-    "showLess": "Show Less"
+    "showLess": "Show Less",
+    "platform": "Platform",
+    "reliability": "Reliability",
+    "security": "Security",
+    "applications": "Applications"
   },
   "liveVisitors": {
     "checking": "Checking who is here…",

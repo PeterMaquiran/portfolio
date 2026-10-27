@@ -265,6 +265,11 @@ export const ObservabilitySection: React.FC<ObservabilitySectionProps> = ({ labe
                   />
 
                   <StackItem
+                    name="NetBird"
+                    iconSrc="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/netbird.svg"
+                  />
+
+                  <StackItem
                     name="Vault"
                     iconSrc="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/vault.svg"
                   />

@@ -89,6 +89,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://peter.tvone.ao',
+    types: {
+      'text/plain': '/llms.txt',
+    },
   },
   robots: {
     index: true,

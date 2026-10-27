@@ -1,0 +1,53 @@
+# Peter Maquiran
+
+> Web, Mobile & Forward Deployed Engineer (FDE) with 9+ years of experience. Builds reliable, scalable, and observable systems across full-stack applications. Tagline: Building Systems for Resilience and Performance.
+
+Canonical site: https://peter.tvone.ao. This file is the plain-text version of that single-page portfolio. The homepage collapses an extra tool list behind "Show More"; those tools are included below. Visitors whose browser language is Portuguese receive the same facts in Portuguese. Pages under /admin and /playground are private tools and are not part of this portfolio.
+
+Stack shown on the page:
+
+- Observability: Prometheus, Zipkin, Loki, Grafana, Grafana Alloy, Uptime Kuma
+- Frontend: React, Vue, Flutter, Tailwind, Offline First, Animations
+- Backend & Services: NestJS, Python, Redis, RabbitMQ, Socket.io, Keycloak
+- Other: Docker, PostgreSQL, MongoDB, Nginx, Linux, MinIO S3, TUS Upload, Gitea, Drone CI, Playwright, Firebase, Cloudflare, WireGuard, NetBird, Vault
+
+Also used across the work: TypeScript, Angular, Ionic, Capacitor, Node.js, HTML, CSS, Three.js, RxJS, Zod, OpenTelemetry, Sentry, REST, WebSockets, Docker Swarm, Android, and iOS.
+
+## Site
+
+- [Portfolio](https://peter.tvone.ao): full page
+- [About](https://peter.tvone.ao/#about): introduction
+- [Projects](https://peter.tvone.ao/#projects): selected work
+- [Experience](https://peter.tvone.ao/#experience): career history
+- [Certificates](https://peter.tvone.ao/#certificates): credentials shown on the page
+
+## Projects
+
+- [Self-Hosted DevOps Stack](https://grafana.tvone.ao/?orgId=1&from=now-6h&to=now&timezone=browser): Docker Swarm cluster with Nginx reverse proxy, TLS via Certbot, private registry, private repository, Drone CI, and a metrics, logs, and traces pipeline. All self hosted. Stack: Docker, Grafana, Drone CI, Gitea.
+- [Reactive Portfolio Website](https://peter.tvone.ao): Responsive Next.js portfolio with glassmorphism cards, Apple-inspired depth and blur, smooth animations, 3D accents, and English and Portuguese copy. Stack: Next.js, Tailwind, Three.js, Socket.io.
+- [TVOne News Portal](https://tvone.ao/): News portal built with NestJS and Next.js, using Redis for caching and RabbitMQ for async content pipelines and real-time publishing. Stack: NestJS, Next.js, Redis, RabbitMQ.
+- [E-Commerce Platform](https://github.com/PeterMaquiran/AWS-Examples): Full-stack e-commerce platform with secure payments, real-time order processing, and resilient infrastructure designed for high availability and performance. Stack: Nuxt.js, Laravel, MySQL.
+- [Holistic Life Organizer](https://github.com/PeterMaquiran/orga1): Habit tracking, mindful scheduling, and an organic garden planner in one personal management suite. Stack: Flutter, NestJS, Keycloak, PostgreSQL.
+- [ZenTrace](https://www.npmjs.com/package/zentrace): TypeScript tracing library that shows the path behind a stack trace: which functions ran, how the async flow moved, and the correlated logs and HTTP calls for each step, in a Chrome DevTools panel. Trace class methods with @trace() and plain functions with traceFn(). Stack: TypeScript, Chrome DevTools, Zipkin, Loki.
+
+## Experience
+
+- [Equilibrium](https://peter.tvone.ao/#experience): Frontend Developer, Jun 2020 — Present. Payment solutions compliant with EMIS standards, including automatic direct-debit subscription flows. Modules that generate and validate bank collection files (IDD pacs.003). Digital workplace systems with institutional calendars, K2 workflows, and real-time internal chat. Connected platforms to logs, metrics, and tracing, with a stated 15% increase in system stability.
+- [Powercon](https://peter.tvone.ao/#experience): Full-Stack Developer, Jan 2019 — Jun 2020. Distributed tracing and observability that cut critical failure debugging time by 40%. Background task processing in the interface. Responsive portals and inventory systems.
+- [Clínica Multiperfil](https://peter.tvone.ao/#experience): Backend Developer, Sep 2018 — Dec 2018. Scripts and routines that automated internal hospital documentation.
+- [Theus](https://peter.tvone.ao/#experience): Frontend Developer, Jan 2017 — Mar 2018. E-commerce interfaces, light and dark themes, and fast-loading page architecture.
+
+## Credentials
+
+- [AWS Certified Solutions Architect – Associate](https://peter.tvone.ao/#certificates): Amazon Web Services, exam SAA-C03, in progress. Preparing for secure, resilient, high-performing, and cost-optimized architectures on AWS. This is the only credential shown on the site.
+
+## Testimonials
+
+- [Eudes Inácio, Equilibrium](https://www.linkedin.com/in/eudes-in%C3%A1cio-8862a889/): "Peter brought production-grade observability to our stack. We caught issues before users did and shipped faster."
+- [Natanael de Sousa Neto, Equilibrium](https://www.linkedin.com/in/natanael-de-sousa-neto-133a65143/): "Our media uploads went from fragile to rock-solid, even on spotty networks. Huge win for our mobile users."
+
+## Contact
+
+- [GitHub](https://github.com/PeterMaquiran): PeterMaquiran
+- [LinkedIn](https://www.linkedin.com/in/petermaquiran/): petermaquiran
+- [WhatsApp](https://wa.me/244948432650): +244 948 432 650

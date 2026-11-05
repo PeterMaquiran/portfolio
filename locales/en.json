@@ -36,6 +36,7 @@
         { "name": "WebSockets", "level": 80 },
         { "name": "Docker", "level": 95 },
         { "name": "Swarm", "level": 80 },
+        { "name": "NetBird", "level": 90 },
         { "name": "Self hosted Gitea", "level": 90 },
         { "name": "Self hosted Drone CI", "level": 90 },
         { "name": "Self hosted Grafana", "level": 90 },

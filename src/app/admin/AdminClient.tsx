@@ -27,6 +27,12 @@ export default function AdminClient() {
   const endRef = useRef<HTMLDivElement>(null)
   const activeIdRef = useRef<string | null>(null)
   activeIdRef.current = activeId
+  const [, relayoutTick] = useState(0)
+
+  useEffect(() => {
+    const id = window.setInterval(() => relayoutTick((n) => n + 1), 30_000)
+    return () => window.clearInterval(id)
+  }, [])
 
   const active = useMemo(
     () => conversations.find((conversation) => conversation.id === activeId) || null,
@@ -90,6 +96,10 @@ export default function AdminClient() {
         createdAt: conversation?.createdAt || message.createdAt,
         startedAt: conversation?.startedAt || message.createdAt,
         lastMessageAt: message.createdAt,
+        lastActiveAt:
+          message.sender === 'visitor'
+            ? message.createdAt
+            : conversation?.lastActiveAt ?? conversation?.lastMessageAt ?? null,
       })
     }
   }, [])
@@ -339,8 +349,13 @@ export default function AdminClient() {
                       conversation.id === activeId ? 'bg-surface-hover' : ''
                     }`}
                   >
-                    <span className="text-sm font-medium text-fg">
-                      {conversation.country || 'Unknown'}
+                    <span className="flex w-full items-baseline gap-2">
+                      <span className="shrink-0 text-[11px] tabular-nums text-fg-faint">
+                        {formatLastActive(conversation.lastActiveAt)}
+                      </span>
+                      <span className="min-w-0 truncate text-sm font-medium text-fg">
+                        {conversation.country || 'Unknown'}
+                      </span>
                     </span>
                     <span className="font-mono text-xs text-fg-muted">
                       {conversation.ip || '—'}
@@ -439,6 +454,19 @@ export default function AdminClient() {
       </main>
     </div>
   )
+}
+
+function formatLastActive(at: number | null | undefined) {
+  if (!at) return '—'
+  const sec = Math.max(0, Math.floor((Date.now() - at) / 1000))
+  if (sec < 45) return 'now'
+  const min = Math.floor(sec / 60)
+  if (min < 60) return `${min}m`
+  const hr = Math.floor(min / 60)
+  if (hr < 48) return `${hr}h`
+  const day = Math.floor(hr / 24)
+  if (day < 14) return `${day}d`
+  return new Date(at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
 }
 
 function deviceLabel(conversation: ChatConversation) {

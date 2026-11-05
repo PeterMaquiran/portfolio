@@ -24,6 +24,7 @@ export type ChatConversation = {
   createdAt: number
   startedAt: number | null
   lastMessageAt: number | null
+  lastActiveAt: number | null
   pending: number
   ips?: ChatIp[]
   device?: string
